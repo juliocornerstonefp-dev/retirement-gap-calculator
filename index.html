@@ -949,6 +949,18 @@
     btn.disabled = true;
     btn.textContent = 'Sending...';
 
+    // Directly create contact in GHL (guaranteed, no workflow dependency)
+    const ghlContact = fetch('https://services.leadconnectorhq.com/contacts/', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer pit-4e7bedf7-b9f3-4da3-8e6c-f82b2f77a99e',
+        'Version': '2021-07-28'
+      },
+      body: JSON.stringify(payload)
+    });
+
+    // Also fire webhook for any workflow automations
     const ghlWebhook = fetch('https://services.leadconnectorhq.com/hooks/4h1PA7Uu73HYw1oGPHkN/webhook-trigger/7ec54bb1-d513-4c9d-91c7-9271f1e7d253', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
@@ -978,7 +990,7 @@
       })
     });
 
-    Promise.allSettled([ghlWebhook, emailNotification]).then(() => {
+    Promise.allSettled([ghlContact, ghlWebhook, emailNotification]).then(() => {
       document.getElementById('lead-form').style.display = 'none';
       document.getElementById('thank-you').classList.add('visible');
     });
