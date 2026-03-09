@@ -949,18 +949,31 @@
     btn.disabled = true;
     btn.textContent = 'Sending...';
 
-    // Directly create contact in GHL (guaranteed, no workflow dependency)
+    const GHL_KEY = 'pit-4e7bedf7-b9f3-4da3-8e6c-f82b2f77a99e';
+    const GHL_HEADERS = { 'Content-Type': 'application/json', 'Authorization': `Bearer ${GHL_KEY}`, 'Version': '2021-07-28' };
+
+    // 1. Create contact, then create opportunity so it appears in the pipeline
     const ghlContact = fetch('https://services.leadconnectorhq.com/contacts/', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'Authorization': 'Bearer pit-4e7bedf7-b9f3-4da3-8e6c-f82b2f77a99e',
-        'Version': '2021-07-28'
-      },
-      body: JSON.stringify(payload)
+      method: 'POST', headers: GHL_HEADERS, body: JSON.stringify(payload)
+    }).then(r => r.json()).then(data => {
+      const contactId = data.contact?.id;
+      if (!contactId) return;
+      return fetch('https://services.leadconnectorhq.com/opportunities/', {
+        method: 'POST',
+        headers: GHL_HEADERS,
+        body: JSON.stringify({
+          locationId: '4h1PA7Uu73HYw1oGPHkN',
+          pipelineId: 'JnzfBlYqPhMXaU8Jmd8e',
+          pipelineStageId: 'b37d5a65-9b80-464a-8afd-1572976554a7',
+          contactId: contactId,
+          name: `${name} — Retirement Gap Lead`,
+          status: 'open',
+          monetaryValue: 0
+        })
+      });
     });
 
-    // Also fire webhook for any workflow automations
+    // 2. Also fire webhook for any workflow automations
     const ghlWebhook = fetch('https://services.leadconnectorhq.com/hooks/4h1PA7Uu73HYw1oGPHkN/webhook-trigger/7ec54bb1-d513-4c9d-91c7-9271f1e7d253', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
