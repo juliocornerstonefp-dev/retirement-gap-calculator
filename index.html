@@ -945,17 +945,36 @@
     btn.disabled = true;
     btn.textContent = 'Sending...';
 
-    fetch('https://services.leadconnectorhq.com/hooks/4h1PA7Uu73HYw1oGPHkN/webhook-trigger/7ec54bb1-d513-4c9d-91c7-9271f1e7d253', {
+    const ghlWebhook = fetch('https://services.leadconnectorhq.com/hooks/4h1PA7Uu73HYw1oGPHkN/webhook-trigger/7ec54bb1-d513-4c9d-91c7-9271f1e7d253', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(payload)
-    })
-    .then(() => {
-      document.getElementById('lead-form').style.display = 'none';
-      document.getElementById('thank-you').classList.add('visible');
-    })
-    .catch(() => {
-      // Still show thank-you even if webhook has a hiccup — don't lose the lead experience
+    });
+
+    // Email notification to julio.cornerstonefp@gmail.com via Formsubmit
+    const emailNotification = fetch('https://formsubmit.co/ajax/julio.cornerstonefp@gmail.com', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+      body: JSON.stringify({
+        _subject: `🔔 New Retirement Lead: ${name} — ${hasGap ? 'Has Income Gap' : 'On Track'}`,
+        _template: 'table',
+        'Lead Name': name,
+        'Email': email,
+        'Phone': phone || 'Not provided',
+        'Status': hasGap ? '⚠️ Has Income Gap' : '✅ On Track',
+        'Current Age': currentAge,
+        'Retirement Age': retireAge,
+        'Current Savings': '$' + Number(savings).toLocaleString(),
+        'Desired Monthly Income': '$' + Number(monthly).toLocaleString(),
+        'Monthly Gap': monthlyGap,
+        'Projected Savings at Retirement': futureSavings,
+        'Lifetime Shortfall': lifetimeGap,
+        'Guaranteed Income Available Today': annuityNow,
+        'Source': 'Retirement Gap Calculator — cornerstonefp.com'
+      })
+    });
+
+    Promise.allSettled([ghlWebhook, emailNotification]).then(() => {
       document.getElementById('lead-form').style.display = 'none';
       document.getElementById('thank-you').classList.add('visible');
     });
