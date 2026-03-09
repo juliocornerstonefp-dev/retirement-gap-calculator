@@ -924,20 +924,20 @@
       firstName: name,
       email: email,
       phone: phone || '',
-      // Custom fields sent as notes / tags for GHL
+      locationId: '4h1PA7Uu73HYw1oGPHkN',
       source: 'Retirement Gap Calculator',
       tags: [hasGap ? 'Has Income Gap' : 'On Track', 'Retirement Lead', 'Calculator Lead'],
-      customField: {
-        current_age: currentAge,
-        retirement_age: retireAge,
-        current_savings: savings,
-        desired_monthly_income: monthly,
-        monthly_gap: monthlyGap,
-        projected_savings: futureSavings,
-        lifetime_gap: lifetimeGap,
-        guaranteed_income_today: annuityNow,
-        lead_status: hasGap ? 'Has Income Gap' : 'On Track'
-      }
+      customFields: [
+        { id: '4CUCbPytQo6dq9O7HnKm', value: currentAge },
+        { id: '2RAOG4o6o1aU8KLhIMMj', value: retireAge },
+        { id: 'rkQLo2TTyKqyYai4lpgn', value: '$' + Number(savings).toLocaleString() },
+        { id: 'fGlFOBE0dbqdoqig60ww', value: '$' + Number(monthly).toLocaleString() + '/mo' },
+        { id: 'lIzJ3Hg1wW5Q9sZ7YgqT', value: monthlyGap + '/mo' },
+        { id: 'jTue9GjERRNDsu9bBRix', value: futureSavings },
+        { id: 'VbfdxqDqVMemQt3ya8Tf', value: lifetimeGap },
+        { id: 'YKigHsu06irQXUbky7sD', value: annuityNow + '/mo guaranteed' },
+        { id: '1sf5nrnrI9TiOMBxEJ4q', value: hasGap ? 'Has Income Gap' : 'On Track' }
+      ]
     };
 
     // Disable button to prevent double submit
