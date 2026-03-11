@@ -557,7 +557,7 @@
     #info-gate .section-label { margin-bottom: 18px; }
     #info-gate h2 { font-size: clamp(20px, 4vw, 28px); font-weight: 800; font-family: 'Playfair Display', Georgia, serif; margin-bottom: 10px; line-height: 1.2; }
     #info-gate h2 span { color: var(--gold); }
-    #info-gate > p { font-size: 14px; color: #a0b4c8; margin-bottom: 24px; line-height: 1.6; max-width: 480px; margin-left: auto; margin-right: auto; }
+    #info-gate > p { font-size: 15px; color: #a0b4c8; margin-bottom: 24px; line-height: 1.7; max-width: 500px; margin-left: auto; margin-right: auto; }
     #info-gate .gate-fields { max-width: 520px; margin: 0 auto; }
     .gate-btn {
       width: 100%;
@@ -600,9 +600,9 @@
   <div class="card">
     <!-- INFO GATE -->
     <div id="info-gate">
-      <div class="section-label">Your Information</div>
-      <h2>Enter Your Details to <span>Access the Free Calculator</span></h2>
-      <p>Fill in your info below to unlock your personalized Retirement Income Gap Calculator — free, no obligation.</p>
+      <div class="section-label">Free Retirement Analysis</div>
+      <h2>See If Your Savings Will <span>Last Through Retirement</span></h2>
+      <p>Enter your name and email to instantly access your personalized Retirement Income Gap Calculator — used by families to discover exactly how much guaranteed income they could lock in today.</p>
       <div class="gate-fields">
         <div class="form-row">
           <input type="text" id="gateName" placeholder="First Name *" />
@@ -612,8 +612,15 @@
           <input type="tel" id="gatePhone" placeholder="Phone Number (optional)" />
         </div>
       </div>
-      <button class="gate-btn" onclick="unlockCalculator()">Access My Free Calculator →</button>
-      <div class="privacy" style="margin-top:12px;">🔒 100% Private. No spam, ever. Your info is never sold or shared.</div>
+      <button class="gate-btn" onclick="unlockCalculator()">Get My Free Retirement Analysis →</button>
+      <div class="privacy" style="margin-top:12px;">🔒 100% Private &nbsp;·&nbsp; No spam, ever &nbsp;·&nbsp; Your info is never sold or shared</div>
+      <div class="social-proof" style="margin-top:20px;">
+        <div class="proof-item">✓ &nbsp;Free Assessment</div>
+        <div class="proof-dot"></div>
+        <div class="proof-item">✓ &nbsp;No Obligation</div>
+        <div class="proof-dot"></div>
+        <div class="proof-item">✓ &nbsp;Licensed Advisor</div>
+      </div>
     </div>
 
     <!-- CALCULATOR (revealed after info submitted) -->
