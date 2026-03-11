@@ -551,6 +551,33 @@
       transition: all 0.2s;
     }
     .recalc-btn:hover { border-color: var(--gold); color: var(--gold); }
+
+    /* ── INFO GATE ── */
+    #info-gate { text-align: center; padding: 8px 0 32px; }
+    #info-gate .section-label { margin-bottom: 18px; }
+    #info-gate h2 { font-size: clamp(20px, 4vw, 28px); font-weight: 800; font-family: 'Playfair Display', Georgia, serif; margin-bottom: 10px; line-height: 1.2; }
+    #info-gate h2 span { color: var(--gold); }
+    #info-gate > p { font-size: 14px; color: #a0b4c8; margin-bottom: 24px; line-height: 1.6; max-width: 480px; margin-left: auto; margin-right: auto; }
+    #info-gate .gate-fields { max-width: 520px; margin: 0 auto; }
+    .gate-btn {
+      width: 100%;
+      max-width: 520px;
+      background: linear-gradient(135deg, var(--gold) 0%, #e8c96d 100%);
+      color: var(--navy);
+      border: none;
+      border-radius: 14px;
+      font-family: 'Inter', sans-serif;
+      font-size: 17px;
+      font-weight: 800;
+      padding: 18px 28px;
+      cursor: pointer;
+      letter-spacing: 0.3px;
+      transition: transform 0.15s, box-shadow 0.15s;
+      box-shadow: 0 8px 30px rgba(201,168,76,0.35);
+      margin-top: 4px;
+    }
+    .gate-btn:hover { transform: translateY(-2px); box-shadow: 0 12px 40px rgba(201,168,76,0.45); }
+    .gate-btn:active { transform: translateY(0); }
   </style>
 </head>
 <body>
@@ -571,7 +598,27 @@
 <!-- CALCULATOR -->
 <div class="container">
   <div class="card">
-    <div class="section-label">Step 1 — Your Numbers</div>
+    <!-- INFO GATE -->
+    <div id="info-gate">
+      <div class="section-label">Your Information</div>
+      <h2>Enter Your Details to <span>Access the Free Calculator</span></h2>
+      <p>Fill in your info below to unlock your personalized Retirement Income Gap Calculator — free, no obligation.</p>
+      <div class="gate-fields">
+        <div class="form-row">
+          <input type="text" id="gateName" placeholder="First Name *" />
+          <input type="email" id="gateEmail" placeholder="Email Address *" />
+        </div>
+        <div class="form-row">
+          <input type="tel" id="gatePhone" placeholder="Phone Number (optional)" />
+        </div>
+      </div>
+      <button class="gate-btn" onclick="unlockCalculator()">Access My Free Calculator →</button>
+      <div class="privacy" style="margin-top:12px;">🔒 100% Private. No spam, ever. Your info is never sold or shared.</div>
+    </div>
+
+    <!-- CALCULATOR (revealed after info submitted) -->
+    <div id="calculator-section" style="display:none;">
+      <div class="section-label">Step 1 — Your Numbers</div>
 
     <div class="inputs-grid">
       <!-- Current Age -->
@@ -742,6 +789,7 @@
         <button class="recalc-btn" onclick="recalculate()">← Adjust My Numbers</button>
       </div>
     </div>
+    </div><!-- /calculator-section -->
   </div>
 </div>
 
@@ -919,6 +967,25 @@
     window.scrollTo({ top: 0, behavior: 'smooth' });
     document.getElementById('lead-form').style.display = 'block';
     document.getElementById('thank-you').classList.remove('visible');
+  }
+
+  function unlockCalculator() {
+    const name  = document.getElementById('gateName').value.trim();
+    const email = document.getElementById('gateEmail').value.trim();
+    const phone = document.getElementById('gatePhone').value.trim();
+
+    if (!name) { alert('Please enter your first name.'); return; }
+    if (!email || !email.includes('@')) { alert('Please enter a valid email address.'); return; }
+
+    // Pre-fill the bottom lead-box form so submitLead() picks up the data
+    document.getElementById('firstName').value = name;
+    document.getElementById('email').value     = email;
+    document.getElementById('phone').value     = phone;
+
+    // Show calculator, hide gate
+    document.getElementById('info-gate').style.display = 'none';
+    document.getElementById('calculator-section').style.display = 'block';
+    document.getElementById('calculator-section').scrollIntoView({ behavior: 'smooth', block: 'start' });
   }
 
   function submitLead() {
