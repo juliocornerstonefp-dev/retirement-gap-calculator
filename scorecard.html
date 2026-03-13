@@ -17,6 +17,24 @@
   <meta name="twitter:title" content="Is Your Retirement Cleared for Landing? — The 2-Minute Scorecard" />
   <meta name="twitter:description" content="Answer 10 yes-or-no questions to see how prepared you really are for retirement. Get your score instantly." />
 
+  <!-- Meta Pixel -->
+  <script>
+    !function(f,b,e,v,n,t,s)
+    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+    n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];
+    s.parentNode.insertBefore(t,s)}(window, document,'script',
+    'https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init', '1246799634264348');
+    fbq('track', 'PageView');
+    fbq('trackCustom', 'ViewContent_Scorecard');
+  </script>
+  <noscript><img height="1" width="1" style="display:none"
+    src="https://www.facebook.com/tr?id=1246799634264348&ev=PageView&noscript=1"/></noscript>
+  <!-- End Meta Pixel -->
+
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Playfair+Display:wght@400;600;700;800;900&display=swap" rel="stylesheet" />
 
@@ -615,7 +633,7 @@
         <div class="cta-section">
           <h3>Want to See Your Full Retirement Flight Plan?</h3>
           <p>Book a free 30-minute Discovery Call. We'll review your scorecard results and show you exactly where the gaps are &mdash; and what it would take to close them.</p>
-          <a href="https://cornerstone-fps.com" target="_blank" rel="noopener" class="btn-cta">Book My Free Discovery Call &rarr;</a>
+          <a href="https://cornerstone-fps.com" target="_blank" rel="noopener" class="btn-cta" onclick="fbq('track','Schedule',{content_name:'Discovery Call — Scorecard',content_category:'Scorecard'});">Book My Free Discovery Call &rarr;</a>
           <p class="privacy" style="margin-top:14px;">&#128274; 100% Private &middot; No spam, ever &middot; Your info is never sold or shared</p>
         </div>
       </div>
@@ -681,6 +699,12 @@
 
     // Send lead data
     sendInitialLead(userData);
+
+    // Fire Meta Pixel Lead event
+    fbq('track', 'Lead', {
+      content_name: 'Retirement Readiness Scorecard — Gate Unlock',
+      content_category: 'Scorecard'
+    });
 
     // Transition to quiz
     document.getElementById('step-gate').classList.add('hidden');
@@ -847,6 +871,15 @@
     }
 
     window.scrollTo({ top: 0, behavior: 'smooth' });
+
+    // Fire Meta Pixel CompleteRegistration event
+    fbq('track', 'CompleteRegistration', {
+      content_name: 'Retirement Readiness Scorecard — Completed',
+      content_category: 'Scorecard',
+      status: label,
+      value: total,
+      currency: 'USD'
+    });
 
     // Send results notification
     sendResultsNotification(total, label);

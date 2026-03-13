@@ -21,6 +21,24 @@
   <meta name="twitter:title" content="Do You Have a Retirement Income Gap? — Free Calculator" />
   <meta name="twitter:description" content="Answer 4 questions and instantly see if your savings will cover the retirement you've planned." />
   <meta name="twitter:image" content="https://juliocornerstonefp-dev.github.io/retirement-gap-calculator/og-image.png" />
+  <!-- Meta Pixel -->
+  <script>
+    !function(f,b,e,v,n,t,s)
+    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+    n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];
+    s.parentNode.insertBefore(t,s)}(window, document,'script',
+    'https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init', '1246799634264348');
+    fbq('track', 'PageView');
+    fbq('trackCustom', 'ViewContent_Calculator');
+  </script>
+  <noscript><img height="1" width="1" style="display:none"
+    src="https://www.facebook.com/tr?id=1246799634264348&ev=PageView&noscript=1"/></noscript>
+  <!-- End Meta Pixel -->
+
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Playfair+Display:wght@400;600;700;800;900&display=swap" rel="stylesheet" />
   <style>
@@ -985,6 +1003,12 @@
     if (!lastName) { alert('Please enter your last name.'); return; }
     if (!email || !email.includes('@')) { alert('Please enter a valid email address.'); return; }
 
+    // Fire Meta Pixel Lead event
+    fbq('track', 'Lead', {
+      content_name: 'Retirement Gap Calculator — Gate Unlock',
+      content_category: 'Calculator'
+    });
+
     // Pre-fill the bottom lead-box form so submitLead() picks up the data
     document.getElementById('firstName').value = name;
     document.getElementById('lastName').value  = lastName;
@@ -1098,6 +1122,15 @@
     Promise.allSettled([ghlContact, ghlWebhook, emailNotification]).then(() => {
       document.getElementById('lead-form').style.display = 'none';
       document.getElementById('thank-you').classList.add('visible');
+
+      // Fire Meta Pixel CompleteRegistration event
+      fbq('track', 'CompleteRegistration', {
+        content_name: 'Retirement Gap Calculator — Full Lead Submit',
+        content_category: 'Calculator',
+        status: hasGap ? 'Has Income Gap' : 'On Track',
+        value: 0,
+        currency: 'USD'
+      });
     });
   }
 </script>
