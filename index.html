@@ -608,9 +608,6 @@
           <input type="text" id="gateName" placeholder="First Name *" />
           <input type="email" id="gateEmail" placeholder="Email Address *" />
         </div>
-        <div class="form-row">
-          <input type="tel" id="gatePhone" placeholder="Phone Number (optional)" />
-        </div>
       </div>
       <button class="gate-btn" onclick="unlockCalculator()">Get My Free Retirement Analysis →</button>
       <div class="privacy" style="margin-top:12px;">🔒 100% Private &nbsp;·&nbsp; No spam, ever &nbsp;·&nbsp; Your info is never sold or shared</div>
@@ -763,9 +760,6 @@
           <div class="form-row">
             <input type="text" id="firstName" placeholder="First Name" />
             <input type="email" id="email" placeholder="Email Address" />
-          </div>
-          <div class="form-row">
-            <input type="tel" id="phone" placeholder="Phone Number (optional)" />
           </div>
           <button class="cta-btn" onclick="submitLead()">
             Yes — Show Me How to Close My Gap 🔒
@@ -979,7 +973,6 @@
   function unlockCalculator() {
     const name  = document.getElementById('gateName').value.trim();
     const email = document.getElementById('gateEmail').value.trim();
-    const phone = document.getElementById('gatePhone').value.trim();
 
     if (!name) { alert('Please enter your first name.'); return; }
     if (!email || !email.includes('@')) { alert('Please enter a valid email address.'); return; }
@@ -987,7 +980,6 @@
     // Pre-fill the bottom lead-box form so submitLead() picks up the data
     document.getElementById('firstName').value = name;
     document.getElementById('email').value     = email;
-    document.getElementById('phone').value     = phone;
 
     // Show calculator, hide gate
     document.getElementById('info-gate').style.display = 'none';
@@ -998,7 +990,6 @@
   function submitLead() {
     const name  = document.getElementById('firstName').value.trim();
     const email = document.getElementById('email').value.trim();
-    const phone = document.getElementById('phone').value.trim();
 
     if (!name) { alert('Please enter your first name.'); return; }
     if (!email || !email.includes('@')) { alert('Please enter a valid email address.'); return; }
@@ -1017,7 +1008,7 @@
     const payload = {
       firstName: name,
       email: email,
-      phone: phone || '',
+      phone: '',
       locationId: '4h1PA7Uu73HYw1oGPHkN',
       source: 'Retirement Gap Calculator',
       tags: [hasGap ? 'Has Income Gap' : 'On Track', 'Retirement Lead', 'Calculator Lead'],
@@ -1079,7 +1070,7 @@
         _template: 'table',
         'Lead Name': name,
         'Email': email,
-        'Phone': phone || 'Not provided',
+        'Phone': 'Not collected',
         'Status': hasGap ? '⚠️ Has Income Gap' : '✅ On Track',
         'Current Age': currentAge,
         'Retirement Age': retireAge,
