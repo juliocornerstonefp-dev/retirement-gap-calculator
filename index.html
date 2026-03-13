@@ -606,6 +606,9 @@
       <div class="gate-fields">
         <div class="form-row">
           <input type="text" id="gateName" placeholder="First Name *" />
+          <input type="text" id="gateLastName" placeholder="Last Name *" />
+        </div>
+        <div class="form-row">
           <input type="email" id="gateEmail" placeholder="Email Address *" />
         </div>
       </div>
@@ -759,6 +762,9 @@
         <div id="lead-form">
           <div class="form-row">
             <input type="text" id="firstName" placeholder="First Name" />
+            <input type="text" id="lastName" placeholder="Last Name" />
+          </div>
+          <div class="form-row">
             <input type="email" id="email" placeholder="Email Address" />
           </div>
           <button class="cta-btn" onclick="submitLead()">
@@ -971,14 +977,17 @@
   }
 
   function unlockCalculator() {
-    const name  = document.getElementById('gateName').value.trim();
-    const email = document.getElementById('gateEmail').value.trim();
+    const name     = document.getElementById('gateName').value.trim();
+    const lastName = document.getElementById('gateLastName').value.trim();
+    const email    = document.getElementById('gateEmail').value.trim();
 
     if (!name) { alert('Please enter your first name.'); return; }
+    if (!lastName) { alert('Please enter your last name.'); return; }
     if (!email || !email.includes('@')) { alert('Please enter a valid email address.'); return; }
 
     // Pre-fill the bottom lead-box form so submitLead() picks up the data
     document.getElementById('firstName').value = name;
+    document.getElementById('lastName').value  = lastName;
     document.getElementById('email').value     = email;
 
     // Show calculator, hide gate
@@ -988,10 +997,12 @@
   }
 
   function submitLead() {
-    const name  = document.getElementById('firstName').value.trim();
-    const email = document.getElementById('email').value.trim();
+    const name     = document.getElementById('firstName').value.trim();
+    const lastName = document.getElementById('lastName').value.trim();
+    const email    = document.getElementById('email').value.trim();
 
     if (!name) { alert('Please enter your first name.'); return; }
+    if (!lastName) { alert('Please enter your last name.'); return; }
     if (!email || !email.includes('@')) { alert('Please enter a valid email address.'); return; }
 
     // Grab latest calculated values from the DOM to send as context
@@ -1007,6 +1018,7 @@
 
     const payload = {
       firstName: name,
+      lastName: lastName,
       email: email,
       phone: '',
       locationId: '4h1PA7Uu73HYw1oGPHkN',
@@ -1066,11 +1078,10 @@
       method: 'POST',
       headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
       body: JSON.stringify({
-        _subject: `🔔 New Retirement Lead: ${name} — ${hasGap ? 'Has Income Gap' : 'On Track'}`,
+        _subject: `🔔 New Retirement Lead: ${name} ${lastName} — ${hasGap ? 'Has Income Gap' : 'On Track'}`,
         _template: 'table',
-        'Lead Name': name,
+        'Lead Name': `${name} ${lastName}`,
         'Email': email,
-        'Phone': 'Not collected',
         'Status': hasGap ? '⚠️ Has Income Gap' : '✅ On Track',
         'Current Age': currentAge,
         'Retirement Age': retireAge,
