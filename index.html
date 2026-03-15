@@ -1014,6 +1014,37 @@
     document.getElementById('lastName').value  = lastName;
     document.getElementById('email').value     = email;
 
+    // Send gate lead to GHL + webhook + email immediately
+    const gatePayload = {
+      firstName: name, lastName: lastName, email: email, phone: '',
+      locationId: '4h1PA7Uu73HYw1oGPHkN',
+      source: 'Retirement Gap Calculator — Gate Only',
+      tags: ['Calculator Gate Lead', 'Retirement Lead']
+    };
+    const GHL_KEY = 'pit-4e7bedf7-b9f3-4da3-8e6c-f82b2f77a99e';
+    const GHL_HEADERS = { 'Content-Type': 'application/json', 'Authorization': `Bearer ${GHL_KEY}`, 'Version': '2021-07-28' };
+
+    fetch('https://services.leadconnectorhq.com/contacts/', {
+      method: 'POST', headers: GHL_HEADERS, body: JSON.stringify(gatePayload)
+    }).catch(() => {});
+
+    fetch('https://services.leadconnectorhq.com/hooks/4h1PA7Uu73HYw1oGPHkN/webhook-trigger/7ec54bb1-d513-4c9d-91c7-9271f1e7d253', {
+      method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(gatePayload)
+    }).catch(() => {});
+
+    fetch('https://formsubmit.co/ajax/julio.cornerstonefp@gmail.com', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+      body: JSON.stringify({
+        _subject: `🔔 New Calculator Gate Lead: ${name} ${lastName}`,
+        _template: 'table',
+        'Lead Name': `${name} ${lastName}`,
+        'Email': email,
+        'Status': 'Used Calculator (no results yet)',
+        'Source': 'Retirement Gap Calculator — Gate Unlock'
+      })
+    }).catch(() => {});
+
     // Show calculator, hide gate
     document.getElementById('info-gate').style.display = 'none';
     document.getElementById('calculator-section').style.display = 'block';
