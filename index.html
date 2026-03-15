@@ -499,8 +499,18 @@
       outline: none;
       transition: border-color 0.2s;
     }
-    .form-row input::placeholder { color: #5a7080; }
-    .form-row input:focus { border-color: var(--gold); }
+    .form-row input::placeholder, .form-row select { color: #5a7080; }
+    .form-row input:focus, .form-row select:focus { border-color: var(--gold); }
+    .form-row select {
+      flex: 1; min-width: 180px; background: rgba(255,255,255,0.06); color: #e0e8f0;
+      border: 1px solid rgba(255,255,255,0.1); border-radius: 10px; padding: 14px 16px;
+      font-size: 15px; font-family: 'Inter', sans-serif; outline: none;
+      transition: border-color 0.2s; appearance: none; cursor: pointer;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%235a7080' stroke-width='1.5' fill='none'/%3E%3C/svg%3E");
+      background-repeat: no-repeat; background-position: right 14px center;
+    }
+    .form-row select option { background: #0d1b2a; color: #e0e8f0; }
+    .lead-greeting { font-size: 16px; color: var(--gold); font-weight: 600; margin-bottom: 16px; font-family: 'Inter', sans-serif; }
 
     .cta-btn {
       width: 100%;
@@ -778,12 +788,24 @@
         <p id="leadSubtext">Get your free personalized income plan — I'll show you exactly how to turn your savings into guaranteed, tax-efficient retirement income you can't outlive.</p>
 
         <div id="lead-form">
+          <input type="hidden" id="firstName" />
+          <input type="hidden" id="lastName" />
+          <input type="hidden" id="email" />
+          <div class="lead-greeting" id="leadGreeting"></div>
           <div class="form-row">
-            <input type="text" id="firstName" placeholder="First Name" />
-            <input type="text" id="lastName" placeholder="Last Name" />
+            <input type="tel" id="phone" placeholder="Phone Number *" />
           </div>
           <div class="form-row">
-            <input type="email" id="email" placeholder="Email Address" />
+            <select id="topConcern">
+              <option value="" disabled selected>What concerns you most about your gap?</option>
+              <option value="Running out of money in retirement">Running out of money in retirement</option>
+              <option value="Not having enough monthly income">Not having enough monthly income</option>
+              <option value="Market volatility and losing savings">Market volatility and losing savings</option>
+              <option value="Not knowing if I'm on track">Not knowing if I'm on track</option>
+              <option value="Leaving my spouse/family protected">Leaving my spouse/family protected</option>
+              <option value="Healthcare costs in retirement">Healthcare costs in retirement</option>
+              <option value="Other">Other</option>
+            </select>
           </div>
           <button class="cta-btn" onclick="submitLead()">
             Yes — Show Me How to Close My Gap 🔒
@@ -1088,6 +1110,7 @@
     document.getElementById('firstName').value = name;
     document.getElementById('lastName').value  = lastName;
     document.getElementById('email').value     = email;
+    document.getElementById('leadGreeting').textContent = `Welcome, ${name} — just two more quick questions:`;
 
     // Send gate lead to GHL + webhook + email immediately
     const gatePayload = {
@@ -1130,10 +1153,11 @@
     const name     = document.getElementById('firstName').value.trim();
     const lastName = document.getElementById('lastName').value.trim();
     const email    = document.getElementById('email').value.trim();
+    const phone    = document.getElementById('phone').value.trim();
+    const topConcern = document.getElementById('topConcern').value;
 
-    if (!name) { alert('Please enter your first name.'); return; }
-    if (!lastName) { alert('Please enter your last name.'); return; }
-    if (!email || !email.includes('@')) { alert('Please enter a valid email address.'); return; }
+    if (!phone || phone.replace(/\D/g,'').length < 7) { alert('Please enter your phone number.'); return; }
+    if (!topConcern) { alert('Please select what concerns you most.'); return; }
 
     // Grab latest calculated values from the DOM to send as context
     const monthlyGap   = document.getElementById('verdictAmount').textContent;
@@ -1150,10 +1174,10 @@
       firstName: name,
       lastName: lastName,
       email: email,
-      phone: '',
+      phone: phone,
       locationId: '4h1PA7Uu73HYw1oGPHkN',
       source: 'Retirement Gap Calculator',
-      tags: [hasGap ? 'Has Income Gap' : 'On Track', 'Retirement Lead', 'Calculator Lead'],
+      tags: [hasGap ? 'Has Income Gap' : 'On Track', 'Retirement Lead', 'Calculator Lead', 'Has Phone'],
       customFields: [
         { id: '4CUCbPytQo6dq9O7HnKm', value: currentAge },
         { id: '2RAOG4o6o1aU8KLhIMMj', value: retireAge },
@@ -1197,10 +1221,11 @@
     });
 
     // 2. Also fire webhook for any workflow automations
+    const webhookData = { ...payload, topConcern: topConcern };
     const ghlWebhook = fetch('https://services.leadconnectorhq.com/hooks/4h1PA7Uu73HYw1oGPHkN/webhook-trigger/7ec54bb1-d513-4c9d-91c7-9271f1e7d253', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(payload)
+      body: JSON.stringify(webhookData)
     });
 
     // Email notification to julio.cornerstonefp@gmail.com via Formsubmit
@@ -1212,6 +1237,8 @@
         _template: 'table',
         'Lead Name': `${name} ${lastName}`,
         'Email': email,
+        'Phone': phone,
+        'Top Concern': topConcern,
         'Status': hasGap ? '⚠️ Has Income Gap' : '✅ On Track',
         'Current Age': currentAge,
         'Retirement Age': retireAge,
