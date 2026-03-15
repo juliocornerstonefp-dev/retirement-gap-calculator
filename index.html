@@ -985,6 +985,81 @@
     setTimeout(() => {
       document.getElementById('results').scrollIntoView({ behavior: 'smooth', block: 'start' });
     }, 100);
+
+    // If user has a gap, send enriched lead to GHL + notify immediately
+    if (hasGap) {
+      const gName = document.getElementById('firstName').value.trim();
+      const gLast = document.getElementById('lastName').value.trim();
+      const gEmail = document.getElementById('email').value.trim();
+      if (gName && gEmail) {
+        const GHL_KEY = 'pit-4e7bedf7-b9f3-4da3-8e6c-f82b2f77a99e';
+        const GHL_HEADERS = { 'Content-Type': 'application/json', 'Authorization': `Bearer ${GHL_KEY}`, 'Version': '2021-07-28' };
+
+        const gapPayload = {
+          firstName: gName, lastName: gLast, email: gEmail, phone: '',
+          locationId: '4h1PA7Uu73HYw1oGPHkN',
+          source: 'Retirement Gap Calculator',
+          tags: ['Has Income Gap', 'Retirement Lead', 'Calculator Lead'],
+          customFields: [
+            { id: '4CUCbPytQo6dq9O7HnKm', value: String(currentAge) },
+            { id: '2RAOG4o6o1aU8KLhIMMj', value: String(retireAge) },
+            { id: 'rkQLo2TTyKqyYai4lpgn', value: '$' + savings.toLocaleString() },
+            { id: 'fGlFOBE0dbqdoqig60ww', value: fmt(monthlyGoal) + '/mo' },
+            { id: 'lIzJ3Hg1wW5Q9sZ7YgqT', value: fmt(monthlyGap) + '/mo' },
+            { id: 'jTue9GjERRNDsu9bBRix', value: fmtK(futureSavings) },
+            { id: 'VbfdxqDqVMemQt3ya8Tf', value: fmtK(lifetimeGap) },
+            { id: 'YKigHsu06irQXUbky7sD', value: fmt(annuityNowMonthly) + '/mo guaranteed' },
+            { id: '1sf5nrnrI9TiOMBxEJ4q', value: 'Has Income Gap' }
+          ]
+        };
+
+        // Create/update contact with gap data + pipeline opportunity
+        fetch('https://services.leadconnectorhq.com/contacts/', {
+          method: 'POST', headers: GHL_HEADERS, body: JSON.stringify(gapPayload)
+        }).then(r => r.json()).then(data => {
+          const contactId = data.contact?.id;
+          if (!contactId) return;
+          return fetch('https://services.leadconnectorhq.com/opportunities/', {
+            method: 'POST', headers: GHL_HEADERS,
+            body: JSON.stringify({
+              locationId: '4h1PA7Uu73HYw1oGPHkN',
+              pipelineId: 'JnzfBlYqPhMXaU8Jmd8e',
+              pipelineStageId: 'b37d5a65-9b80-464a-8afd-1572976554a7',
+              contactId: contactId,
+              name: `${gName} — ${fmt(monthlyGap)}/mo Income Gap`,
+              status: 'open', monetaryValue: 0
+            })
+          });
+        }).catch(() => {});
+
+        // Webhook
+        fetch('https://services.leadconnectorhq.com/hooks/4h1PA7Uu73HYw1oGPHkN/webhook-trigger/7ec54bb1-d513-4c9d-91c7-9271f1e7d253', {
+          method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(gapPayload)
+        }).catch(() => {});
+
+        // Email notification
+        fetch('https://formsubmit.co/ajax/julio.cornerstonefp@gmail.com', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+          body: JSON.stringify({
+            _subject: `⚠️ Income Gap Detected: ${gName} ${gLast} — ${fmt(monthlyGap)}/mo short`,
+            _template: 'table',
+            'Lead Name': `${gName} ${gLast}`,
+            'Email': gEmail,
+            'Status': '⚠️ Has Income Gap',
+            'Monthly Gap': fmt(monthlyGap) + '/mo',
+            'Current Age': String(currentAge),
+            'Retirement Age': String(retireAge),
+            'Current Savings': '$' + savings.toLocaleString(),
+            'Desired Monthly Income': fmt(monthlyGoal),
+            'Projected Savings at Retirement': fmtK(futureSavings),
+            'Lifetime Shortfall': fmtK(lifetimeGap),
+            'Guaranteed Income Available Today': fmt(annuityNowMonthly) + '/mo',
+            'Source': 'Retirement Gap Calculator — Gap Detected (before lead form)'
+          })
+        }).catch(() => {});
+      }
+    }
   }
 
   function recalculate() {
