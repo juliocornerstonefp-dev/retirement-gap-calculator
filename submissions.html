@@ -151,17 +151,46 @@ async function loadLeads() {
   document.getElementById('emptyMsg').style.display = 'none';
 
   try {
-    // Fetch up to 100 contacts, sorted by date
-    const resp = await fetch(`https://services.leadconnectorhq.com/contacts/?locationId=${LOC_ID}&limit=100&sortBy=date_added&order=desc`, {
+    // Fetch contacts using search to find all calculator/retirement leads
+    // GHL search API with query param to find tagged leads
+    let allContacts = [];
+
+    // Fetch multiple pages and search terms to catch all leads
+    const searches = ['retirement', 'calculator', 'income gap'];
+    const seen = new Set();
+
+    for (const q of searches) {
+      const resp = await fetch(`https://services.leadconnectorhq.com/contacts/?locationId=${LOC_ID}&limit=100&query=${encodeURIComponent(q)}`, {
+        headers: { 'Authorization': `Bearer ${GHL_KEY}`, 'Version': '2021-07-28' }
+      });
+      const data = await resp.json();
+      for (const c of (data.contacts || [])) {
+        if (!seen.has(c.id)) {
+          seen.add(c.id);
+          allContacts.push(c);
+        }
+      }
+    }
+
+    // Also fetch the most recent 100 contacts in case tag search misses any
+    const recentResp = await fetch(`https://services.leadconnectorhq.com/contacts/?locationId=${LOC_ID}&limit=100`, {
       headers: { 'Authorization': `Bearer ${GHL_KEY}`, 'Version': '2021-07-28' }
     });
-    const data = await resp.json();
-    const contacts = data.contacts || [];
+    const recentData = await recentResp.json();
+    for (const c of (recentData.contacts || [])) {
+      if (!seen.has(c.id)) {
+        seen.add(c.id);
+        allContacts.push(c);
+      }
+    }
 
     // Filter to only calculator/retirement leads
+    const contacts = allContacts;
     allLeads = contacts.filter(c => {
       const tags = (c.tags || []).map(t => t.toLowerCase());
-      return tags.some(t => t.includes('calculator') || t.includes('retirement') || t.includes('income gap'));
+      const src = (c.source || '').toLowerCase();
+      return tags.some(t => t.includes('calculator') || t.includes('retirement') || t.includes('income gap'))
+        || src.includes('calculator') || src.includes('retirement');
     }).map(c => {
       const cfs = {};
       (c.customFields || []).forEach(cf => {
@@ -179,6 +208,9 @@ async function loadLeads() {
         ...cfs
       };
     });
+
+    // Sort newest first
+    allLeads.sort((a, b) => new Date(b.date) - new Date(a.date));
 
     renderStats();
     renderTable();
