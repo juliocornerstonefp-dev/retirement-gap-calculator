@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Calculator Leads — Cornerstone FP</title>
+<meta name="robots" content="noindex, nofollow"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet"/>
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { background:#f4f6f8; font-family:'Inter',system-ui,sans-serif; color:#1e293b; }
+  .login { display:flex; align-items:center; justify-content:center; height:100vh; }
+  .login-box { background:#fff; border-radius:16px; padding:40px; box-shadow:0 4px 24px rgba(0,0,0,0.08); text-align:center; max-width:380px; width:100%; }
+  .login-box h2 { font-size:20px; margin-bottom:8px; }
+  .login-box p { font-size:13px; color:#64748b; margin-bottom:20px; }
+  .login-box input { width:100%; padding:12px 16px; border:1px solid #e2e8f0; border-radius:8px; font-size:14px; outline:none; margin-bottom:12px; }
+  .login-box input:focus { border-color:#1b4d2e; }
+  .login-box button { width:100%; padding:12px; background:#1b4d2e; color:#fff; border:none; border-radius:8px; font-size:14px; font-weight:600; cursor:pointer; }
+  .login-box button:hover { background:#245e38; }
+  .login-box .error { color:#dc2626; font-size:12px; margin-top:8px; display:none; }
+
+  .dashboard { display:none; }
+  .header { background:linear-gradient(135deg,#1b4d2e,#245e38); color:#fff; padding:20px 32px; }
+  .header h1 { font-size:22px; font-weight:700; }
+  .header p { font-size:13px; opacity:0.7; margin-top:4px; }
+  .stats { display:flex; gap:16px; padding:20px 32px; flex-wrap:wrap; }
+  .stat { background:#fff; border-radius:10px; padding:16px 20px; flex:1; min-width:150px; border:1px solid #e2e8f0; }
+  .stat .label { font-size:10px; color:#94a3b8; text-transform:uppercase; letter-spacing:1px; font-weight:600; }
+  .stat .val { font-size:24px; font-weight:700; margin-top:4px; font-family:'JetBrains Mono',monospace; }
+  .stat .val.green { color:#16a34a; }
+  .stat .val.red { color:#dc2626; }
+  .stat .val.gold { color:#b8860b; }
+
+  .controls { padding:8px 32px 16px; display:flex; gap:12px; align-items:center; flex-wrap:wrap; }
+  .controls select, .controls input { padding:8px 12px; border:1px solid #e2e8f0; border-radius:6px; font-size:13px; outline:none; background:#fff; }
+  .controls select:focus, .controls input:focus { border-color:#1b4d2e; }
+  .controls button { padding:8px 16px; background:#1b4d2e; color:#fff; border:none; border-radius:6px; font-size:13px; font-weight:600; cursor:pointer; }
+  .controls button:hover { background:#245e38; }
+  .controls .refresh { background:#f1f5f9; color:#475569; border:1px solid #e2e8f0; }
+  .controls .refresh:hover { background:#e2e8f0; }
+
+  .table-wrap { padding:0 32px 32px; overflow-x:auto; }
+  table { width:100%; border-collapse:separate; border-spacing:0; background:#fff; border-radius:12px; overflow:hidden; box-shadow:0 1px 4px rgba(0,0,0,0.04); }
+  th { text-align:left; padding:12px 14px; background:#f8fafc; border-bottom:2px solid #1b4d2e; font-size:10px; color:#64748b; text-transform:uppercase; letter-spacing:0.8px; font-weight:700; white-space:nowrap; }
+  td { padding:10px 14px; border-bottom:1px solid #f1f5f9; font-size:13px; white-space:nowrap; }
+  tr:hover td { background:#f8fafc; }
+  .tag { display:inline-block; padding:2px 8px; border-radius:4px; font-size:10px; font-weight:600; margin-right:4px; }
+  .tag-gap { background:#fee2e2; color:#dc2626; }
+  .tag-gate { background:#fef3c7; color:#92400e; }
+  .tag-lead { background:#d1fae5; color:#065f46; }
+  .tag-phone { background:#dbeafe; color:#1e40af; }
+  .tag-other { background:#f1f5f9; color:#475569; }
+  .empty { text-align:center; padding:60px 20px; color:#94a3b8; }
+  .loading { text-align:center; padding:60px 20px; color:#1b4d2e; }
+</style>
+</head>
+<body>
+
+<!-- LOGIN -->
+<div class="login" id="loginScreen">
+  <div class="login-box">
+    <h2>Calculator Leads</h2>
+    <p>Enter your password to view submissions</p>
+    <input type="password" id="passInput" placeholder="Password" onkeydown="if(event.key==='Enter')doLogin()"/>
+    <button onclick="doLogin()">View Leads</button>
+    <div class="error" id="loginError">Incorrect password</div>
+  </div>
+</div>
+
+<!-- DASHBOARD -->
+<div class="dashboard" id="dashboard">
+  <div class="header">
+    <h1>Retirement Calculator — Lead Submissions</h1>
+    <p>calculator.cornerstone-fps.com</p>
+  </div>
+
+  <div class="stats" id="stats"></div>
+
+  <div class="controls">
+    <select id="filterTag">
+      <option value="all">All Leads</option>
+      <option value="has income gap">Has Income Gap</option>
+      <option value="calculator gate lead">Gate Only</option>
+      <option value="has phone">Has Phone</option>
+    </select>
+    <input type="text" id="searchBox" placeholder="Search name or email..." style="min-width:200px"/>
+    <button class="refresh" onclick="loadLeads()">Refresh</button>
+  </div>
+
+  <div class="table-wrap">
+    <div class="loading" id="loadingMsg">Loading leads...</div>
+    <table style="display:none" id="leadsTable">
+      <thead>
+        <tr>
+          <th>Date</th>
+          <th>Name</th>
+          <th>Email</th>
+          <th>Phone</th>
+          <th>Tags</th>
+          <th>Source</th>
+          <th>Age</th>
+          <th>Retire</th>
+          <th>Savings</th>
+          <th>Monthly Goal</th>
+          <th>Gap</th>
+          <th>Lifetime Shortfall</th>
+          <th>Concern</th>
+        </tr>
+      </thead>
+      <tbody id="leadsBody"></tbody>
+    </table>
+    <div class="empty" id="emptyMsg" style="display:none">No leads found matching your filter.</div>
+  </div>
+</div>
+
+<script>
+const GHL_KEY = 'pit-4e7bedf7-b9f3-4da3-8e6c-f82b2f77a99e';
+const LOC_ID = '4h1PA7Uu73HYw1oGPHkN';
+const PASS_HASH = '5e884898da28047151d0e56f8dc6292773603d0d6aabbdd62a11ef721d1542d8'; // sha256 of "password" — change this
+const PASS = 'cornerstone2026'; // simple check — not high security, just keeps random visitors out
+
+let allLeads = [];
+
+// Custom field ID mapping from the calculator
+const CF_MAP = {
+  '4CUCbPytQo6dq9O7HnKm': 'age',
+  '2RAOG4o6o1aU8KLhIMMj': 'retireAge',
+  'rkQLo2TTyKqyYai4lpgn': 'savings',
+  'fGlFOBE0dbqdoqig60ww': 'monthlyGoal',
+  'lIzJ3Hg1wW5Q9sZ7YgqT': 'gap',
+  'jTue9GjERRNDsu9bBRix': 'futureSavings',
+  'VbfdxqDqVMemQt3ya8Tf': 'lifetimeShortfall',
+  'YKigHsu06irQXUbky7sD': 'annuity',
+  '1sf5nrnrI9TiOMBxEJ4q': 'status'
+};
+
+function doLogin() {
+  const pass = document.getElementById('passInput').value;
+  if (pass === PASS) {
+    document.getElementById('loginScreen').style.display = 'none';
+    document.getElementById('dashboard').style.display = 'block';
+    loadLeads();
+  } else {
+    document.getElementById('loginError').style.display = 'block';
+  }
+}
+
+async function loadLeads() {
+  document.getElementById('loadingMsg').style.display = 'block';
+  document.getElementById('leadsTable').style.display = 'none';
+  document.getElementById('emptyMsg').style.display = 'none';
+
+  try {
+    // Fetch contacts using search to find all calculator/retirement leads
+    // GHL search API with query param to find tagged leads
+    let allContacts = [];
+
+    // Fetch multiple pages and search terms to catch all leads
+    const searches = ['retirement', 'calculator', 'income gap'];
+    const seen = new Set();
+
+    for (const q of searches) {
+      const resp = await fetch(`https://services.leadconnectorhq.com/contacts/?locationId=${LOC_ID}&limit=100&query=${encodeURIComponent(q)}`, {
+        headers: { 'Authorization': `Bearer ${GHL_KEY}`, 'Version': '2021-07-28' }
+      });
+      const data = await resp.json();
+      for (const c of (data.contacts || [])) {
+        if (!seen.has(c.id)) {
+          seen.add(c.id);
+          allContacts.push(c);
+        }
+      }
+    }
+
+    // Also fetch the most recent 100 contacts in case tag search misses any
+    const recentResp = await fetch(`https://services.leadconnectorhq.com/contacts/?locationId=${LOC_ID}&limit=100`, {
+      headers: { 'Authorization': `Bearer ${GHL_KEY}`, 'Version': '2021-07-28' }
+    });
+    const recentData = await recentResp.json();
+    for (const c of (recentData.contacts || [])) {
+      if (!seen.has(c.id)) {
+        seen.add(c.id);
+        allContacts.push(c);
+      }
+    }
+
+    // Filter to only calculator/retirement leads
+    const contacts = allContacts;
+    allLeads = contacts.filter(c => {
+      const tags = (c.tags || []).map(t => t.toLowerCase());
+      const src = (c.source || '').toLowerCase();
+      return tags.some(t => t.includes('calculator') || t.includes('retirement') || t.includes('income gap'))
+        || src.includes('calculator') || src.includes('retirement');
+    }).map(c => {
+      const cfs = {};
+      (c.customFields || []).forEach(cf => {
+        const key = CF_MAP[cf.id];
+        if (key) cfs[key] = cf.value;
+      });
+      return {
+        date: c.dateAdded,
+        firstName: c.firstName || '',
+        lastName: c.lastName || '',
+        email: c.email || '',
+        phone: c.phone || '',
+        tags: c.tags || [],
+        source: c.source || '',
+        ...cfs
+      };
+    });
+
+    // Sort newest first
+    allLeads.sort((a, b) => new Date(b.date) - new Date(a.date));
+
+    renderStats();
+    renderTable();
+  } catch (e) {
+    document.getElementById('loadingMsg').textContent = 'Error loading leads: ' + e.message;
+  }
+}
+
+function renderStats() {
+  const total = allLeads.length;
+  const gaps = allLeads.filter(l => l.tags.some(t => t.toLowerCase().includes('income gap'))).length;
+  const withPhone = allLeads.filter(l => l.phone).length;
+  const gateOnly = allLeads.filter(l => {
+    const t = l.tags.map(x => x.toLowerCase());
+    return t.includes('calculator gate lead') && !t.includes('has income gap');
+  }).length;
+  const today = allLeads.filter(l => {
+    const d = new Date(l.date);
+    const now = new Date();
+    return d.toDateString() === now.toDateString();
+  }).length;
+
+  document.getElementById('stats').innerHTML = [
+    ['Total Leads', total, 'gold'],
+    ['Has Income Gap', gaps, 'red'],
+    ['With Phone', withPhone, 'green'],
+    ['Gate Only (no calc)', gateOnly, ''],
+    ['Today', today, 'green'],
+  ].map(([label, val, color]) =>
+    `<div class="stat"><div class="label">${label}</div><div class="val ${color}">${val}</div></div>`
+  ).join('');
+}
+
+function getTagClass(tag) {
+  const t = tag.toLowerCase();
+  if (t.includes('income gap')) return 'tag-gap';
+  if (t.includes('gate')) return 'tag-gate';
+  if (t.includes('phone')) return 'tag-phone';
+  if (t.includes('retirement') || t.includes('calculator')) return 'tag-lead';
+  return 'tag-other';
+}
+
+function renderTable() {
+  const filter = document.getElementById('filterTag').value;
+  const search = document.getElementById('searchBox').value.toLowerCase();
+
+  let filtered = allLeads;
+  if (filter !== 'all') {
+    filtered = filtered.filter(l => l.tags.some(t => t.toLowerCase() === filter));
+  }
+  if (search) {
+    filtered = filtered.filter(l =>
+      (l.firstName + ' ' + l.lastName).toLowerCase().includes(search) ||
+      l.email.toLowerCase().includes(search) ||
+      (l.phone || '').includes(search)
+    );
+  }
+
+  document.getElementById('loadingMsg').style.display = 'none';
+
+  if (filtered.length === 0) {
+    document.getElementById('leadsTable').style.display = 'none';
+    document.getElementById('emptyMsg').style.display = 'block';
+    return;
+  }
+
+  document.getElementById('emptyMsg').style.display = 'none';
+  document.getElementById('leadsTable').style.display = 'table';
+
+  const tbody = document.getElementById('leadsBody');
+  tbody.innerHTML = filtered.map(l => {
+    const d = new Date(l.date);
+    const dateStr = d.toLocaleDateString('en-US', { month:'short', day:'numeric' }) + ' ' +
+                    d.toLocaleTimeString('en-US', { hour:'numeric', minute:'2-digit' });
+    const tags = l.tags.map(t => `<span class="tag ${getTagClass(t)}">${t}</span>`).join('');
+    const concern = l.topConcern || '';
+
+    return `<tr>
+      <td style="font-family:'JetBrains Mono',monospace;font-size:11px;color:#64748b">${dateStr}</td>
+      <td style="font-weight:600">${l.firstName} ${l.lastName}</td>
+      <td><a href="mailto:${l.email}" style="color:#1b4d2e;text-decoration:none">${l.email}</a></td>
+      <td>${l.phone ? `<a href="tel:${l.phone}" style="color:#1b4d2e;text-decoration:none">${l.phone}</a>` : '<span style="color:#cbd5e1">—</span>'}</td>
+      <td>${tags}</td>
+      <td style="font-size:11px;color:#64748b;max-width:160px;overflow:hidden;text-overflow:ellipsis">${l.source}</td>
+      <td style="font-family:'JetBrains Mono',monospace;font-size:12px">${l.age || '—'}</td>
+      <td style="font-family:'JetBrains Mono',monospace;font-size:12px">${l.retireAge || '—'}</td>
+      <td style="font-family:'JetBrains Mono',monospace;font-size:12px">${l.savings || '—'}</td>
+      <td style="font-family:'JetBrains Mono',monospace;font-size:12px">${l.monthlyGoal || '—'}</td>
+      <td style="font-family:'JetBrains Mono',monospace;font-size:12px;color:#dc2626;font-weight:600">${l.gap || '—'}</td>
+      <td style="font-family:'JetBrains Mono',monospace;font-size:12px;color:#dc2626">${l.lifetimeShortfall || '—'}</td>
+      <td style="font-size:12px;max-width:180px;overflow:hidden;text-overflow:ellipsis" title="${concern}">${concern || '—'}</td>
+    </tr>`;
+  }).join('');
+}
+
+// Filter/search handlers
+document.getElementById('filterTag').addEventListener('change', renderTable);
+document.getElementById('searchBox').addEventListener('input', renderTable);
+</script>
+</body>
+</html>
