@@ -10,7 +10,7 @@
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://juliocornerstonefp-dev.github.io/retirement-gap-calculator/" />
   <meta property="og:title" content="Do You Have a Retirement Income Gap? — Free Calculator" />
-  <meta property="og:description" content="Answer 4 questions and instantly see if your savings will cover the retirement you've planned — and what guaranteed income you could lock in today." />
+  <meta property="og:description" content="Answer 6 questions and instantly see if your savings will cover the retirement you've planned — and what guaranteed income you could lock in today." />
   <meta property="og:image" content="https://juliocornerstonefp-dev.github.io/retirement-gap-calculator/og-image.png" />
   <meta property="og:image:width" content="1200" />
   <meta property="og:image:height" content="630" />
@@ -19,58 +19,113 @@
   <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Do You Have a Retirement Income Gap? — Free Calculator" />
-  <meta name="twitter:description" content="Answer 4 questions and instantly see if your savings will cover the retirement you've planned." />
+  <meta name="twitter:description" content="Answer 6 questions and instantly see if your savings will cover the retirement you've planned." />
   <meta name="twitter:image" content="https://juliocornerstonefp-dev.github.io/retirement-gap-calculator/og-image.png" />
+  <!-- Microsoft Clarity -->
+  <script type="text/javascript">
+    (function(c,l,a,r,i,t,y){
+        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+    })(window, document, "clarity", "script", "vwdzwmahjw");
+  </script>
+
+  <!-- Meta Pixel -->
+  <script>
+    !function(f,b,e,v,n,t,s)
+    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+    n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];
+    s.parentNode.insertBefore(t,s)}(window, document,'script',
+    'https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init', '1246799634264348');
+    fbq('track', 'PageView');
+    fbq('trackCustom', 'ViewContent_Calculator');
+  </script>
+  <noscript><img height="1" width="1" style="display:none"
+    src="https://www.facebook.com/tr?id=1246799634264348&ev=PageView&noscript=1"/></noscript>
+  <!-- End Meta Pixel -->
+
   <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Playfair+Display:wght@400;600;700;800;900&display=swap" rel="stylesheet" />
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      --navy: #0d1b2a;
-      --navy2: #1b2d42;
-      --gold: #c9a268;
-      --gold-light: #e8c580;
-      --red: #e63946;
-      --red-light: #ff6b74;
-      --green: #2a9d4f;
-      --green-light: #3dd068;
-      --white: #ffffff;
-      --gray: #8899aa;
-      --gray-light: #f0f4f8;
-      --card-bg: #162030;
+      --gold: #B8860B;
+      --gold-light: #D4A843;
+      --gold-subtle: #F8F3E8;
+      --gold-border: #E8D5A8;
+      --dark: #1A1A1A;
+      --body: #4A4A4A;
+      --light: #7A7A7A;
+      --muted: #A0A0A0;
+      --bg: #FFFFFF;
+      --bg-alt: #FAFAF8;
+      --bg-warm: #F5F3EE;
+      --border: #EDEBE6;
+      --footer-bg: #2C2416;
+      --red: #C0392B;
+      --red-light: #E74C3C;
+      --green: #27AE60;
+      --green-light: #2ECC71;
+      --serif: 'Playfair Display', Georgia, serif;
+      --sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      /* legacy aliases for JS compatibility */
+      --navy: #FFFFFF;
+      --navy2: #F5F3EE;
+      --white: #1A1A1A;
+      --gray: #7A7A7A;
+      --gray-light: #FAFAF8;
+      --card-bg: #FFFFFF;
     }
 
     html { scroll-behavior: smooth; }
 
     body {
-      font-family: 'Inter', sans-serif;
-      background: var(--navy);
-      color: var(--white);
+      font-family: var(--sans);
+      background: #FFFFFF;
+      color: var(--body);
       min-height: 100vh;
       overflow-x: hidden;
     }
 
-
     /* ── LOGO / NAV ── */
     .topbar {
-      background: #ffffff;
-      padding: 16px 28px;
+      background: #FFFFFF;
+      padding: 16px 40px;
       display: flex;
       align-items: center;
-      justify-content: center;
-      border-bottom: 3px solid hsl(44, 49%, 60%);
+      justify-content: space-between;
+      border-bottom: 1px solid var(--border);
     }
     .topbar img {
       height: 54px;
       width: auto;
       display: block;
     }
-    @media (max-width: 480px) { .topbar img { height: 40px; } }
+    .topbar-cta {
+      display: inline-block;
+      background: var(--gold);
+      color: #fff;
+      font-family: var(--sans);
+      font-size: 14px;
+      font-weight: 600;
+      padding: 10px 20px;
+      border-radius: 6px;
+      text-decoration: none;
+      transition: background 0.2s, box-shadow 0.2s;
+    }
+    .topbar-cta:hover {
+      background: var(--gold-light);
+      box-shadow: 0 8px 24px rgba(184,134,11,0.2);
+    }
+    @media (max-width: 480px) { .topbar img { height: 40px; } .topbar { padding: 12px 16px; } .topbar-cta { font-size: 12px; padding: 8px 14px; } }
 
     /* ── HERO ── */
     .hero {
-      background: linear-gradient(135deg, #0d1b2a 0%, #1a2e45 50%, #0d1b2a 100%);
+      background: #FFFFFF;
       padding: 60px 20px 50px;
       text-align: center;
       position: relative;
@@ -83,17 +138,17 @@
       left: -50%;
       width: 200%;
       height: 200%;
-      background: radial-gradient(ellipse at center, rgba(201,168,76,0.08) 0%, transparent 60%);
+      background: radial-gradient(ellipse at center, rgba(184,134,11,0.04) 0%, transparent 60%);
       pointer-events: none;
     }
     .badge {
       display: inline-block;
-      background: rgba(201,168,76,0.15);
-      border: 1px solid rgba(201,168,76,0.4);
+      background: var(--gold-subtle);
+      border: 1px solid var(--gold-border);
       color: var(--gold);
       font-size: 12px;
       font-weight: 600;
-      letter-spacing: 1.5px;
+      letter-spacing: 2px;
       text-transform: uppercase;
       padding: 6px 16px;
       border-radius: 100px;
@@ -101,16 +156,17 @@
     }
     .hero h1 {
       font-size: clamp(28px, 5vw, 52px);
-      font-weight: 800;
-      font-family: 'Playfair Display', Georgia, serif;
+      font-weight: 500;
+      font-family: var(--serif);
       line-height: 1.1;
       max-width: 720px;
       margin: 0 auto 20px;
+      color: var(--dark);
     }
     .hero h1 span { color: var(--gold); }
     .hero p {
       font-size: clamp(15px, 2.5vw, 19px);
-      color: #a0b4c8;
+      color: var(--light);
       max-width: 560px;
       margin: 0 auto 36px;
       line-height: 1.6;
@@ -122,7 +178,7 @@
       color: var(--gold);
       font-size: 14px;
       font-weight: 500;
-      animation: bounce 2s infinite;
+      animation: bounce 2s 3;
     }
     @keyframes bounce {
       0%, 100% { transform: translateY(0); }
@@ -132,57 +188,123 @@
     /* ── CALCULATOR CARD ── */
     .container { max-width: 820px; margin: 0 auto; padding: 0 20px 80px; }
     .card {
-      background: var(--card-bg);
-      border: 1px solid rgba(255,255,255,0.07);
-      border-radius: 20px;
+      background: #FFFFFF;
+      border: 1px solid var(--border);
+      border-radius: 12px;
       padding: 40px;
       margin-top: -10px;
       position: relative;
       z-index: 2;
-      box-shadow: 0 40px 80px rgba(0,0,0,0.5);
+      box-shadow: 0 4px 20px rgba(0,0,0,0.04);
     }
     @media (max-width: 600px) { .card { padding: 24px 18px; } }
 
     .section-label {
-      font-size: 11px;
-      font-weight: 700;
+      font-size: 12px;
+      font-weight: 600;
       letter-spacing: 2px;
       text-transform: uppercase;
       color: var(--gold);
       margin-bottom: 24px;
     }
 
+    /* ── WIZARD PROGRESS BAR ── */
+    .wizard-progress {
+      display: flex;
+      gap: 6px;
+      margin-bottom: 28px;
+    }
+    .wizard-progress .seg {
+      flex: 1;
+      height: 5px;
+      border-radius: 3px;
+      background: var(--border);
+      transition: background 0.4s ease;
+    }
+    .wizard-progress .seg.active {
+      background: var(--gold);
+    }
+    .wizard-step-counter {
+      font-size: 13px;
+      color: var(--gray);
+      margin-bottom: 8px;
+      text-align: center;
+    }
+
+    /* ── WIZARD STEPS ── */
+    .wizard-steps-wrapper {
+      position: relative;
+      overflow: hidden;
+      min-height: 200px;
+    }
+    .wizard-step {
+      display: none;
+      opacity: 0;
+      transform: translateX(40px);
+      transition: opacity 0.35s ease, transform 0.35s ease;
+    }
+    .wizard-step.active {
+      display: block;
+    }
+    .wizard-step.active.slide-in {
+      opacity: 1;
+      transform: translateX(0);
+    }
+    .wizard-step.slide-out-left {
+      opacity: 0;
+      transform: translateX(-40px);
+    }
+    .wizard-step.slide-in-right {
+      transform: translateX(40px);
+    }
+
     /* ── INPUTS ── */
+    .field label {
+      display: block;
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--body);
+      margin-bottom: 10px;
+      letter-spacing: 0.3px;
+      text-align: center;
+    }
+    .field label span {
+      font-size: 12px;
+      color: var(--light);
+      font-weight: 400;
+    }
     .inputs-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 24px;
-      margin-bottom: 36px;
+      margin-bottom: 8px;
     }
     @media (max-width: 560px) { .inputs-grid { grid-template-columns: 1fr; gap: 20px; } }
-
-    .field label {
-      display: block;
-      font-size: 13px;
-      font-weight: 600;
-      color: #a0b4c8;
-      margin-bottom: 10px;
-      letter-spacing: 0.3px;
+    .inputs-grid .wizard-question {
+      font-size: clamp(15px, 2.5vw, 18px);
+      text-align: left;
     }
-    .field label span {
-      font-size: 11px;
-      color: var(--gray);
-      font-weight: 400;
+
+    .field .wizard-question {
+      display: block;
+      font-size: clamp(18px, 3vw, 24px);
+      font-weight: 700;
+      color: var(--dark);
+      margin-bottom: 6px;
+      font-family: var(--serif);
+      text-align: center;
     }
 
     .input-wrap {
       position: relative;
       display: flex;
       align-items: center;
+      max-width: 360px;
+      margin: 0 auto;
     }
     .prefix, .suffix {
       position: absolute;
-      font-size: 16px;
+      font-size: 18px;
       font-weight: 600;
       color: var(--gold);
       pointer-events: none;
@@ -192,84 +314,208 @@
 
     .field input[type="number"] {
       width: 100%;
-      background: rgba(255,255,255,0.05);
-      border: 1.5px solid rgba(255,255,255,0.1);
-      border-radius: 12px;
-      color: var(--white);
-      font-family: 'Inter', sans-serif;
-      font-size: 22px;
+      background: #FFFFFF;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      color: var(--dark);
+      font-family: var(--sans);
+      font-size: 28px;
       font-weight: 700;
-      padding: 16px 20px;
-      transition: border-color 0.2s, background 0.2s;
+      padding: 18px 20px;
+      transition: border-color 0.2s, box-shadow 0.2s;
       -moz-appearance: textfield;
       appearance: textfield;
       outline: none;
+      text-align: center;
     }
     .field input[type="number"]::-webkit-inner-spin-button,
     .field input[type="number"]::-webkit-outer-spin-button { -webkit-appearance: none; }
     .field input[type="number"]:focus {
       border-color: var(--gold);
-      background: rgba(201,168,76,0.06);
+      box-shadow: 0 0 0 3px rgba(184,134,11,0.08);
     }
-    .has-prefix input { padding-left: 36px; }
+    .field input[type="number"].input-error {
+      border-color: var(--red) !important;
+      background: rgba(192,57,43,0.04) !important;
+    }
+    .has-prefix input { padding-left: 36px; text-align: left; }
     .has-suffix input { padding-right: 48px; }
 
+    .inline-error {
+      color: var(--red);
+      font-size: 13px;
+      font-weight: 500;
+      text-align: center;
+      margin-top: 8px;
+      min-height: 20px;
+      transition: opacity 0.2s;
+    }
+
     /* slider */
-    .slider-row { display: flex; align-items: center; gap: 12px; margin-top: 10px; }
+    .slider-row { display: flex; align-items: center; gap: 12px; margin-top: 10px; max-width: 360px; margin-left: auto; margin-right: auto; }
     input[type="range"] {
       -webkit-appearance: none;
       appearance: none;
       flex: 1;
       height: 4px;
       border-radius: 4px;
-      background: rgba(255,255,255,0.1);
+      background: var(--border);
       outline: none;
       cursor: pointer;
     }
     input[type="range"]::-webkit-slider-thumb {
       -webkit-appearance: none;
-      width: 20px;
-      height: 20px;
+      width: 22px;
+      height: 22px;
       border-radius: 50%;
       background: var(--gold);
-      border: 3px solid var(--navy);
+      border: 3px solid #FFFFFF;
       box-shadow: 0 0 0 2px var(--gold);
       cursor: pointer;
       transition: transform 0.15s;
     }
     input[type="range"]::-webkit-slider-thumb:hover { transform: scale(1.2); }
-    .range-labels { display: flex; justify-content: space-between; font-size: 11px; color: var(--gray); margin-top: 4px; }
+    .range-labels { display: flex; justify-content: space-between; font-size: 11px; color: var(--light); margin-top: 4px; max-width: 360px; margin-left: auto; margin-right: auto; }
+
+    /* ── WIZARD NAV BUTTONS ── */
+    .wizard-nav {
+      display: flex;
+      gap: 12px;
+      margin-top: 28px;
+      max-width: 360px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .wizard-back-btn {
+      flex: 0 0 auto;
+      background: none;
+      border: 1px solid var(--border);
+      color: var(--body);
+      border-radius: 6px;
+      font-family: var(--sans);
+      font-size: 15px;
+      font-weight: 600;
+      padding: 16px 24px;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .wizard-back-btn:hover { border-color: var(--gold); color: var(--gold); }
+    .wizard-next-btn {
+      flex: 1;
+      background: var(--gold);
+      color: #fff;
+      border: none;
+      border-radius: 6px;
+      font-family: var(--sans);
+      font-size: 16px;
+      font-weight: 600;
+      padding: 16px 24px;
+      cursor: pointer;
+      letter-spacing: 0.3px;
+      transition: background 0.2s, box-shadow 0.2s;
+    }
+    .wizard-next-btn:hover { background: var(--gold-light); box-shadow: 0 8px 24px rgba(184,134,11,0.2); }
+    .wizard-next-btn:active { transform: translateY(0); }
 
     /* ── CTA BUTTON ── */
     .calc-btn {
       width: 100%;
-      background: linear-gradient(135deg, var(--gold) 0%, #e8c96d 100%);
-      color: var(--navy);
+      max-width: 360px;
+      display: block;
+      margin: 28px auto 0;
+      background: var(--gold);
+      color: #fff;
       border: none;
-      border-radius: 14px;
-      font-family: 'Inter', sans-serif;
+      border-radius: 6px;
+      font-family: var(--sans);
       font-size: 18px;
-      font-weight: 800;
+      font-weight: 600;
       padding: 20px;
       cursor: pointer;
       letter-spacing: 0.3px;
-      transition: transform 0.15s, box-shadow 0.15s, opacity 0.15s;
-      box-shadow: 0 8px 30px rgba(201,168,76,0.35);
+      transition: background 0.2s, box-shadow 0.2s;
     }
-    .calc-btn:hover { transform: translateY(-2px); box-shadow: 0 12px 40px rgba(201,168,76,0.45); }
+    .calc-btn:hover { background: var(--gold-light); box-shadow: 0 8px 24px rgba(184,134,11,0.2); }
     .calc-btn:active { transform: translateY(0); }
+    .calc-btn.analyzing {
+      animation: pulse-btn 1s ease-in-out infinite;
+      pointer-events: none;
+    }
+    @keyframes pulse-btn {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.7; }
+    }
+
+    /* ── SS Option Cards ── */
+    .ss-options {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      max-width: 420px;
+      margin: 0 auto;
+    }
+    @media (max-width: 480px) { .ss-options { grid-template-columns: 1fr 1fr; gap: 10px; } }
+    .ss-card {
+      background: #FFFFFF;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 18px 12px;
+      text-align: center;
+      cursor: pointer;
+      transition: all 0.25s ease;
+    }
+    .ss-card:hover {
+      border-color: var(--gold-border);
+      background: var(--gold-subtle);
+      transform: translateY(-2px);
+    }
+    .ss-card.selected {
+      border-color: var(--gold);
+      background: var(--gold-subtle);
+      box-shadow: 0 4px 12px rgba(184,134,11,0.1);
+    }
+    .ss-card-amount {
+      font-size: 22px;
+      font-weight: 800;
+      color: var(--gold);
+      margin-bottom: 4px;
+      font-family: var(--serif);
+    }
+    .ss-card-label {
+      font-size: 13px;
+      color: var(--body);
+      font-weight: 500;
+    }
+    .ss-hint {
+      font-size: 12px;
+      color: var(--light);
+      text-align: center;
+      margin-top: 14px;
+      line-height: 1.5;
+    }
 
     /* ── RESULTS ── */
     #results { display: none; margin-top: 40px; }
-    #results.visible { display: block; animation: fadeUp 0.5s ease; }
+    #results.visible { display: block; }
     @keyframes fadeUp {
       from { opacity: 0; transform: translateY(20px); }
       to   { opacity: 1; transform: translateY(0); }
     }
 
+    /* Scroll-triggered fade-in */
+    .fade-in-section {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+    .fade-in-section.visible-section {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
     .divider {
       border: none;
-      border-top: 1px solid rgba(255,255,255,0.07);
+      border-top: 1px solid var(--border);
       margin: 36px 0;
     }
 
@@ -283,12 +529,20 @@
       overflow: hidden;
     }
     .verdict.gap {
-      background: linear-gradient(135deg, rgba(230,57,70,0.12) 0%, rgba(230,57,70,0.06) 100%);
-      border: 1px solid rgba(230,57,70,0.3);
+      background: #FDF2F2;
+      border: 1px solid rgba(192,57,43,0.2);
     }
     .verdict.ok {
-      background: linear-gradient(135deg, rgba(42,157,79,0.12) 0%, rgba(42,157,79,0.06) 100%);
-      border: 1px solid rgba(42,157,79,0.3);
+      background: #F0FAF4;
+      border: 1px solid rgba(39,174,96,0.2);
+    }
+    @keyframes glow-red {
+      0%, 100% { box-shadow: none; }
+      50% { box-shadow: none; }
+    }
+    @keyframes glow-green {
+      0%, 100% { box-shadow: none; }
+      50% { box-shadow: none; }
     }
     .verdict-icon { font-size: 48px; margin-bottom: 12px; }
     .verdict-label {
@@ -298,8 +552,8 @@
       text-transform: uppercase;
       margin-bottom: 8px;
     }
-    .verdict.gap .verdict-label { color: var(--red-light); }
-    .verdict.ok  .verdict-label { color: var(--green-light); }
+    .verdict.gap .verdict-label { color: var(--red); }
+    .verdict.ok  .verdict-label { color: var(--green); }
     .verdict-amount {
       font-size: clamp(42px, 8vw, 72px);
       font-weight: 900;
@@ -307,17 +561,186 @@
       line-height: 1;
       margin-bottom: 10px;
     }
-    .verdict.gap .verdict-amount { color: var(--red-light); }
-    .verdict.ok  .verdict-amount { color: var(--green-light); }
-    .verdict-sub { font-size: 15px; color: #a0b4c8; line-height: 1.5; }
+    .verdict.gap .verdict-amount { color: var(--red); }
+    .verdict.ok  .verdict-amount { color: var(--green); }
+    .verdict-sub { font-size: 15px; color: var(--body); line-height: 1.5; }
+
+    /* ── PROBABILITY SCORE ── */
+    .probability-section {
+      text-align: center;
+      margin-bottom: 30px;
+      padding: 28px 20px;
+      background: #FFFFFF;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+    }
+    .prob-bar-wrap {
+      max-width: 320px;
+      margin: 0 auto 16px;
+    }
+    .prob-bar-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      margin-bottom: 10px;
+    }
+    .prob-number {
+      font-size: 42px;
+      font-weight: 900;
+      font-family: 'Playfair Display', Georgia, serif;
+      line-height: 1;
+    }
+    .prob-label-text {
+      font-size: 13px;
+      color: var(--gray);
+      font-weight: 600;
+    }
+    .prob-track {
+      height: 14px;
+      background: var(--border);
+      border-radius: 7px;
+      overflow: hidden;
+      position: relative;
+    }
+    .prob-fill {
+      height: 100%;
+      border-radius: 7px;
+      transition: width 1.2s cubic-bezier(0.4, 0, 0.2, 1);
+      width: 0%;
+    }
+    .prob-markers {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 6px;
+      font-size: 10px;
+      color: var(--gray);
+    }
+    .prob-target {
+      position: absolute;
+      left: 80%;
+      top: -4px;
+      bottom: -4px;
+      width: 2px;
+      background: var(--dark);
+      opacity: 0.3;
+    }
+    .prob-note {
+      font-size: 12px;
+      color: var(--gray);
+      margin-top: 12px;
+      line-height: 1.5;
+      max-width: 400px;
+      margin: 0 auto;
+    }
+
+    /* ── DONUT CHART ── */
+    .donut-section {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+    .donut-wrap {
+      width: 180px;
+      height: 180px;
+      border-radius: 50%;
+      position: relative;
+      margin: 0 auto 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .donut-wrap .donut-bg {
+      position: absolute;
+      inset: 0;
+      border-radius: 50%;
+      transition: background 1.2s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+    .donut-center {
+      width: 120px;
+      height: 120px;
+      background: #FFFFFF;
+      border-radius: 50%;
+      position: relative;
+      z-index: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+    .donut-pct {
+      font-size: 36px;
+      font-weight: 900;
+      font-family: var(--serif);
+      line-height: 1;
+      color: var(--dark);
+    }
+    .donut-pct-label {
+      font-size: 11px;
+      color: var(--light);
+      margin-top: 2px;
+    }
+    .donut-label {
+      font-size: 14px;
+      color: var(--body);
+    }
+
+    /* ── INCOME BREAKDOWN BAR ── */
+    .income-breakdown {
+      margin-bottom: 30px;
+    }
+    .breakdown-bar {
+      display: flex;
+      height: 32px;
+      border-radius: 10px;
+      overflow: hidden;
+      margin-bottom: 14px;
+      background: var(--border);
+    }
+    .breakdown-seg {
+      height: 100%;
+      transition: width 1s cubic-bezier(0.4, 0, 0.2, 1);
+      min-width: 2px;
+    }
+    .breakdown-seg.seg-ss { background: var(--green); }
+    .breakdown-seg.seg-other { background: #3abff8; }
+    .breakdown-seg.seg-portfolio { background: var(--gold); }
+    .breakdown-seg.seg-gap { background: var(--red); }
+    .breakdown-legend {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+      justify-content: center;
+      margin-bottom: 8px;
+    }
+    .legend-item {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 13px;
+      color: var(--body);
+    }
+    .legend-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+    .legend-dot.dot-ss { background: var(--green); }
+    .legend-dot.dot-other { background: #3abff8; }
+    .legend-dot.dot-portfolio { background: var(--gold); }
+    .legend-dot.dot-gap { background: var(--red); }
+    .breakdown-note {
+      font-size: 12px;
+      color: var(--gray);
+      text-align: center;
+    }
 
     /* progress bar */
     .bar-section { margin-bottom: 30px; }
-    .bar-labels { display: flex; justify-content: space-between; font-size: 13px; color: #a0b4c8; margin-bottom: 10px; }
-    .bar-labels strong { color: var(--white); }
+    .bar-labels { display: flex; justify-content: space-between; font-size: 13px; color: var(--body); margin-bottom: 10px; }
+    .bar-labels strong { color: var(--dark); }
     .bar-track {
       height: 28px;
-      background: rgba(230,57,70,0.2);
+      background: #FDECEA;
       border-radius: 8px;
       overflow: hidden;
       position: relative;
@@ -338,132 +761,235 @@
       transform: translateY(-50%);
       font-size: 12px;
       font-weight: 700;
-      color: var(--navy);
+      color: #FFFFFF;
       white-space: nowrap;
+    }
+    .bar-fill.narrow-bar::after {
+      right: auto;
+      left: calc(100% + 8px);
+      color: var(--dark);
     }
     .bar-note { font-size: 12px; color: var(--gray); margin-top: 8px; }
 
-    /* stats row */
+    /* stats row — 2x2 grid */
     .stats-row {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
+      grid-template-columns: repeat(2, 1fr);
       gap: 16px;
       margin-bottom: 30px;
     }
     @media (max-width: 480px) { .stats-row { grid-template-columns: 1fr; } }
     .stat {
-      background: rgba(255,255,255,0.04);
-      border: 1px solid rgba(255,255,255,0.07);
-      border-radius: 14px;
+      background: #FFFFFF;
+      border: 1px solid var(--border);
+      border-radius: 12px;
       padding: 20px 16px;
       text-align: center;
+      transition: transform 0.2s, border-color 0.2s, background 0.2s;
     }
-    .stat-value { font-size: 26px; font-weight: 800; color: var(--white); margin-bottom: 4px; }
-    .stat-label { font-size: 12px; color: var(--gray); line-height: 1.4; }
+    .stat:hover {
+      transform: translateY(-3px);
+      border-color: var(--gold-border);
+      background: var(--gold-subtle);
+    }
+    .stat-value { font-size: 26px; font-weight: 800; color: var(--dark); margin-bottom: 4px; }
+    .stat-label { font-size: 12px; color: var(--light); line-height: 1.4; }
 
-    /* guaranteed income panel */
-    .income-panel {
-      background: rgba(201,168,76,0.06);
-      border: 1px solid rgba(201,168,76,0.25);
-      border-radius: 16px;
-      padding: 28px;
+
+    /* ── STRESS TEST ── */
+    .stress-test-section {
       margin-bottom: 30px;
     }
-    .income-panel h3 {
-      font-size: 15px;
+    .stress-title {
+      font-size: 18px;
       font-weight: 700;
-      color: var(--gold);
-      margin-bottom: 6px;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-    .income-panel .sub {
-      font-size: 13px;
-      color: #7a8fa0;
-      margin-bottom: 22px;
-    }
-    .income-compare {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 16px;
-    }
-    @media (max-width: 480px) { .income-compare { grid-template-columns: 1fr; } }
-    .income-option {
-      border-radius: 12px;
-      padding: 20px;
+      color: var(--dark);
       text-align: center;
+      margin-bottom: 20px;
     }
-    .income-option.now {
-      background: linear-gradient(135deg, rgba(201,168,76,0.2) 0%, rgba(201,168,76,0.08) 100%);
-      border: 1.5px solid var(--gold);
+    .stress-chart {
+      margin: 0 auto 16px;
+      max-width: 100%;
     }
-    .income-option.later {
-      background: rgba(255,255,255,0.04);
-      border: 1px solid rgba(255,255,255,0.1);
+    .stress-chart svg {
+      width: 100%;
+      height: auto;
     }
-    .option-tag {
-      font-size: 10px;
-      font-weight: 700;
-      letter-spacing: 1.5px;
-      text-transform: uppercase;
-      margin-bottom: 10px;
-    }
-    .income-option.now .option-tag { color: var(--gold); }
-    .income-option.later .option-tag { color: var(--gray); }
-    .option-amount { font-size: 32px; font-weight: 900; margin-bottom: 4px; }
-    .income-option.now .option-amount { color: var(--gold-light); }
-    .income-option.later .option-amount { color: #a0b4c8; }
-    .option-period { font-size: 13px; color: var(--gray); margin-bottom: 8px; }
-    .option-badge {
-      display: inline-block;
-      font-size: 11px;
-      font-weight: 600;
-      padding: 4px 10px;
-      border-radius: 100px;
-    }
-    .income-option.now .option-badge {
-      background: rgba(201,168,76,0.2);
-      color: var(--gold);
-    }
-    .income-option.later .option-badge {
-      background: rgba(255,255,255,0.06);
+    .stress-legend {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      flex-wrap: wrap;
+      margin-bottom: 20px;
+      font-size: 12px;
       color: var(--gray);
     }
-    .income-note {
+    .stress-legend .legend-item {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .stress-legend .legend-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      display: inline-block;
+    }
+    .stress-callout {
+      display: flex;
+      gap: 14px;
+      align-items: flex-start;
+      background: #FDF2F2;
+      border: 1px solid rgba(192,57,43,0.2);
+      border-radius: 12px;
+      padding: 20px;
+    }
+    .stress-callout-icon {
+      font-size: 24px;
+      flex-shrink: 0;
+    }
+    .stress-callout-text {
+      font-size: 13px;
+      color: var(--body);
+      line-height: 1.6;
+    }
+    .stress-callout-text strong {
+      color: var(--red);
+    }
+    .stress-callout-text em {
+      color: var(--gold);
+      font-style: normal;
+      font-weight: 600;
+    }
+
+    /* ── CLOSE THE GAP LEVERS ── */
+    .close-gap-section {
+      margin-bottom: 30px;
+    }
+    .levers-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+      margin-bottom: 12px;
+    }
+    @media (max-width: 600px) { .levers-grid { grid-template-columns: 1fr; } }
+    .lever-card {
+      background: #FFFFFF;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 22px 16px;
+      text-align: center;
+      transition: transform 0.2s, border-color 0.2s;
+    }
+    .lever-card:hover {
+      transform: translateY(-3px);
+      border-color: var(--gold-border);
+    }
+    .lever-icon {
+      font-size: 32px;
+      margin-bottom: 10px;
+    }
+    .lever-title {
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--dark);
+      margin-bottom: 8px;
+    }
+    .lever-value {
+      font-size: 22px;
+      font-weight: 800;
+      color: var(--gold);
+      margin-bottom: 8px;
+      font-family: var(--serif);
+    }
+    .lever-desc {
       font-size: 12px;
-      color: #5a7080;
-      margin-top: 14px;
+      color: var(--gray);
+      line-height: 1.4;
+    }
+    .levers-note {
+      font-size: 13px;
+      color: var(--body);
+      text-align: center;
       line-height: 1.5;
     }
 
     /* urgency box */
     .urgency {
-      background: rgba(230,57,70,0.08);
-      border: 1px solid rgba(230,57,70,0.25);
-      border-radius: 14px;
+      background: #FDF8F0;
+      border: 1px solid var(--gold-border);
+      border-radius: 12px;
       padding: 22px 24px;
-      margin-bottom: 30px;
+      margin-bottom: 16px;
       display: flex;
       gap: 16px;
       align-items: flex-start;
     }
     .urgency-icon { font-size: 28px; flex-shrink: 0; margin-top: 2px; }
-    .urgency-text h4 { font-size: 15px; font-weight: 700; color: var(--red-light); margin-bottom: 6px; }
-    .urgency-text p { font-size: 13px; color: #a0b4c8; line-height: 1.6; }
+    .urgency-text h4 { font-size: 15px; font-weight: 700; color: var(--gold); margin-bottom: 6px; }
+    .urgency-text p { font-size: 13px; color: var(--body); line-height: 1.6; }
+    .cost-of-waiting {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--red);
+      margin-top: 8px;
+    }
+    .cta-gap-restate {
+      font-size: clamp(16px, 3vw, 20px);
+      color: var(--red);
+      font-weight: 700;
+      margin-bottom: 16px;
+      line-height: 1.4;
+    }
+    .cta-gap-restate.on-track {
+      color: var(--green);
+    }
+    .cta-micro {
+      font-size: 13px;
+      color: var(--gold);
+      margin-top: 10px;
+      font-weight: 500;
+    }
+
+    /* ── TRUST SIGNALS ── */
+    .trust-banner {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+      margin-bottom: 30px;
+      padding: 24px;
+      background: #FFFFFF;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+    }
+    @media (max-width: 480px) { .trust-banner { grid-template-columns: 1fr; gap: 12px; } }
+    .trust-item {
+      text-align: center;
+    }
+    .trust-value {
+      font-size: 22px;
+      font-weight: 800;
+      color: var(--gold);
+      margin-bottom: 4px;
+    }
+    .trust-desc {
+      font-size: 12px;
+      color: var(--gray);
+      line-height: 1.4;
+    }
 
     /* lead capture */
     .lead-box {
-      background: linear-gradient(135deg, #1a2e45 0%, #162030 100%);
-      border: 1px solid rgba(201,168,76,0.3);
-      border-radius: 20px;
+      background: var(--bg-alt);
+      border: 1px solid var(--border);
+      border-radius: 12px;
       padding: 36px;
       text-align: center;
     }
     @media (max-width: 600px) { .lead-box { padding: 24px 18px; } }
-    .lead-box h2 { font-size: clamp(20px, 4vw, 28px); font-weight: 800; font-family: 'Playfair Display', Georgia, serif; margin-bottom: 10px; line-height: 1.2; }
+    .lead-box h2 { font-size: clamp(20px, 4vw, 28px); font-weight: 800; font-family: var(--serif); margin-bottom: 10px; line-height: 1.2; color: var(--dark); }
     .lead-box h2 span { color: var(--gold); }
-    .lead-box p { font-size: 14px; color: #a0b4c8; margin-bottom: 28px; line-height: 1.6; max-width: 480px; margin-left: auto; margin-right: auto; }
+    .lead-box p { font-size: 14px; color: var(--body); margin-bottom: 28px; line-height: 1.6; max-width: 480px; margin-left: auto; margin-right: auto; }
 
     .form-row { display: flex; gap: 12px; flex-wrap: wrap; justify-content: center; max-width: 520px; margin: 0 auto 16px; }
     .form-row input[type="text"],
@@ -471,41 +997,51 @@
     .form-row input[type="tel"] {
       flex: 1;
       min-width: 180px;
-      background: rgba(255,255,255,0.06);
-      border: 1.5px solid rgba(255,255,255,0.12);
-      border-radius: 12px;
-      color: var(--white);
-      font-family: 'Inter', sans-serif;
-      font-size: 15px;
+      background: #FFFFFF;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      color: var(--dark);
+      font-family: var(--sans);
+      font-size: 16px;
       padding: 14px 18px;
       outline: none;
-      transition: border-color 0.2s;
+      transition: border-color 0.2s, box-shadow 0.2s;
     }
-    .form-row input::placeholder { color: #5a7080; }
-    .form-row input:focus { border-color: var(--gold); }
+    .form-row input::placeholder, .form-row select { color: var(--muted); }
+    .form-row input:focus, .form-row select:focus { border-color: var(--gold); box-shadow: 0 0 0 3px rgba(184,134,11,0.08); }
+    .form-row input.input-error { border-color: var(--red) !important; }
+    .form-row select {
+      flex: 1; min-width: 180px; background: #FFFFFF; color: var(--dark);
+      border: 1px solid var(--border); border-radius: 6px; padding: 14px 16px;
+      font-size: 16px; font-family: var(--sans); outline: none;
+      transition: border-color 0.2s; appearance: none; cursor: pointer;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%237A7A7A' stroke-width='1.5' fill='none'/%3E%3C/svg%3E");
+      background-repeat: no-repeat; background-position: right 14px center;
+    }
+    .form-row select option { background: #FFFFFF; color: var(--dark); }
+    .form-row select.input-error { border-color: var(--red) !important; }
+    .lead-greeting { font-size: 16px; color: var(--gold); font-weight: 600; margin-bottom: 16px; font-family: var(--sans); }
 
     .cta-btn {
       width: 100%;
       max-width: 520px;
-      background: linear-gradient(135deg, var(--red) 0%, #ff4f5a 100%);
-      color: var(--white);
+      background: var(--gold);
+      color: #fff;
       border: none;
-      border-radius: 14px;
-      font-family: 'Inter', sans-serif;
+      border-radius: 6px;
+      font-family: var(--sans);
       font-size: 17px;
-      font-weight: 800;
+      font-weight: 600;
       padding: 18px 28px;
       cursor: pointer;
       letter-spacing: 0.3px;
-      transition: transform 0.15s, box-shadow 0.15s;
-      box-shadow: 0 8px 30px rgba(230,57,70,0.35);
+      transition: background 0.2s, box-shadow 0.2s;
       display: block;
       margin: 0 auto;
     }
-    .cta-btn:hover { transform: translateY(-2px); box-shadow: 0 12px 40px rgba(230,57,70,0.45); }
-
-    .privacy { font-size: 11px; color: #4a6070; margin-top: 14px; }
-    .privacy a { color: #5a7080; }
+    .cta-btn:hover { background: var(--gold-light); box-shadow: 0 8px 24px rgba(184,134,11,0.2); }
+    .privacy { font-size: 11px; color: var(--muted); margin-top: 14px; }
+    .privacy a { color: var(--light); }
 
     .social-proof {
       display: flex;
@@ -515,7 +1051,7 @@
       margin-top: 28px;
       flex-wrap: wrap;
     }
-    .proof-item { display: flex; align-items: center; gap: 6px; font-size: 12px; color: #5a7080; }
+    .proof-item { display: flex; align-items: center; gap: 6px; font-size: 12px; color: var(--light); }
     .proof-dot { width: 5px; height: 5px; border-radius: 50%; background: var(--gold); opacity: 0.5; }
 
     /* success state */
@@ -530,20 +1066,20 @@
       margin: 0 auto 20px;
       box-shadow: 0 0 40px rgba(42,157,79,0.4);
     }
-    #thank-you h3 { font-size: 22px; font-weight: 800; margin-bottom: 10px; }
-    #thank-you p { font-size: 14px; color: #a0b4c8; line-height: 1.6; }
+    #thank-you h3 { font-size: 22px; font-weight: 800; margin-bottom: 10px; color: var(--dark); }
+    #thank-you p { font-size: 14px; color: var(--body); line-height: 1.6; }
 
     /* footer */
-    .footer { text-align: center; padding: 40px 20px; font-size: 12px; color: #3a5060; line-height: 1.7; }
-    .footer strong { color: #5a7080; }
+    .footer { text-align: center; padding: 40px 20px; font-size: 12px; color: rgba(255,255,255,0.2); line-height: 1.7; background: var(--footer-bg); }
+    .footer strong { color: rgba(255,255,255,0.4); }
 
     /* recalc button */
     .recalc-btn {
       background: none;
-      border: 1px solid rgba(255,255,255,0.15);
-      color: #a0b4c8;
-      border-radius: 10px;
-      font-family: 'Inter', sans-serif;
+      border: 1px solid var(--border);
+      color: var(--body);
+      border-radius: 6px;
+      font-family: var(--sans);
       font-size: 13px;
       padding: 10px 20px;
       cursor: pointer;
@@ -552,152 +1088,500 @@
     }
     .recalc-btn:hover { border-color: var(--gold); color: var(--gold); }
 
-    /* ── INFO GATE ── */
-    #info-gate { text-align: center; padding: 8px 0 32px; }
-    #info-gate .section-label { margin-bottom: 18px; }
-    #info-gate h2 { font-size: clamp(20px, 4vw, 28px); font-weight: 800; font-family: 'Playfair Display', Georgia, serif; margin-bottom: 10px; line-height: 1.2; }
-    #info-gate h2 span { color: var(--gold); }
-    #info-gate > p { font-size: 15px; color: #a0b4c8; margin-bottom: 24px; line-height: 1.7; max-width: 500px; margin-left: auto; margin-right: auto; }
-    #info-gate .gate-fields { max-width: 520px; margin: 0 auto; }
-    .gate-btn {
-      width: 100%;
-      max-width: 520px;
-      background: linear-gradient(135deg, var(--gold) 0%, #e8c96d 100%);
-      color: var(--navy);
-      border: none;
-      border-radius: 14px;
-      font-family: 'Inter', sans-serif;
-      font-size: 17px;
-      font-weight: 800;
-      padding: 18px 28px;
-      cursor: pointer;
-      letter-spacing: 0.3px;
-      transition: transform 0.15s, box-shadow 0.15s;
-      box-shadow: 0 8px 30px rgba(201,168,76,0.35);
-      margin-top: 4px;
+    /* ── TODAY DOLLARS NOTE ── */
+    .today-dollars-note {
+      font-size: 12px;
+      color: var(--gold);
+      text-align: center;
+      margin-bottom: 20px;
+      padding: 8px 16px;
+      background: var(--gold-subtle);
+      border-radius: 8px;
+      border: 1px solid var(--gold-border);
     }
-    .gate-btn:hover { transform: translateY(-2px); box-shadow: 0 12px 40px rgba(201,168,76,0.45); }
-    .gate-btn:active { transform: translateY(0); }
+
+    /* ── STICKY MOBILE CTA ── */
+    .sticky-mobile-cta {
+      display: none;
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: rgba(255,255,255,0.96);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border-top: 1px solid var(--border);
+      padding: 12px 16px;
+      z-index: 999;
+      text-align: center;
+    }
+    .sticky-mobile-cta.visible {
+      display: block;
+    }
+    .sticky-mobile-cta button {
+      width: 100%;
+      max-width: 400px;
+      background: var(--gold);
+      color: #fff;
+      border: none;
+      border-radius: 6px;
+      font-family: var(--sans);
+      font-size: 15px;
+      font-weight: 600;
+      padding: 14px 24px;
+      cursor: pointer;
+    }
+
+    /* ── MOBILE OPTIMIZATIONS ── */
+
+    /* Tablets and below */
+    @media (max-width: 768px) {
+      .hero { padding: 48px 16px 40px; }
+      .hero h1 { font-size: 28px; }
+      .hero p { font-size: 15px; margin-bottom: 24px; }
+      .card { padding: 28px 16px; border-radius: 10px; }
+      .container { padding: 0 12px 80px; }
+      .stats-row { grid-template-columns: 1fr 1fr; }
+      .income-compare { grid-template-columns: 1fr; gap: 12px; }
+      .verdict-amount { font-size: 42px; }
+      .lead-box { padding: 28px 18px; }
+      .lead-box h2 { font-size: 22px; }
+      .concern-grid { grid-template-columns: 1fr; gap: 8px; }
+    }
+
+    /* Phones */
+    @media (max-width: 600px) {
+      /* Nav */
+      .topbar { padding: 12px 16px; }
+      .topbar img { height: 28px; }
+      .topbar-cta { font-size: 11px; padding: 8px 14px; }
+
+      /* Hero */
+      .hero { padding: 36px 16px 32px; }
+      .hero h1 { font-size: 24px; line-height: 1.25; }
+      .hero h1 br { display: none; }
+      .hero p { font-size: 14px; line-height: 1.6; margin-bottom: 20px; }
+      .badge { font-size: 10px; padding: 5px 12px; letter-spacing: 1px; }
+      .scroll-hint { font-size: 13px; }
+
+      /* Card */
+      .card { padding: 20px 14px; margin-top: 0; box-shadow: none; border-left: none; border-right: none; border-radius: 0; }
+      .container { padding: 0 0 100px; }
+
+      /* Wizard */
+      .wizard-progress { gap: 4px; margin-bottom: 16px; }
+      .wizard-progress .seg { height: 3px; }
+      .wizard-step-counter { font-size: 11px; margin-bottom: 20px; }
+      .section-label { font-size: 11px; margin-bottom: 16px; }
+
+      /* Inputs */
+      .inputs-grid { grid-template-columns: 1fr; gap: 16px; }
+      .field label { font-size: 14px; margin-bottom: 8px; }
+      .field input[type="number"] {
+        font-size: 28px;
+        padding: 18px 16px;
+        border-radius: 10px;
+      }
+      .has-prefix input { padding-left: 32px; }
+      .prefix { font-size: 18px; left: 12px; }
+
+      /* Sliders */
+      input[type="range"] { height: 6px; }
+      input[type="range"]::-webkit-slider-thumb {
+        width: 32px;
+        height: 32px;
+        border-width: 4px;
+      }
+      .slider-row { margin-top: 12px; }
+      .range-labels { font-size: 12px; margin-top: 6px; }
+
+      /* Social Security cards */
+      .ss-options { grid-template-columns: 1fr 1fr; gap: 8px; }
+      .ss-card {
+        padding: 16px 10px;
+        border-radius: 10px;
+      }
+      .ss-card-amount { font-size: 20px; }
+      .ss-card-label { font-size: 11px; }
+
+      /* Wizard nav buttons */
+      .wizard-nav { max-width: 100%; margin-top: 24px; }
+      .wizard-back-btn { padding: 16px 20px; font-size: 14px; }
+      .wizard-next-btn { padding: 18px 20px; font-size: 16px; border-radius: 10px; }
+
+      /* Calculate button */
+      .calc-btn { padding: 20px; font-size: 17px; border-radius: 10px; }
+
+      /* Results */
+      .verdict { padding: 28px 16px; border-radius: 10px; }
+      .verdict-icon { font-size: 40px; margin-bottom: 8px; }
+      .verdict-label { font-size: 11px; letter-spacing: 1.5px; }
+      .verdict-amount { font-size: 36px; }
+      .verdict-sub { font-size: 14px; }
+
+      /* Progress bar */
+      .bar-section { margin-bottom: 24px; }
+      .bar-labels { font-size: 12px; flex-direction: column; gap: 4px; }
+      .bar-track { height: 24px; border-radius: 6px; }
+      .bar-fill::after { font-size: 11px; right: 6px; }
+      .bar-note { font-size: 11px; }
+
+      /* Probability gauge */
+      .prob-number { font-size: 36px; }
+      .prob-bar { height: 10px; border-radius: 5px; }
+
+      /* Income breakdown */
+      .breakdown-bar { height: 32px; border-radius: 6px; }
+      .breakdown-legend { grid-template-columns: 1fr 1fr; gap: 8px; }
+      .legend-item { font-size: 12px; }
+
+      /* Stats */
+      .stats-row { grid-template-columns: 1fr; gap: 10px; }
+      .stat { padding: 16px 14px; border-radius: 10px; }
+      .stat-value { font-size: 22px; }
+      .stat-label { font-size: 11px; }
+
+      /* Donut chart */
+      .donut-wrap { width: 140px; height: 140px; }
+      .donut-center { width: 96px; height: 96px; }
+      .donut-pct { font-size: 26px; }
+      .donut-label { font-size: 9px; }
+
+      /* Stress test */
+      .stress-callout { padding: 16px; border-radius: 10px; flex-direction: column; gap: 10px; }
+      .stress-callout-icon { font-size: 24px; }
+      .stress-callout-text { font-size: 13px; }
+
+      /* Levers */
+      .levers-grid { grid-template-columns: 1fr; gap: 10px; }
+      .lever-card { padding: 20px 16px; border-radius: 10px; }
+      .lever-icon { font-size: 28px; }
+      .lever-value { font-size: 24px; }
+      .lever-label { font-size: 12px; }
+
+      /* Trust banner */
+      .trust-banner { grid-template-columns: 1fr; gap: 10px; padding: 16px; }
+      .trust-item { padding: 14px; }
+
+      /* Lead capture */
+      .lead-box { padding: 24px 16px; border-radius: 10px; }
+      .lead-box h2 { font-size: 20px; }
+      .lead-box p { font-size: 13px; }
+      .form-row { flex-direction: column; gap: 10px; }
+      .form-row input[type="text"],
+      .form-row input[type="email"],
+      .form-row input[type="tel"] {
+        font-size: 16px;
+        padding: 16px;
+        min-width: auto;
+        border-radius: 10px;
+      }
+      .form-row select { font-size: 16px; padding: 16px; border-radius: 10px; }
+      .cta-btn { padding: 18px 20px; font-size: 16px; border-radius: 10px; }
+      .concern-grid { grid-template-columns: 1fr; gap: 6px; }
+      .concern-option { padding: 12px 14px; font-size: 13px; border-radius: 8px; }
+
+      /* Income panel */
+      .income-panel { padding: 20px 16px; border-radius: 10px; }
+      .income-compare { grid-template-columns: 1fr; gap: 10px; }
+      .income-option { padding: 16px; border-radius: 10px; }
+      .option-amount { font-size: 28px; }
+      .option-period { font-size: 12px; }
+      .income-note { font-size: 11px; }
+
+      /* Urgency */
+      .urgency { padding: 16px; border-radius: 10px; flex-direction: column; }
+      .urgency-icon { font-size: 24px; }
+      .urgency-text h4 { font-size: 14px; }
+      .urgency-text p { font-size: 12px; }
+
+      /* Recalc button */
+      .recalc-btn { padding: 14px 24px; font-size: 14px; border-radius: 10px; width: 100%; }
+
+      /* Sticky CTA */
+      .sticky-mobile-cta { padding: 12px 16px; }
+      .sticky-mobile-cta button { padding: 16px; font-size: 15px; border-radius: 10px; }
+
+      /* Divider */
+      .divider { margin: 24px 0; }
+
+      /* Footer */
+      .footer { padding: 32px 16px; font-size: 10px; }
+
+      /* Smooth scroll offset for sticky nav */
+      html { scroll-padding-top: 70px; }
+    }
+
+    /* Small phones */
+    @media (max-width: 380px) {
+      .hero h1 { font-size: 22px; }
+      .field input[type="number"] { font-size: 24px; padding: 16px 14px; }
+      .ss-options { grid-template-columns: 1fr; }
+      .verdict-amount { font-size: 30px; }
+      .option-amount { font-size: 24px; }
+      .prob-number { font-size: 30px; }
+      .donut-wrap { width: 120px; height: 120px; }
+      .donut-center { width: 80px; height: 80px; }
+      .donut-pct { font-size: 22px; }
+      .stat-value { font-size: 20px; }
+      .lever-value { font-size: 20px; }
+      .breakdown-legend { grid-template-columns: 1fr; }
+    }
+
+    /* Touch-friendly improvements */
+    @media (pointer: coarse) {
+      input[type="range"]::-webkit-slider-thumb {
+        width: 32px;
+        height: 32px;
+      }
+      .ss-card { min-height: 80px; }
+      .wizard-next-btn, .wizard-back-btn { min-height: 52px; }
+      .concern-option { min-height: 48px; }
+    }
   </style>
 </head>
 <body>
 
 <!-- TOP BAR WITH LOGO -->
 <div class="topbar">
-  <img src="data:image/png;base64,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" alt="Cornerstone Financial Partners" />
+  <a href="https://cornerstone-fps.com"><img src="logo-color.png" alt="Cornerstone Financial Partners" /></a>
+  <a href="https://cornerstone-fps.com" class="topbar-cta">Back to Site</a>
 </div>
 
-<!-- HERO -->
 <section class="hero">
   <div class="badge">Free Retirement Assessment</div>
   <h1>Do You Have a<br><span>Retirement Income Gap?</span></h1>
-  <p>Answer 4 quick questions to find out if your savings will cover the retirement you've planned — and what guaranteed income you could lock in today.</p>
+  <p>Answer 6 quick questions to find out if your savings will cover the retirement you've planned — and what guaranteed income you could lock in today.</p>
   <div class="scroll-hint">▼ &nbsp;Takes under 60 seconds</div>
 </section>
 
 <!-- CALCULATOR -->
 <div class="container">
   <div class="card">
-    <!-- INFO GATE -->
-    <div id="info-gate">
-      <div class="section-label">Free Retirement Analysis</div>
-      <h2>See If Your Savings Will <span>Last Through Retirement</span></h2>
-      <p>Enter your name and email to instantly access your personalized Retirement Income Gap Calculator — used by families to discover exactly how much guaranteed income they could lock in today.</p>
-      <div class="gate-fields">
-        <div class="form-row">
-          <input type="text" id="gateName" placeholder="First Name *" />
-          <input type="email" id="gateEmail" placeholder="Email Address *" />
-        </div>
-        <div class="form-row">
-          <input type="tel" id="gatePhone" placeholder="Phone Number (optional)" />
-        </div>
-      </div>
-      <button class="gate-btn" onclick="unlockCalculator()">Get My Free Retirement Analysis →</button>
-      <div class="privacy" style="margin-top:12px;">🔒 100% Private &nbsp;·&nbsp; No spam, ever &nbsp;·&nbsp; Your info is never sold or shared</div>
-      <div class="social-proof" style="margin-top:20px;">
-        <div class="proof-item">✓ &nbsp;Free Assessment</div>
-        <div class="proof-dot"></div>
-        <div class="proof-item">✓ &nbsp;No Obligation</div>
-        <div class="proof-dot"></div>
-        <div class="proof-item">✓ &nbsp;Licensed Advisor</div>
-      </div>
-    </div>
-
-    <!-- CALCULATOR (revealed after info submitted) -->
-    <div id="calculator-section" style="display:none;">
+    <!-- CALCULATOR -->
+    <div id="calculator-section">
       <div class="section-label">Step 1 — Your Numbers</div>
 
-    <div class="inputs-grid">
-      <!-- Current Age -->
-      <div class="field">
-        <label>Current Age <span>(years)</span></label>
-        <div class="input-wrap">
-          <input type="number" id="currentAge" value="55" min="40" max="75" />
-        </div>
-        <div class="slider-row">
-          <input type="range" id="currentAgeSlider" min="40" max="75" value="55" />
-        </div>
-        <div class="range-labels"><span>40</span><span>75</span></div>
+      <!-- Wizard Progress Bar (6 segments) -->
+      <div class="wizard-progress">
+        <div class="seg active" data-step="1"></div>
+        <div class="seg" data-step="2"></div>
+        <div class="seg" data-step="3"></div>
+        <div class="seg" data-step="4"></div>
+        <div class="seg" data-step="5"></div>
       </div>
+      <div class="wizard-step-counter" id="stepCounter">Question 1 of 5</div>
 
-      <!-- Retirement Age -->
-      <div class="field">
-        <label>Planned Retirement Age <span>(years)</span></label>
-        <div class="input-wrap">
-          <input type="number" id="retireAge" value="67" min="55" max="80" />
+      <div class="wizard-steps-wrapper">
+        <!-- Step 1: Current Age + Retirement Age -->
+        <div class="wizard-step active slide-in" data-step="1">
+          <div class="inputs-grid">
+            <div class="field">
+              <label>
+                <span class="wizard-question">Your current age</span>
+                <span>(years)</span>
+              </label>
+              <div class="input-wrap">
+                <input type="number" id="currentAge" value="55" min="40" max="75" />
+              </div>
+              <div class="slider-row">
+                <input type="range" id="currentAgeSlider" min="40" max="75" value="55" />
+              </div>
+              <div class="range-labels"><span>40</span><span>75</span></div>
+              <div class="inline-error" id="currentAgeError"></div>
+            </div>
+            <div class="field">
+              <label>
+                <span class="wizard-question">Planned retirement age</span>
+                <span>(age)</span>
+              </label>
+              <div class="input-wrap">
+                <input type="number" id="retireAge" value="67" min="55" max="80" />
+              </div>
+              <div class="slider-row">
+                <input type="range" id="retireAgeSlider" min="55" max="80" value="67" />
+              </div>
+              <div class="range-labels"><span>55</span><span>80</span></div>
+              <div class="inline-error" id="retireAgeError"></div>
+            </div>
+          </div>
+          <div class="wizard-nav">
+            <button class="wizard-next-btn" onclick="wizardNext()">Next →</button>
+          </div>
         </div>
-        <div class="slider-row">
-          <input type="range" id="retireAgeSlider" min="55" max="80" value="67" />
+
+        <!-- Step 2: Current Savings -->
+        <div class="wizard-step" data-step="2">
+          <div class="field">
+            <label>
+              <span class="wizard-question">How much have you saved for retirement?</span>
+              <span>(current balance)</span>
+            </label>
+            <div class="input-wrap has-prefix">
+              <span class="prefix">$</span>
+              <input type="number" id="savings" value="250000" min="0" max="5000000" step="5000" />
+            </div>
+            <div class="slider-row">
+              <input type="range" id="savingsSlider" min="0" max="2000000" value="250000" step="5000" />
+            </div>
+            <div class="range-labels"><span>$0</span><span>$2M+</span></div>
+            <div class="inline-error" id="savingsError"></div>
+          </div>
+          <div class="wizard-nav">
+            <button class="wizard-back-btn" onclick="wizardBack()">← Back</button>
+            <button class="wizard-next-btn" onclick="wizardNext()">Next →</button>
+          </div>
         </div>
-        <div class="range-labels"><span>55</span><span>80</span></div>
+
+        <!-- Step 3: Monthly Income -->
+        <div class="wizard-step" data-step="3">
+          <div class="field">
+            <label>
+              <span class="wizard-question">How much monthly income do you want in retirement?</span>
+              <span>(desired income)</span>
+            </label>
+            <div class="input-wrap has-prefix">
+              <span class="prefix">$</span>
+              <input type="number" id="monthly" value="5000" min="1000" max="30000" step="100" />
+            </div>
+            <div class="slider-row">
+              <input type="range" id="monthlySlider" min="1000" max="20000" value="5000" step="100" />
+            </div>
+            <div class="range-labels"><span>$1,000</span><span>$20,000</span></div>
+            <div class="inline-error" id="monthlyError"></div>
+          </div>
+          <div class="wizard-nav">
+            <button class="wizard-back-btn" onclick="wizardBack()">← Back</button>
+            <button class="wizard-next-btn" onclick="wizardNext()">Next →</button>
+          </div>
+        </div>
+
+        <!-- Step 4: Social Security Income -->
+        <div class="wizard-step" data-step="4">
+          <div class="field">
+            <label>
+              <span class="wizard-question">Do you expect Social Security income?</span>
+            </label>
+            <input type="hidden" id="ssIncome" value="2500" />
+            <div class="ss-options">
+              <div class="ss-card" data-ss="0" onclick="selectSS(this, 0)">
+                <div class="ss-card-amount">$0/mo</div>
+                <div class="ss-card-label">I don't expect any</div>
+              </div>
+              <div class="ss-card" data-ss="1500" onclick="selectSS(this, 1500)">
+                <div class="ss-card-amount">$1,500/mo</div>
+                <div class="ss-card-label">Below average</div>
+              </div>
+              <div class="ss-card selected" data-ss="2500" onclick="selectSS(this, 2500)">
+                <div class="ss-card-amount">$2,500/mo</div>
+                <div class="ss-card-label">Average</div>
+              </div>
+              <div class="ss-card" data-ss="3500" onclick="selectSS(this, 3500)">
+                <div class="ss-card-amount">$3,500/mo</div>
+                <div class="ss-card-label">Above average</div>
+              </div>
+            </div>
+            <div class="ss-hint">Not sure? The average Social Security benefit is $2,500/mo in 2026.</div>
+            <div class="inline-error" id="ssIncomeError"></div>
+          </div>
+          <div class="wizard-nav">
+            <button class="wizard-back-btn" onclick="wizardBack()">← Back</button>
+            <button class="wizard-next-btn" onclick="wizardNext()">Next →</button>
+          </div>
+        </div>
+
+        <!-- Step 5: Other Guaranteed Income -->
+        <div class="wizard-step" data-step="5">
+          <div class="field">
+            <label>
+              <span class="wizard-question">Do you have any other guaranteed income?</span>
+              <span>Pension, rental property, existing annuity, part-time work, etc.</span>
+            </label>
+            <div class="input-wrap has-prefix has-suffix">
+              <span class="prefix">$</span>
+              <input type="number" id="otherIncome" value="0" min="0" max="5000" step="100" />
+              <span class="suffix">/mo</span>
+            </div>
+            <div class="slider-row">
+              <input type="range" id="otherIncomeSlider" min="0" max="5000" value="0" step="100" />
+            </div>
+            <div class="range-labels"><span>$0</span><span>$5,000</span></div>
+            <div class="inline-error" id="otherIncomeError"></div>
+          </div>
+          <div class="wizard-nav">
+            <button class="wizard-back-btn" onclick="wizardBack()">← Back</button>
+            <button class="calc-btn" id="calcBtn" onclick="calculate()" style="margin:0;flex:1;">Calculate My Retirement Gap →</button>
+          </div>
+        </div>
       </div>
-
-      <!-- Current Savings -->
-      <div class="field">
-        <label>Current Retirement Savings</label>
-        <div class="input-wrap has-prefix">
-          <span class="prefix">$</span>
-          <input type="number" id="savings" value="250000" min="0" max="5000000" step="5000" />
-        </div>
-        <div class="slider-row">
-          <input type="range" id="savingsSlider" min="0" max="2000000" value="250000" step="5000" />
-        </div>
-        <div class="range-labels"><span>$0</span><span>$2M+</span></div>
-      </div>
-
-      <!-- Monthly Expenses -->
-      <div class="field">
-        <label>Desired Monthly Income <span>in retirement</span></label>
-        <div class="input-wrap has-prefix">
-          <span class="prefix">$</span>
-          <input type="number" id="monthly" value="5000" min="1000" max="30000" step="100" />
-        </div>
-        <div class="slider-row">
-          <input type="range" id="monthlySlider" min="1000" max="20000" value="5000" step="100" />
-        </div>
-        <div class="range-labels"><span>$1,000</span><span>$20,000</span></div>
-      </div>
-    </div>
-
-    <button class="calc-btn" onclick="calculate()">
-      Calculate My Retirement Gap →
-    </button>
+    </div><!-- /calculator-section input area -->
 
     <!-- RESULTS -->
     <div id="results">
       <hr class="divider" />
       <div class="section-label">Your Results</div>
 
+      <!-- Today's Dollars Note -->
+      <div class="today-dollars-note fade-in-section" data-delay="0">
+        All figures in today's dollars unless noted otherwise. Adjusted for 3% annual inflation.
+      </div>
+
       <!-- Verdict -->
-      <div id="verdict" class="verdict gap">
+      <div id="verdict" class="verdict gap fade-in-section" data-delay="0">
         <div class="verdict-icon" id="verdictIcon">⚠️</div>
         <div class="verdict-label" id="verdictLabel">Monthly Income Gap Detected</div>
         <div class="verdict-amount" id="verdictAmount">$0</div>
-        <div class="verdict-sub" id="verdictSub">per month short of your retirement goal</div>
+        <div class="verdict-sub" id="verdictSub">per month short of your retirement goal (in today's dollars)</div>
+      </div>
+
+      <!-- Probability Score -->
+      <div class="probability-section fade-in-section" data-delay="50">
+        <div class="prob-bar-wrap">
+          <div class="prob-bar-header">
+            <div class="prob-number" id="probNumber">0%</div>
+            <div class="prob-label-text">Probability of Success</div>
+          </div>
+          <div class="prob-track">
+            <div class="prob-fill" id="probFill"></div>
+            <div class="prob-target"></div>
+          </div>
+          <div class="prob-markers"><span>0%</span><span>Target: 80%</span><span>100%</span></div>
+        </div>
+        <div class="prob-note">Based on historical market patterns. Most advisors recommend targeting 80%+.</div>
+      </div>
+
+      <!-- Donut Chart -->
+      <div class="donut-section fade-in-section" data-delay="100">
+        <div class="donut-wrap">
+          <div class="donut-bg" id="donutBg"></div>
+          <div class="donut-center">
+            <div class="donut-pct" id="donutPct">0%</div>
+            <div class="donut-pct-label">covered</div>
+          </div>
+        </div>
+        <div class="donut-label" id="donutLabel">Income coverage ratio</div>
+      </div>
+
+      <!-- Income Breakdown Visualization -->
+      <div class="income-breakdown fade-in-section" data-delay="150">
+        <div class="section-label">Your Retirement Income Breakdown</div>
+        <div class="breakdown-bar" id="breakdownBar">
+          <div class="breakdown-seg seg-ss" id="segSS" style="width:0%"></div>
+          <div class="breakdown-seg seg-other" id="segOther" style="width:0%"></div>
+          <div class="breakdown-seg seg-portfolio" id="segPortfolio" style="width:0%"></div>
+          <div class="breakdown-seg seg-gap" id="segGap" style="width:0%"></div>
+        </div>
+        <div class="breakdown-legend" id="breakdownLegend">
+          <div class="legend-item"><div class="legend-dot dot-ss"></div><span id="legendSS">Social Security: $0/mo</span></div>
+          <div class="legend-item"><div class="legend-dot dot-other"></div><span id="legendOther">Other Income: $0/mo</span></div>
+          <div class="legend-item"><div class="legend-dot dot-portfolio"></div><span id="legendPortfolio">Portfolio: $0/mo</span></div>
+          <div class="legend-item" id="legendGapItem"><div class="legend-dot dot-gap"></div><span id="legendGap">Gap: $0/mo</span></div>
+        </div>
+        <div class="breakdown-note" id="breakdownNote">Monthly income needed: $0 — showing where it comes from</div>
       </div>
 
       <!-- Bar -->
-      <div class="bar-section">
+      <div class="bar-section fade-in-section" data-delay="200">
         <div class="bar-labels">
           <div><strong id="barCoveredPct">0%</strong> of your monthly income covered</div>
           <div id="barShortLabel" style="color: var(--red-light)">Gap: <strong id="barShortAmt">$0</strong>/mo</div>
@@ -708,8 +1592,8 @@
         <div class="bar-note" id="barNote"></div>
       </div>
 
-      <!-- Stats -->
-      <div class="stats-row">
+      <!-- Stats (2x2 grid) -->
+      <div class="stats-row fade-in-section" data-delay="300">
         <div class="stat">
           <div class="stat-value" id="statFutureSavings">$0</div>
           <div class="stat-label">Projected savings<br>at retirement</div>
@@ -722,73 +1606,142 @@
           <div class="stat-value" id="statLifetimeGap">$0</div>
           <div class="stat-label">Estimated lifetime<br>income shortfall</div>
         </div>
+        <div class="stat">
+          <div class="stat-value" id="statRunOutAge">—</div>
+          <div class="stat-label">Money runs<br>out at age</div>
+        </div>
       </div>
 
-      <!-- Guaranteed Income Panel -->
-      <div class="income-panel">
-        <h3>🔒 Guaranteed Income: Today vs. Waiting</h3>
-        <div class="sub">Based on your current savings — what you could lock in as guaranteed lifetime income</div>
-        <div class="income-compare">
-          <div class="income-option now">
-            <div class="option-tag">Lock In Today</div>
-            <div class="option-amount" id="annuityNow">$0</div>
-            <div class="option-period">/month, guaranteed for life</div>
-            <div class="option-badge">Available Now</div>
-          </div>
-          <div class="income-option later">
-            <div class="option-tag" id="laterLabel">At Age 67</div>
-            <div class="option-amount" id="annuityLater">$0</div>
-            <div class="option-period">/month, guaranteed for life</div>
-            <div class="option-badge" id="laterBadge">+$0/mo more — but you wait</div>
+      <!-- Market Volatility Stress Test -->
+      <div class="stress-test-section fade-in-section" data-delay="350">
+        <div class="section-label">Market Stress Test</div>
+        <h3 class="stress-title">What happens if markets crash early in your retirement?</h3>
+        <div class="stress-chart" id="stressChart">
+          <!-- SVG generated by JS -->
+        </div>
+        <div class="stress-legend">
+          <span class="legend-item"><span class="legend-dot" style="background:#2a9d4f"></span> Expected (6%/yr)</span>
+          <span class="legend-item"><span class="legend-dot" style="background:#e63946"></span> Early crash scenario</span>
+          <span class="legend-item"><span class="legend-dot" style="background:rgba(201,168,76,0.3)"></span> Likely range</span>
+        </div>
+        <div class="stress-callout">
+          <div class="stress-callout-icon">⚠️</div>
+          <div class="stress-callout-text">
+            <strong>If a 30% crash hits in year one:</strong> Your <span id="stressPortfolio">$0</span> portfolio drops to <span id="stressAfterCrash">$0</span> — and with withdrawals, you'd need a <span id="stressRecovery">0%</span> gain just to recover. This is called <em>sequence-of-returns risk</em>, and it's why timing matters more than average returns.
           </div>
         </div>
-        <div class="income-note" id="incomeNote"></div>
       </div>
 
       <!-- Urgency -->
-      <div class="urgency" id="urgencyBox">
-        <div class="urgency-icon">⏰</div>
-        <div class="urgency-text">
-          <h4 id="urgencyTitle">Every Year You Wait Costs You</h4>
-          <p id="urgencyText"></p>
+      <div class="fade-in-section" data-delay="450">
+        <div class="urgency" id="urgencyBox">
+          <div class="urgency-icon">⏰</div>
+          <div class="urgency-text">
+            <h4 id="urgencyTitle">Every Year You Wait Costs You</h4>
+            <p id="urgencyText"></p>
+            <div class="cost-of-waiting" id="costOfWaiting"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Close the Gap Section (only when gap exists) -->
+      <div class="close-gap-section fade-in-section" data-delay="500" id="closeGapSection" style="display:none;">
+        <div class="section-label">Three Ways to Close Your Gap</div>
+        <div class="levers-grid">
+          <div class="lever-card">
+            <div class="lever-icon">💰</div>
+            <div class="lever-title">Save More</div>
+            <div class="lever-value" id="leverSaveMore">$0/month</div>
+            <div class="lever-desc">Additional monthly savings needed to close the gap by retirement</div>
+          </div>
+          <div class="lever-card">
+            <div class="lever-icon">📅</div>
+            <div class="lever-title">Work Longer</div>
+            <div class="lever-value" id="leverWorkLonger">0 more years</div>
+            <div class="lever-desc" id="leverWorkLongerDesc">Delay retirement to close the gap</div>
+          </div>
+          <div class="lever-card">
+            <div class="lever-icon">📉</div>
+            <div class="lever-title">Spend Less</div>
+            <div class="lever-value" id="leverSpendLess">$0/month</div>
+            <div class="lever-desc">Reduce your monthly retirement goal to match your projected income</div>
+          </div>
+        </div>
+        <div class="levers-note">Or combine strategies — a financial advisor can help you find the right mix.</div>
+      </div>
+
+      <!-- Trust Signals Banner -->
+      <div class="trust-banner fade-in-section" data-delay="550">
+        <div class="trust-item">
+          <div class="trust-value">$2.4M+</div>
+          <div class="trust-desc">Retirement income secured</div>
+        </div>
+        <div class="trust-item">
+          <div class="trust-value">150+</div>
+          <div class="trust-desc">Families helped</div>
+        </div>
+        <div class="trust-item">
+          <div class="trust-value">15+</div>
+          <div class="trust-desc">Years experience</div>
         </div>
       </div>
 
       <!-- Lead Capture -->
-      <div class="lead-box">
-        <h2>Ready to <span>Close the Gap?</span></h2>
-        <p id="leadSubtext">Get your free personalized income plan — I'll show you exactly how to turn your savings into guaranteed, tax-efficient retirement income you can't outlive.</p>
+      <div class="lead-box fade-in-section" data-delay="700">
+        <!-- Dynamic gap restatement -->
+        <div class="cta-gap-restate" id="ctaGapRestate"></div>
+
+        <h2>The good news? <span>This is fixable.</span></h2>
+        <p id="leadSubtext">Get a free, personalized retirement income plan showing exactly how to close your gap — in one 15-minute conversation.</p>
 
         <div id="lead-form">
           <div class="form-row">
-            <input type="text" id="firstName" placeholder="First Name" />
-            <input type="email" id="email" placeholder="Email Address" />
+            <input type="text" id="firstName" placeholder="First Name *" />
+            <input type="text" id="lastName" placeholder="Last Name *" />
           </div>
+          <div id="nameError" class="inline-error"></div>
           <div class="form-row">
-            <input type="tel" id="phone" placeholder="Phone Number (optional)" />
+            <input type="email" id="email" placeholder="Email Address *" />
           </div>
+          <div id="emailError" class="inline-error"></div>
+          <div class="form-row">
+            <input type="tel" id="phone" placeholder="Phone Number *" />
+          </div>
+          <div id="phoneError" class="inline-error"></div>
+          <div class="form-row">
+            <select id="topConcern">
+              <option value="" disabled selected>What concerns you most about your gap?</option>
+              <option value="Running out of money in retirement">Running out of money in retirement</option>
+              <option value="Not having enough monthly income">Not having enough monthly income</option>
+              <option value="Market volatility and losing savings">Market volatility and losing savings</option>
+              <option value="Not knowing if I'm on track">Not knowing if I'm on track</option>
+              <option value="Leaving my spouse/family protected">Leaving my spouse/family protected</option>
+              <option value="Healthcare costs in retirement">Healthcare costs in retirement</option>
+              <option value="Other">Other</option>
+            </select>
+          </div>
+          <div id="concernError" class="inline-error"></div>
           <button class="cta-btn" onclick="submitLead()">
-            Yes — Show Me How to Close My Gap 🔒
+            Get My Free Plan →
           </button>
-          <div class="privacy">🔒 100% Private. No spam, ever. Your info is never sold or shared.</div>
+          <div class="cta-micro">Free. No obligation. 15-minute call.</div>
+          <div class="social-proof" style="margin-top:20px;">
+            <div class="proof-item">✓ 200+ Families Helped</div>
+            <div class="proof-dot"></div>
+            <div class="proof-item">✓ Licensed Fiduciary</div>
+            <div class="proof-dot"></div>
+            <div class="proof-item">✓ No Sales Pitch</div>
+          </div>
         </div>
 
         <div id="thank-you">
           <div class="check-circle">✓</div>
           <h3>You're on the list!</h3>
           <p style="margin-bottom:20px;">Check your email — your personalized retirement income plan is on its way.</p>
-          <a href="https://calendar.app.google/KNkY9BLfCPEyBzWv8" target="_blank" style="display:inline-block;background:linear-gradient(135deg,#c9a268,#e8c580);color:#0d1b2a;font-family:'Inter',sans-serif;font-size:15px;font-weight:800;text-decoration:none;padding:16px 32px;border-radius:12px;letter-spacing:0.3px;box-shadow:0 8px 24px rgba(201,162,104,0.35);">
+          <a href="https://calendar.app.google/aFhisFRPopm52FQRA" target="_blank" rel="noopener" style="display:inline-block;background:#B8860B;color:#fff;font-family:'Inter',sans-serif;font-size:15px;font-weight:600;text-decoration:none;padding:16px 32px;border-radius:6px;letter-spacing:0.3px;" onclick="fbq('track','Schedule',{content_name:'Discovery Call — Calculator',content_category:'Calculator'});">
             Book My Free Income Review →
           </a>
-          <p style="margin-top:12px;font-size:12px;color:#5a7080;">Skip the wait — grab a time that works for you.</p>
-        </div>
-
-        <div class="social-proof">
-          <div class="proof-item">✓ &nbsp;Free Assessment</div>
-          <div class="proof-dot"></div>
-          <div class="proof-item">✓ &nbsp;No Obligation</div>
-          <div class="proof-dot"></div>
-          <div class="proof-item">✓ &nbsp;Licensed Advisor</div>
+          <p style="margin-top:12px;font-size:12px;color:#7A7A7A;">Skip the wait — grab a time that works for you.</p>
         </div>
       </div>
 
@@ -796,25 +1749,150 @@
         <button class="recalc-btn" onclick="recalculate()">← Adjust My Numbers</button>
       </div>
     </div>
-    </div><!-- /calculator-section -->
   </div>
+</div>
+
+<!-- STICKY MOBILE CTA -->
+<div class="sticky-mobile-cta" id="stickyMobileCta">
+  <button onclick="document.getElementById('lead-form').scrollIntoView({behavior:'smooth',block:'center'})">
+    Get My Free Retirement Plan →
+  </button>
 </div>
 
 <!-- FOOTER -->
 <div class="footer">
   <strong>Cornerstone Financial Partners</strong><br>
   This calculator provides general educational estimates only and does not constitute financial, tax, or investment advice.<br>
-  Annuity income estimates assume current market rates and a standard life-only payout. Actual results will vary.<br>
-  Projections assume a 6% average annual return pre-retirement and the 4% safe withdrawal rule in retirement.
+  Projections use age-adjusted growth rates, 4% withdrawal rule, 3% inflation, 22% tax rate, and plan through age 95. Actual results will vary.
 </div>
-
 <script>
+  // ── Wizard state ──
+  let currentStep = 1;
+  const totalSteps = 5;
+
+  // ── SS card selection ──
+  function selectSS(card, value) {
+    document.querySelectorAll('.ss-card').forEach(c => c.classList.remove('selected'));
+    card.classList.add('selected');
+    document.getElementById('ssIncome').value = value;
+  }
+
+  function wizardNext() {
+    if (!validateStep(currentStep)) return;
+    goToStep(currentStep + 1);
+  }
+
+  function wizardBack() {
+    goToStep(currentStep - 1);
+  }
+
+  function goToStep(step) {
+    if (step < 1 || step > totalSteps) return;
+    const oldEl = document.querySelector('.wizard-step[data-step="' + currentStep + '"]');
+    const newEl = document.querySelector('.wizard-step[data-step="' + step + '"]');
+    const goingForward = step > currentStep;
+
+    // Hide old
+    oldEl.classList.remove('slide-in');
+    oldEl.classList.add(goingForward ? 'slide-out-left' : 'slide-in-right');
+    setTimeout(() => {
+      oldEl.classList.remove('active', 'slide-out-left', 'slide-in-right');
+    }, 50);
+
+    currentStep = step;
+
+    // Show new
+    setTimeout(() => {
+      newEl.classList.add('active');
+      newEl.classList.add(goingForward ? 'slide-in-right' : 'slide-out-left');
+      // Force reflow
+      void newEl.offsetWidth;
+      newEl.classList.remove('slide-in-right', 'slide-out-left');
+      newEl.classList.add('slide-in');
+
+      // Auto-focus
+      const inp = newEl.querySelector('input[type="number"]');
+      if (inp) setTimeout(() => inp.focus(), 100);
+    }, 80);
+
+    // Update progress
+    document.querySelectorAll('.wizard-progress .seg').forEach(seg => {
+      seg.classList.toggle('active', +seg.dataset.step <= step);
+    });
+    document.getElementById('stepCounter').textContent = 'Question ' + step + ' of ' + totalSteps;
+  }
+
+  function validateStep(step) {
+    clearAllErrors();
+    const currentAge = +document.getElementById('currentAge').value;
+    const retireAge = +document.getElementById('retireAge').value;
+
+    if (step === 1) {
+      if (!currentAge || currentAge < 40 || currentAge > 75) {
+        showError('currentAge', 'currentAgeError', 'Please enter an age between 40 and 75.');
+        return false;
+      }
+      if (!retireAge || retireAge < 55 || retireAge > 80) {
+        showError('retireAge', 'retireAgeError', 'Please enter a retirement age between 55 and 80.');
+        return false;
+      }
+      if (retireAge <= currentAge) {
+        showError('retireAge', 'retireAgeError', 'Retirement age must be greater than your current age (' + currentAge + ').');
+        return false;
+      }
+    } else if (step === 2) {
+      const savings = +document.getElementById('savings').value;
+      if (savings < 0) {
+        showError('savings', 'savingsError', 'Please enter a valid savings amount.');
+        return false;
+      }
+    } else if (step === 3) {
+      const monthly = +document.getElementById('monthly').value;
+      if (!monthly || monthly < 1000) {
+        showError('monthly', 'monthlyError', 'Please enter a monthly income of at least $1,000.');
+        return false;
+      }
+    } else if (step === 4) {
+      // SS selection — always valid since default is selected
+      return true;
+    } else if (step === 5) {
+      // Other income — always valid (default 0)
+      return true;
+    }
+    return true;
+  }
+
+  function showError(inputId, errorId, msg) {
+    const inp = document.getElementById(inputId);
+    const err = document.getElementById(errorId);
+    if (inp) inp.classList.add('input-error');
+    if (err) err.textContent = msg;
+  }
+
+  function clearAllErrors() {
+    document.querySelectorAll('.input-error').forEach(el => el.classList.remove('input-error'));
+    document.querySelectorAll('.inline-error').forEach(el => el.textContent = '');
+  }
+
+  // Clear errors on input
+  document.addEventListener('input', function(e) {
+    if (e.target.classList.contains('input-error')) {
+      e.target.classList.remove('input-error');
+    }
+    const errEl = e.target.closest('.field, .form-row, .gate-fields');
+    if (errEl) {
+      const err = errEl.querySelector('.inline-error');
+      if (err) err.textContent = '';
+    }
+  });
+
   // ── Sync sliders and number inputs ──
   const pairs = [
     ['currentAge', 'currentAgeSlider'],
     ['retireAge', 'retireAgeSlider'],
     ['savings', 'savingsSlider'],
     ['monthly', 'monthlySlider'],
+    ['otherIncome', 'otherIncomeSlider'],
   ];
   pairs.forEach(([inputId, sliderId]) => {
     const input = document.getElementById(inputId);
@@ -827,90 +1905,341 @@
   function updateSliderTrack(slider) {
     const min = +slider.min, max = +slider.max, val = +slider.value;
     const pct = ((val - min) / (max - min)) * 100;
-    slider.style.background = `linear-gradient(to right, #c9a84c ${pct}%, rgba(255,255,255,0.1) ${pct}%)`;
+    slider.style.background = `linear-gradient(to right, #B8860B ${pct}%, #EDEBE6 ${pct}%)`;
   }
 
   // ── Format helpers ──
   const fmt = (n) => '$' + Math.round(n).toLocaleString();
   const fmtK = (n) => n >= 1000000 ? '$' + (n / 1000000).toFixed(1) + 'M' : n >= 1000 ? '$' + Math.round(n / 1000) + 'K' : '$' + Math.round(n);
 
-  // ── Annuity payout rates by age (annual % of premium, life-only) ──
-  function annuityRate(age) {
-    // Approximate real-world immediate annuity payout rates
-    if (age <= 55) return 0.054;
-    if (age <= 58) return 0.057;
-    if (age <= 60) return 0.060;
-    if (age <= 62) return 0.063;
-    if (age <= 65) return 0.067;
-    if (age <= 67) return 0.070;
-    if (age <= 70) return 0.075;
-    if (age <= 72) return 0.080;
-    return 0.086;
+  // ── Animated number counting ──
+  function animateValue(el, endVal, prefix, suffix, duration) {
+    prefix = prefix || '';
+    suffix = suffix || '';
+    duration = duration || 1200;
+    const startTime = performance.now();
+
+    function update(now) {
+      const elapsed = now - startTime;
+      const progress = Math.min(elapsed / duration, 1);
+      // Ease-out cubic
+      const eased = 1 - Math.pow(1 - progress, 3);
+      const current = Math.round(endVal * eased);
+      el.textContent = prefix + current.toLocaleString() + suffix;
+      if (progress < 1) requestAnimationFrame(update);
+    }
+    requestAnimationFrame(update);
+  }
+
+  function animateFormattedValue(el, endVal, formatFn, duration) {
+    duration = duration || 1200;
+    const startTime = performance.now();
+
+    function update(now) {
+      const elapsed = now - startTime;
+      const progress = Math.min(elapsed / duration, 1);
+      const eased = 1 - Math.pow(1 - progress, 3);
+      const current = Math.round(endVal * eased);
+      el.textContent = formatFn(current);
+      if (progress < 1) requestAnimationFrame(update);
+    }
+    requestAnimationFrame(update);
+  }
+
+  // ── Animated donut chart ──
+  function animateDonut(pct, color) {
+    const bg = document.getElementById('donutBg');
+    const pctEl = document.getElementById('donutPct');
+    const duration = 1200;
+    const startTime = performance.now();
+
+    function update(now) {
+      const elapsed = now - startTime;
+      const progress = Math.min(elapsed / duration, 1);
+      const eased = 1 - Math.pow(1 - progress, 3);
+      const currentPct = Math.round(pct * eased);
+      const deg = (currentPct / 100) * 360;
+      bg.style.background = `conic-gradient(${color} 0deg, ${color} ${deg}deg, #EDEBE6 ${deg}deg, #EDEBE6 360deg)`;
+      pctEl.textContent = currentPct + '%';
+      if (progress < 1) requestAnimationFrame(update);
+    }
+    requestAnimationFrame(update);
+  }
+
+  // ── Animated probability bar ──
+  function animateProbGauge(probPct) {
+    const fill = document.getElementById('probFill');
+    const numEl = document.getElementById('probNumber');
+    let barColor;
+    if (probPct < 50) barColor = '#e63946';
+    else if (probPct <= 70) barColor = '#e8a020';
+    else barColor = '#2a9d4f';
+
+    numEl.style.color = barColor;
+    fill.style.background = `linear-gradient(90deg, ${barColor}, ${barColor}dd)`;
+    fill.style.width = probPct + '%';
+
+    const duration = 1200;
+    const startTime = performance.now();
+
+    function update(now) {
+      const elapsed = now - startTime;
+      const progress = Math.min(elapsed / duration, 1);
+      const eased = 1 - Math.pow(1 - progress, 3);
+      const currentPct = Math.round(probPct * eased);
+      numEl.textContent = currentPct + '%';
+      if (progress < 1) requestAnimationFrame(update);
+    }
+    requestAnimationFrame(update);
+  }
+
+  // ── Portfolio projection for stress test ──
+  function projectPortfolio(balance, annualWithdrawal, annualReturns, inflationRate, years) {
+    let results = [balance];
+    let withdrawal = annualWithdrawal;
+    for (let y = 1; y <= years; y++) {
+      let r = Array.isArray(annualReturns) ? (annualReturns[y-1] !== undefined ? annualReturns[y-1] : annualReturns[annualReturns.length-1]) : annualReturns;
+      balance = balance * (1 + r) - withdrawal;
+      withdrawal *= (1 + inflationRate);
+      if (balance < 0) balance = 0;
+      results.push(Math.round(balance));
+    }
+    return results;
+  }
+
+  // ── Scroll-triggered fade-in observer ──
+  function setupFadeInObserver() {
+    const sections = document.querySelectorAll('.fade-in-section');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const delay = +(entry.target.dataset.delay || 0);
+          setTimeout(() => {
+            entry.target.classList.add('visible-section');
+          }, delay);
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1 });
+
+    sections.forEach(section => observer.observe(section));
+  }
+
+  // ── Sticky mobile CTA ──
+  function setupStickyMobileCta() {
+    if (window.innerWidth > 600) return;
+    const sticky = document.getElementById('stickyMobileCta');
+    const results = document.getElementById('results');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting && results.classList.contains('visible')) {
+          sticky.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.05 });
+    observer.observe(results);
+
+    // Hide when thank-you is shown
+    const thankYou = document.getElementById('thank-you');
+    const thankObserver = new MutationObserver(() => {
+      if (thankYou.classList.contains('visible')) {
+        sticky.classList.remove('visible');
+      }
+    });
+    thankObserver.observe(thankYou, { attributes: true, attributeFilter: ['class'] });
+  }
+  setupStickyMobileCta();
+
+  // ── Growth rate glide path ──
+  function growthRate(yearsToRetire) {
+    if (yearsToRetire >= 20) return 0.075;
+    if (yearsToRetire >= 10) return 0.065;
+    if (yearsToRetire >= 5)  return 0.055;
+    return 0.045;
+  }
+
+  // ── Probability score ──
+  function probabilityScore(coveragePct, yearsToRetire) {
+    let base = coveragePct;
+    if (base >= 100) base = 95;
+    if (base >= 80) base = 75 + (base - 80) * 1.0;
+    if (yearsToRetire > 20) base -= 5;
+    if (yearsToRetire > 30) base -= 5;
+    return Math.max(5, Math.min(95, Math.round(base)));
   }
 
   // ── Main calculation ──
   function calculate() {
+    clearAllErrors();
+    if (!validateStep(6)) return;
+
     const currentAge = +document.getElementById('currentAge').value;
     const retireAge  = +document.getElementById('retireAge').value;
     const savings    = +document.getElementById('savings').value;
     const monthlyGoal = +document.getElementById('monthly').value;
 
     if (retireAge <= currentAge) {
-      alert('Your retirement age must be greater than your current age.');
+      showError('retireAge', 'retireAgeError', 'Your retirement age must be greater than your current age.');
       return;
     }
 
+    // Show analyzing state
+    const calcBtn = document.getElementById('calcBtn');
+    const origText = calcBtn.textContent;
+    calcBtn.textContent = 'Analyzing Your Numbers...';
+    calcBtn.classList.add('analyzing');
+
+    setTimeout(() => {
+      calcBtn.textContent = origText;
+      calcBtn.classList.remove('analyzing');
+      showResults(currentAge, retireAge, savings, monthlyGoal);
+    }, 1500);
+  }
+
+  function showResults(currentAge, retireAge, currentSavings, monthlyGoal) {
     const yearsToRetire = retireAge - currentAge;
-    const lifeExpectancy = 92;
-    const yearsInRetirement = Math.max(lifeExpectancy - retireAge, 15);
+    const ssIncome = +document.getElementById('ssIncome').value;
+    const otherIncome = +document.getElementById('otherIncome').value;
 
-    // Project savings to retirement (6% annual growth)
-    const futureSavings = savings * Math.pow(1.06, yearsToRetire);
+    // 1. Age-based variable growth rate (glide path)
+    let projected = currentSavings;
+    for (let y = 0; y < yearsToRetire; y++) {
+      const rate = growthRate(yearsToRetire - y);
+      projected *= (1 + rate);
+    }
+    const futureSavings = projected;
 
-    // Monthly income from 4% safe withdrawal rule
-    const monthlyFromSavings = (futureSavings * 0.04) / 12;
+    // 2. Inflation adjustment
+    const inflationRate = 0.03;
+    const inflationFactor = Math.pow(1 + inflationRate, yearsToRetire);
+    const monthlyGoalInflated = monthlyGoal * inflationFactor;
 
-    // Gap
-    const monthlyGap = monthlyGoal - monthlyFromSavings;
-    const hasGap = monthlyGap > 0;
-    const coveragePct = Math.min((monthlyFromSavings / monthlyGoal) * 100, 100);
+    // 3. Tax adjustment (22% effective rate)
+    const taxRate = 0.22;
 
-    // Lifetime shortfall
-    const lifetimeGap = hasGap ? monthlyGap * 12 * yearsInRetirement : 0;
+    // 4. SS and other income projections (grow with inflation via COLA)
+    const ssProjected = ssIncome * inflationFactor;
+    const otherIncomeProjected = otherIncome * inflationFactor;
+    const totalGuaranteedIncome = ssProjected + otherIncomeProjected;
 
-    // Guaranteed income (annuity) — based on CURRENT savings converted NOW
-    const nowRate = annuityRate(currentAge);
-    const annuityNowMonthly = (savings * nowRate) / 12;
+    // 5. Net amount needed from portfolio
+    const netNeededFromPortfolio = monthlyGoalInflated - totalGuaranteedIncome;
+    const grossNeededFromPortfolio = Math.max(0, netNeededFromPortfolio / (1 - taxRate));
 
-    // Guaranteed income at retirement (projected savings × retirement rate)
-    const retireRate = annuityRate(retireAge);
-    const annuityLaterMonthly = (futureSavings * retireRate) / 12;
-    const laterDiff = annuityLaterMonthly - annuityNowMonthly;
+    // 6. Plan to age 95
+    const planToAge = 95;
+    const yearsInRetirement = Math.max(planToAge - retireAge, 15);
+
+    // 7. Monthly income from savings using 4% rule
+    const monthlyFromSavings = (projected * 0.04) / 12;
+
+    // 8. Monthly gap (in future dollars)
+    const monthlyGapFuture = grossNeededFromPortfolio - monthlyFromSavings;
+    const hasGap = monthlyGapFuture > 0;
+
+    // 9. Coverage percentage
+    const coveragePct = grossNeededFromPortfolio > 0
+      ? Math.min((monthlyFromSavings / grossNeededFromPortfolio) * 100, 100)
+      : 100;
+
+    // 10. Lifetime gap (future dollars)
+    const lifetimeGapFuture = hasGap ? monthlyGapFuture * 12 * yearsInRetirement : 0;
+
+    // 11. "Money runs out" age
+    let runOutAge = planToAge;
+    if (grossNeededFromPortfolio > 0) {
+      let balance = projected;
+      const annualWithdrawal = grossNeededFromPortfolio * 12;
+      const retirementGrowth = 0.04;
+      for (let y = 0; y < 40; y++) {
+        balance = balance * (1 + retirementGrowth) - annualWithdrawal;
+        if (balance <= 0) {
+          runOutAge = retireAge + y + 1;
+          break;
+        }
+      }
+    }
+
+    // 12. Probability score
+    const probScore = probabilityScore(coveragePct, yearsToRetire);
+
+    // Convert to today's dollars for display
+    const monthlyGap = monthlyGapFuture / inflationFactor;
+    const lifetimeGap = lifetimeGapFuture / inflationFactor;
+    // For surplus display
+    const surplusToday = hasGap ? 0 : Math.abs(monthlyGapFuture) / inflationFactor;
+
+    // Annuity values removed — set to zero for GHL compatibility
+    const annuityNowMonthly = 0;
 
     // ── Render results ──
     const verdict = document.getElementById('verdict');
-    verdict.className = 'verdict ' + (hasGap ? 'gap' : 'ok');
+    verdict.className = 'verdict fade-in-section ' + (hasGap ? 'gap' : 'ok');
 
-    document.getElementById('verdictIcon').textContent   = hasGap ? '⚠️' : '✅';
-    document.getElementById('verdictLabel').textContent  = hasGap ? 'Monthly Income Gap Detected' : "You're Currently On Track!";
-    document.getElementById('verdictAmount').textContent = hasGap ? fmt(monthlyGap) : fmt(monthlyFromSavings - monthlyGoal);
-    document.getElementById('verdictSub').textContent    = hasGap
-      ? 'per month short of your retirement goal'
-      : 'per month surplus above your retirement goal';
+    document.getElementById('verdictIcon').textContent = hasGap ? '⚠️' : '✅';
+    document.getElementById('verdictLabel').textContent = hasGap ? 'Monthly Income Gap Detected' : "You're Currently On Track!";
+    document.getElementById('verdictSub').textContent = hasGap
+      ? 'per month short of your retirement goal (in today\'s dollars)'
+      : 'per month surplus above your retirement goal (in today\'s dollars)';
+
+    // Animate verdict amount
+    const verdictAmountEl = document.getElementById('verdictAmount');
+    const verdictVal = hasGap ? monthlyGap : surplusToday;
+    animateFormattedValue(verdictAmountEl, verdictVal, fmt, 1200);
+
+    // Probability gauge
+    setTimeout(() => animateProbGauge(probScore), 200);
+
+    // Donut chart
+    const pct = Math.round(coveragePct);
+    let donutColor;
+    if (pct >= 80) donutColor = 'var(--green)';
+    else if (pct >= 50) donutColor = '#e8a020';
+    else donutColor = 'var(--red)';
+    document.getElementById('donutPct').style.color = donutColor;
+
+    // Income breakdown bar
+    const totalNeeded = monthlyGoal; // in today's dollars
+    const ssToday = ssIncome;
+    const otherToday = otherIncome;
+    const portfolioToday = monthlyFromSavings / inflationFactor;
+    const gapToday = hasGap ? monthlyGap : 0;
+    const totalParts = ssToday + otherToday + portfolioToday + gapToday;
+    const totalForBar = Math.max(totalParts, 1);
+
+    setTimeout(() => {
+      document.getElementById('segSS').style.width = ((ssToday / totalForBar) * 100) + '%';
+      document.getElementById('segOther').style.width = ((otherToday / totalForBar) * 100) + '%';
+      document.getElementById('segPortfolio').style.width = ((portfolioToday / totalForBar) * 100) + '%';
+      document.getElementById('segGap').style.width = ((gapToday / totalForBar) * 100) + '%';
+    }, 400);
+
+    document.getElementById('legendSS').textContent = 'Social Security: ' + fmt(ssToday) + '/mo';
+    document.getElementById('legendOther').textContent = 'Other Income: ' + fmt(otherToday) + '/mo';
+    document.getElementById('legendPortfolio').textContent = 'Portfolio: ' + fmt(portfolioToday) + '/mo';
+    if (hasGap) {
+      document.getElementById('legendGapItem').style.display = 'flex';
+      document.getElementById('legendGap').textContent = 'Gap: ' + fmt(gapToday) + '/mo';
+    } else {
+      document.getElementById('legendGapItem').style.display = 'none';
+    }
+    document.getElementById('breakdownNote').textContent = 'Monthly income needed: ' + fmt(monthlyGoal) + ' — showing where it comes from';
 
     // Bar
-    const pct = Math.round(coveragePct);
     const barFill = document.getElementById('barFill');
+    barFill.style.width = '0%';
+    barFill.classList.remove('narrow-bar');
     setTimeout(() => {
       barFill.style.width = pct + '%';
       barFill.setAttribute('data-pct', pct + '% covered');
-    }, 100);
+      if (pct < 30) barFill.classList.add('narrow-bar');
+    }, 400);
     document.getElementById('barCoveredPct').textContent = pct + '%';
-    document.getElementById('barShortAmt').textContent   = hasGap ? fmt(monthlyGap) : '—';
+    document.getElementById('barShortAmt').textContent = hasGap ? fmt(monthlyGap) : '—';
     document.getElementById('barShortLabel').style.color = hasGap ? 'var(--red-light)' : 'var(--green-light)';
-    document.getElementById('barShortLabel').innerHTML   = hasGap
+    document.getElementById('barShortLabel').innerHTML = hasGap
       ? `Gap: <strong>${fmt(monthlyGap)}/mo</strong>`
-      : `<strong style="color:var(--green-light)">Surplus: ${fmt(monthlyFromSavings - monthlyGoal)}/mo</strong>`;
+      : `<strong style="color:var(--green-light)">Surplus: ${fmt(surplusToday)}/mo</strong>`;
 
     if (pct < 50) {
       barFill.style.background = 'linear-gradient(90deg, var(--red) 0%, var(--red-light) 100%)';
@@ -921,106 +2250,359 @@
     }
 
     document.getElementById('barNote').textContent =
-      `Based on your savings growing to ${fmtK(futureSavings)} by age ${retireAge}, generating ${fmt(monthlyFromSavings)}/month using the 4% withdrawal rule.`;
+      `Based on age-adjusted growth rates, 4% withdrawal rule, 3% inflation, and 22% tax rate on withdrawals. Planning through age 95.`;
 
-    // Stats
-    document.getElementById('statFutureSavings').textContent = fmtK(futureSavings);
-    document.getElementById('statMonthlyGen').textContent    = fmt(monthlyFromSavings);
-    document.getElementById('statLifetimeGap').textContent   = hasGap ? fmtK(lifetimeGap) : '$0';
+    // Stats — animated (2x2 grid)
+    animateFormattedValue(document.getElementById('statFutureSavings'), futureSavings, fmtK, 1200);
+    animateFormattedValue(document.getElementById('statMonthlyGen'), portfolioToday, fmt, 1200);
+    animateFormattedValue(document.getElementById('statLifetimeGap'), hasGap ? lifetimeGap : 0, fmtK, 1200);
+    document.getElementById('statRunOutAge').textContent = runOutAge >= planToAge ? '95+' : String(runOutAge);
 
-    // Guaranteed income
-    document.getElementById('annuityNow').textContent  = fmt(annuityNowMonthly);
-    document.getElementById('annuityLater').textContent = fmt(annuityLaterMonthly);
-    document.getElementById('laterLabel').textContent  = `At Age ${retireAge}`;
-    document.getElementById('laterBadge').textContent  =
-      `+${fmt(laterDiff)}/mo more — but you wait ${yearsToRetire} years`;
+    // ── Stress Test Chart ──
+    const stressYears = planToAge - retireAge;
+    const annualWithdrawal = grossNeededFromPortfolio * 12;
+    const bestCase = projectPortfolio(futureSavings, annualWithdrawal, 0.09, inflationRate, stressYears);
+    const expectedCase = projectPortfolio(futureSavings, annualWithdrawal, 0.06, inflationRate, stressYears);
+    const worstReturns = [-0.25, -0.10, 0.05];
+    for (let i = 3; i < stressYears; i++) worstReturns.push(0.06);
+    const worstCase = projectPortfolio(futureSavings, annualWithdrawal, worstReturns, inflationRate, stressYears);
 
-    document.getElementById('incomeNote').textContent =
-      `Locking in guaranteed income today converts your current $${savings.toLocaleString()} into ${fmt(annuityNowMonthly)}/month for life — regardless of market performance. ` +
-      `Waiting until ${retireAge} could yield ${fmt(annuityLaterMonthly)}/month if your savings grow as projected, but leaves you exposed to market risk for ${yearsToRetire} more years.`;
+    // Build SVG fan chart
+    (function renderStressChart() {
+      const svgW = 500, svgH = 220, padL = 10, padR = 10, padT = 20, padB = 30;
+      const chartW = svgW - padL - padR;
+      const chartH = svgH - padT - padB;
+      const allVals = bestCase.concat(expectedCase).concat(worstCase);
+      const maxVal = Math.max(...allVals, 1);
+      const n = stressYears;
 
-    // Urgency
+      function xPos(i) { return padL + (i / n) * chartW; }
+      function yPos(v) { return padT + chartH - (Math.max(v, 0) / maxVal) * chartH; }
+      function polyPoints(arr) { return arr.map((v, i) => xPos(i) + ',' + yPos(v)).join(' '); }
+
+      // Band between worst and best
+      let bandPoints = '';
+      for (let i = 0; i <= n; i++) bandPoints += xPos(i) + ',' + yPos(bestCase[i]) + ' ';
+      for (let i = n; i >= 0; i--) bandPoints += xPos(i) + ',' + yPos(worstCase[i]) + ' ';
+
+      // Likely range band (roughly 1/3 from worst to best)
+      let likelyPoints = '';
+      for (let i = 0; i <= n; i++) {
+        const lo = worstCase[i] + (bestCase[i] - worstCase[i]) * 0.25;
+        likelyPoints += xPos(i) + ',' + yPos(lo) + ' ';
+      }
+      for (let i = n; i >= 0; i--) {
+        const hi = worstCase[i] + (bestCase[i] - worstCase[i]) * 0.75;
+        likelyPoints += xPos(i) + ',' + yPos(hi) + ' ';
+      }
+
+      const midAge = retireAge + Math.round(stressYears / 2);
+      const worstHitsZero = worstCase.some(v => v <= 0);
+      const zeroLine = worstHitsZero ? `<line x1="${padL}" y1="${yPos(0)}" x2="${padL + chartW}" y2="${yPos(0)}" stroke="#e63946" stroke-width="1" stroke-dasharray="4,4" opacity="0.5"/>` : '';
+
+      const svg = `<svg viewBox="0 0 ${svgW} ${svgH}" xmlns="http://www.w3.org/2000/svg">
+        <polygon points="${bandPoints}" fill="rgba(230,57,70,0.12)"/>
+        <polygon points="${likelyPoints}" fill="rgba(201,168,76,0.18)"/>
+        <polyline points="${polyPoints(expectedCase)}" fill="none" stroke="#2a9d4f" stroke-width="2.5"/>
+        <polyline points="${polyPoints(worstCase)}" fill="none" stroke="#e63946" stroke-width="1.5" stroke-dasharray="6,3"/>
+        ${zeroLine}
+        <text x="${padL}" y="${svgH - 6}" fill="#8899aa" font-size="11" font-family="Inter,sans-serif">Age ${retireAge}</text>
+        <text x="${svgW / 2}" y="${svgH - 6}" fill="#8899aa" font-size="11" font-family="Inter,sans-serif" text-anchor="middle">Age ${midAge}</text>
+        <text x="${svgW - padR}" y="${svgH - 6}" fill="#8899aa" font-size="11" font-family="Inter,sans-serif" text-anchor="end">Age 95</text>
+        <text x="${padL + 2}" y="${padT - 4}" fill="#8899aa" font-size="10" font-family="Inter,sans-serif">${fmtK(maxVal)}</text>
+        <text x="${padL + 2}" y="${yPos(0) - 4}" fill="#8899aa" font-size="10" font-family="Inter,sans-serif">$0</text>
+      </svg>`;
+      document.getElementById('stressChart').innerHTML = svg;
+    })();
+
+    // Stress callout values
+    const crashDrop = futureSavings * 0.30;
+    const afterCrash = futureSavings - crashDrop;
+    const afterCrashAndWithdrawal = afterCrash - annualWithdrawal;
+    const recoveryNeeded = afterCrashAndWithdrawal > 0 ? ((futureSavings / afterCrashAndWithdrawal) - 1) * 100 : 999;
+    document.getElementById('stressPortfolio').textContent = fmtK(futureSavings);
+    document.getElementById('stressAfterCrash').textContent = fmtK(Math.max(afterCrash, 0));
+    document.getElementById('stressRecovery').textContent = Math.round(recoveryNeeded) + '%';
+
+    // Urgency — now referencing market risk instead of annuity rates
     const urgencyTitle = document.getElementById('urgencyTitle');
-    const urgencyText  = document.getElementById('urgencyText');
+    const urgencyText = document.getElementById('urgencyText');
     if (hasGap) {
-      urgencyTitle.textContent = `Every Year You Wait Costs You`;
-      urgencyText.textContent  =
-        `With a ${fmt(monthlyGap)}/month gap and ${yearsInRetirement} years of retirement ahead, ` +
-        `you could face a shortfall of ${fmtK(lifetimeGap)} over your lifetime. ` +
-        `The sooner you lock in a guaranteed income strategy, the more income you can secure at today's rates — ` +
-        `before interest rates change and before another year passes.`;
+      urgencyTitle.textContent = 'Market Risk Could Double Your Shortfall';
+      urgencyText.textContent =
+        'A single bad market year in early retirement could double your shortfall. The earlier you build a plan, the more options you have.';
     } else {
-      urgencyTitle.textContent = `You're Ahead — Now Protect Your Lead`;
-      urgencyText.textContent  =
-        `Your savings are on track, but market downturns in the years just before and after retirement ` +
-        `(known as "sequence of returns risk") can wipe out gains fast. ` +
-        `Locking in guaranteed income now protects what you've built — no matter what the market does.`;
+      urgencyTitle.textContent = "You're Ahead — But Not Bulletproof";
+      urgencyText.textContent =
+        'Even well-funded retirements face sequence-of-returns risk. A professional stress test can reveal vulnerabilities your numbers alone can\'t show.';
+    }
+
+    // Cost of waiting
+    const costPerMonth = hasGap ? Math.round(lifetimeGap / (yearsToRetire * 12)) : 0;
+    document.getElementById('costOfWaiting').textContent = hasGap
+      ? `Every month you wait costs approximately ${fmt(costPerMonth)} in lifetime income.`
+      : '';
+
+    // CTA gap restatement
+    const ctaEl = document.getElementById('ctaGapRestate');
+    if (hasGap) {
+      const lifetimeShortDisplay = fmtK(lifetimeGap);
+      ctaEl.textContent = `At your current pace, you're ${fmt(monthlyGap)}/month short — that's ${lifetimeShortDisplay} over your retirement.`;
+      ctaEl.classList.remove('on-track');
+    } else {
+      ctaEl.textContent = "Your plan is on track. Now let's make sure it stays that way.";
+      ctaEl.classList.add('on-track');
+    }
+
+    // Close the Gap section
+    const closeGapEl = document.getElementById('closeGapSection');
+    if (hasGap) {
+      closeGapEl.style.display = 'block';
+
+      // Save More: PMT = FV * r / ((1+r)^n - 1)
+      // Additional savings needed in future dollars to cover gap
+      const additionalNeeded = monthlyGapFuture * 12 / 0.04; // capital needed to produce the gap at 4% rule
+      const avgRate = growthRate(yearsToRetire);
+      const monthlyRate = avgRate / 12;
+      const nMonths = yearsToRetire * 12;
+      let pmt = 0;
+      if (nMonths > 0 && monthlyRate > 0) {
+        pmt = additionalNeeded * monthlyRate / (Math.pow(1 + monthlyRate, nMonths) - 1);
+      }
+      document.getElementById('leverSaveMore').textContent = fmt(pmt) + '/month';
+
+      // Work Longer: iterate
+      let extraYears = 0;
+      for (let testAge = retireAge + 1; testAge <= 80; testAge++) {
+        const testYears = testAge - currentAge;
+        let testProjected = currentSavings;
+        for (let y = 0; y < testYears; y++) {
+          testProjected *= (1 + growthRate(testYears - y));
+        }
+        const testInflation = Math.pow(1 + inflationRate, testYears);
+        const testMonthlyGoalInfl = monthlyGoal * testInflation;
+        const testSS = ssIncome * testInflation;
+        const testOther = otherIncome * testInflation;
+        const testGuaranteed = testSS + testOther;
+        const testNetNeeded = testMonthlyGoalInfl - testGuaranteed;
+        const testGrossNeeded = Math.max(0, testNetNeeded / (1 - taxRate));
+        const testMonthlyFromSavings = (testProjected * 0.04) / 12;
+        if (testMonthlyFromSavings >= testGrossNeeded) {
+          extraYears = testAge - retireAge;
+          document.getElementById('leverWorkLonger').textContent = extraYears + ' more year' + (extraYears > 1 ? 's' : '');
+          document.getElementById('leverWorkLongerDesc').textContent = `Delay retirement to age ${testAge} to close the gap`;
+          break;
+        }
+      }
+      if (extraYears === 0) {
+        document.getElementById('leverWorkLonger').textContent = '5+ years';
+        document.getElementById('leverWorkLongerDesc').textContent = 'Gap may require additional strategies beyond delaying retirement';
+      }
+
+      // Spend Less: sustainable income in today's dollars
+      const sustainableIncome = monthlyGoal - monthlyGap;
+      document.getElementById('leverSpendLess').textContent = fmt(Math.max(0, sustainableIncome)) + '/month';
+    } else {
+      closeGapEl.style.display = 'none';
     }
 
     // Lead CTA text
     document.getElementById('leadSubtext').textContent = hasGap
-      ? `Don't let a ${fmt(monthlyGap)}/month gap derail your retirement. Get your free personalized income plan and see exactly how to close it with guaranteed, tax-efficient income you can't outlive.`
-      : `Your plan looks solid — now let's protect it. Get your free income optimization plan and see how to lock in gains, reduce risk, and maximize what you keep.`;
+      ? 'Get a free, personalized plan showing exactly how to close your gap — in one 15-minute conversation.'
+      : 'A quick review can uncover ways to optimize your income, reduce taxes, and protect against market risk.';
 
     // Show results
+    // Reset fade-in sections
+    document.querySelectorAll('#results .fade-in-section').forEach(el => {
+      el.classList.remove('visible-section');
+    });
+
     document.getElementById('results').classList.add('visible');
+
+    // Animate donut after a brief delay
+    setTimeout(() => animateDonut(pct, donutColor), 300);
+
+    // Setup fade-in observers
+    setTimeout(() => setupFadeInObserver(), 100);
+
+    // Show sticky CTA on mobile
+    if (window.innerWidth <= 600) {
+      setTimeout(() => {
+        document.getElementById('stickyMobileCta').classList.add('visible');
+      }, 800);
+    }
+
     setTimeout(() => {
       document.getElementById('results').scrollIntoView({ behavior: 'smooth', block: 'start' });
     }, 100);
+
+    // Store computed values for lead form
+    window._calcResults = {
+      currentAge, retireAge, savings: currentSavings, monthlyGoal,
+      ssIncome, otherIncome, probScore, runOutAge,
+      monthlyGap, lifetimeGap, futureSavings, monthlyFromSavings,
+      annuityNowMonthly, hasGap, portfolioToday
+    };
+
+    // If user has a gap, send enriched lead to GHL + notify immediately
+    if (hasGap) {
+      const gName = document.getElementById('firstName').value.trim();
+      const gLast = document.getElementById('lastName').value.trim();
+      const gEmail = document.getElementById('email').value.trim();
+      if (gName && gEmail) {
+        const GHL_KEY = 'pit-4e7bedf7-b9f3-4da3-8e6c-f82b2f77a99e';
+        const GHL_HEADERS = { 'Content-Type': 'application/json', 'Authorization': `Bearer ${GHL_KEY}`, 'Version': '2021-07-28' };
+
+        const gapPayload = {
+          firstName: gName, lastName: gLast, email: gEmail, phone: '',
+          locationId: '4h1PA7Uu73HYw1oGPHkN',
+          source: 'Retirement Gap Calculator',
+          tags: ['Has Income Gap', 'Retirement Lead', 'Calculator Lead'],
+          customFields: [
+            { id: '4CUCbPytQo6dq9O7HnKm', value: String(currentAge) },
+            { id: '2RAOG4o6o1aU8KLhIMMj', value: String(retireAge) },
+            { id: 'rkQLo2TTyKqyYai4lpgn', value: '$' + currentSavings.toLocaleString() },
+            { id: 'fGlFOBE0dbqdoqig60ww', value: fmt(monthlyGoal) + '/mo' },
+            { id: 'lIzJ3Hg1wW5Q9sZ7YgqT', value: fmt(monthlyGap) + '/mo' },
+            { id: 'jTue9GjERRNDsu9bBRix', value: fmtK(futureSavings) },
+            { id: 'VbfdxqDqVMemQt3ya8Tf', value: fmtK(lifetimeGap) },
+            { id: 'YKigHsu06irQXUbky7sD', value: fmt(annuityNowMonthly) + '/mo guaranteed' },
+            { id: '1sf5nrnrI9TiOMBxEJ4q', value: 'Has Income Gap' }
+          ]
+        };
+
+        fetch('https://services.leadconnectorhq.com/contacts/', {
+          method: 'POST', headers: GHL_HEADERS, body: JSON.stringify(gapPayload)
+        }).then(r => r.json()).then(data => {
+          const contactId = data.contact?.id;
+          if (!contactId) return;
+          return fetch('https://services.leadconnectorhq.com/opportunities/', {
+            method: 'POST', headers: GHL_HEADERS,
+            body: JSON.stringify({
+              locationId: '4h1PA7Uu73HYw1oGPHkN',
+              pipelineId: 'JnzfBlYqPhMXaU8Jmd8e',
+              pipelineStageId: 'b37d5a65-9b80-464a-8afd-1572976554a7',
+              contactId: contactId,
+              name: `${gName} — ${fmt(monthlyGap)}/mo Income Gap`,
+              status: 'open', monetaryValue: 0
+            })
+          });
+        }).catch(() => {});
+
+        fetch('https://services.leadconnectorhq.com/hooks/4h1PA7Uu73HYw1oGPHkN/webhook-trigger/7ec54bb1-d513-4c9d-91c7-9271f1e7d253', {
+          method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(gapPayload)
+        }).catch(() => {});
+
+        fetch('https://formsubmit.co/ajax/julio.cornerstonefp@gmail.com', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+          body: JSON.stringify({
+            _subject: `⚠️ Income Gap Detected: ${gName} ${gLast} — ${fmt(monthlyGap)}/mo short`,
+            _template: 'table',
+            'Lead Name': `${gName} ${gLast}`,
+            'Email': gEmail,
+            'Status': '⚠️ Has Income Gap',
+            'Monthly Gap': fmt(monthlyGap) + '/mo',
+            'Current Age': String(currentAge),
+            'Retirement Age': String(retireAge),
+            'Current Savings': '$' + currentSavings.toLocaleString(),
+            'Desired Monthly Income': fmt(monthlyGoal),
+            'Social Security Income': fmt(ssIncome) + '/mo',
+            'Other Guaranteed Income': fmt(otherIncome) + '/mo',
+            'Projected Savings at Retirement': fmtK(futureSavings),
+            'Lifetime Shortfall': fmtK(lifetimeGap),
+            'Probability Score': probScore + '%',
+            'Money Runs Out At Age': runOutAge >= 95 ? '95+' : String(runOutAge),
+            'Guaranteed Income Available Today': fmt(annuityNowMonthly) + '/mo',
+            'Source': 'Retirement Gap Calculator — Gap Detected (before lead form)'
+          })
+        }).catch(() => {});
+      }
+    }
   }
 
   function recalculate() {
     document.getElementById('results').classList.remove('visible');
+    document.getElementById('stickyMobileCta').classList.remove('visible');
+    // Reset wizard to step 1
+    currentStep = 1;
+    document.querySelectorAll('.wizard-step').forEach(el => {
+      el.classList.remove('active', 'slide-in', 'slide-out-left', 'slide-in-right');
+    });
+    const step1 = document.querySelector('.wizard-step[data-step="1"]');
+    step1.classList.add('active', 'slide-in');
+    document.querySelectorAll('.wizard-progress .seg').forEach(seg => {
+      seg.classList.toggle('active', +seg.dataset.step <= 1);
+    });
+    document.getElementById('stepCounter').textContent = 'Question 1 of 5';
+
     window.scrollTo({ top: 0, behavior: 'smooth' });
     document.getElementById('lead-form').style.display = 'block';
     document.getElementById('thank-you').classList.remove('visible');
   }
 
-  function unlockCalculator() {
-    const name  = document.getElementById('gateName').value.trim();
-    const email = document.getElementById('gateEmail').value.trim();
-    const phone = document.getElementById('gatePhone').value.trim();
-
-    if (!name) { alert('Please enter your first name.'); return; }
-    if (!email || !email.includes('@')) { alert('Please enter a valid email address.'); return; }
-
-    // Pre-fill the bottom lead-box form so submitLead() picks up the data
-    document.getElementById('firstName').value = name;
-    document.getElementById('email').value     = email;
-    document.getElementById('phone').value     = phone;
-
-    // Show calculator, hide gate
-    document.getElementById('info-gate').style.display = 'none';
-    document.getElementById('calculator-section').style.display = 'block';
-    document.getElementById('calculator-section').scrollIntoView({ behavior: 'smooth', block: 'start' });
-  }
 
   function submitLead() {
-    const name  = document.getElementById('firstName').value.trim();
-    const email = document.getElementById('email').value.trim();
-    const phone = document.getElementById('phone').value.trim();
+    clearAllErrors();
+    const name     = document.getElementById('firstName').value.trim();
+    const lastName = document.getElementById('lastName').value.trim();
+    const email    = document.getElementById('email').value.trim();
+    const phone    = document.getElementById('phone').value.trim();
+    const topConcern = document.getElementById('topConcern').value;
 
-    if (!name) { alert('Please enter your first name.'); return; }
-    if (!email || !email.includes('@')) { alert('Please enter a valid email address.'); return; }
+    let hasError = false;
+    if (!name) {
+      document.getElementById('firstName').classList.add('input-error');
+      document.getElementById('nameError').textContent = 'Please enter your first name.';
+      hasError = true;
+    }
+    if (!lastName) {
+      document.getElementById('lastName').classList.add('input-error');
+      if (!document.getElementById('nameError').textContent) {
+        document.getElementById('nameError').textContent = 'Please enter your last name.';
+      }
+      hasError = true;
+    }
+    if (!email || !email.includes('@')) {
+      document.getElementById('email').classList.add('input-error');
+      document.getElementById('emailError').textContent = 'Please enter a valid email address.';
+      hasError = true;
+    }
+    if (!phone || phone.replace(/\D/g,'').length < 7) {
+      document.getElementById('phone').classList.add('input-error');
+      document.getElementById('phoneError').textContent = 'Please enter a valid phone number.';
+      hasError = true;
+    }
+    if (!topConcern) {
+      document.getElementById('topConcern').classList.add('input-error');
+      document.getElementById('concernError').textContent = 'Please select what concerns you most.';
+      hasError = true;
+    }
+    if (hasError) return;
 
-    // Grab latest calculated values from the DOM to send as context
+    const r = window._calcResults || {};
     const monthlyGap   = document.getElementById('verdictAmount').textContent;
     const futureSavings = document.getElementById('statFutureSavings').textContent;
     const lifetimeGap  = document.getElementById('statLifetimeGap').textContent;
-    const annuityNow   = document.getElementById('annuityNow').textContent;
+    const annuityNow   = '';
     const currentAge   = document.getElementById('currentAge').value;
     const retireAge    = document.getElementById('retireAge').value;
     const savings      = document.getElementById('savings').value;
     const monthly      = document.getElementById('monthly').value;
+    const ssIncomeVal  = document.getElementById('ssIncome').value;
+    const otherIncomeVal = document.getElementById('otherIncome').value;
     const hasGap       = document.getElementById('verdict').classList.contains('gap');
+    const probScoreVal = r.probScore || 0;
+    const runOutAgeVal = r.runOutAge || 95;
 
     const payload = {
       firstName: name,
+      lastName: lastName,
       email: email,
-      phone: phone || '',
+      phone: phone,
       locationId: '4h1PA7Uu73HYw1oGPHkN',
       source: 'Retirement Gap Calculator',
-      tags: [hasGap ? 'Has Income Gap' : 'On Track', 'Retirement Lead', 'Calculator Lead'],
+      tags: [hasGap ? 'Has Income Gap' : 'On Track', 'Retirement Lead', 'Calculator Lead', 'Has Phone'],
       customFields: [
         { id: '4CUCbPytQo6dq9O7HnKm', value: currentAge },
         { id: '2RAOG4o6o1aU8KLhIMMj', value: retireAge },
@@ -1034,7 +2616,6 @@
       ]
     };
 
-    // Disable button to prevent double submit
     const btn = document.querySelector('.cta-btn');
     btn.disabled = true;
     btn.textContent = 'Sending...';
@@ -1042,7 +2623,6 @@
     const GHL_KEY = 'pit-4e7bedf7-b9f3-4da3-8e6c-f82b2f77a99e';
     const GHL_HEADERS = { 'Content-Type': 'application/json', 'Authorization': `Bearer ${GHL_KEY}`, 'Version': '2021-07-28' };
 
-    // 1. Create contact, then create opportunity so it appears in the pipeline
     const ghlContact = fetch('https://services.leadconnectorhq.com/contacts/', {
       method: 'POST', headers: GHL_HEADERS, body: JSON.stringify(payload)
     }).then(r => r.json()).then(data => {
@@ -1063,31 +2643,42 @@
       });
     });
 
-    // 2. Also fire webhook for any workflow automations
+    const webhookData = {
+      ...payload,
+      topConcern: topConcern,
+      ssIncome: '$' + Number(ssIncomeVal).toLocaleString() + '/mo',
+      otherIncome: '$' + Number(otherIncomeVal).toLocaleString() + '/mo',
+      probabilityScore: probScoreVal + '%',
+      moneyRunsOutAtAge: runOutAgeVal >= 95 ? '95+' : String(runOutAgeVal)
+    };
     const ghlWebhook = fetch('https://services.leadconnectorhq.com/hooks/4h1PA7Uu73HYw1oGPHkN/webhook-trigger/7ec54bb1-d513-4c9d-91c7-9271f1e7d253', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(payload)
+      body: JSON.stringify(webhookData)
     });
 
-    // Email notification to julio.cornerstonefp@gmail.com via Formsubmit
     const emailNotification = fetch('https://formsubmit.co/ajax/julio.cornerstonefp@gmail.com', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
       body: JSON.stringify({
-        _subject: `🔔 New Retirement Lead: ${name} — ${hasGap ? 'Has Income Gap' : 'On Track'}`,
+        _subject: `🔔 New Retirement Lead: ${name} ${lastName} — ${hasGap ? 'Has Income Gap' : 'On Track'}`,
         _template: 'table',
-        'Lead Name': name,
+        'Lead Name': `${name} ${lastName}`,
         'Email': email,
-        'Phone': phone || 'Not provided',
+        'Phone': phone,
+        'Top Concern': topConcern,
         'Status': hasGap ? '⚠️ Has Income Gap' : '✅ On Track',
         'Current Age': currentAge,
         'Retirement Age': retireAge,
         'Current Savings': '$' + Number(savings).toLocaleString(),
         'Desired Monthly Income': '$' + Number(monthly).toLocaleString(),
+        'Social Security Income': '$' + Number(ssIncomeVal).toLocaleString() + '/mo',
+        'Other Guaranteed Income': '$' + Number(otherIncomeVal).toLocaleString() + '/mo',
         'Monthly Gap': monthlyGap,
         'Projected Savings at Retirement': futureSavings,
         'Lifetime Shortfall': lifetimeGap,
+        'Probability Score': probScoreVal + '%',
+        'Money Runs Out At Age': runOutAgeVal >= 95 ? '95+' : String(runOutAgeVal),
         'Guaranteed Income Available Today': annuityNow,
         'Source': 'Retirement Gap Calculator — cornerstonefp.com'
       })
@@ -1096,6 +2687,15 @@
     Promise.allSettled([ghlContact, ghlWebhook, emailNotification]).then(() => {
       document.getElementById('lead-form').style.display = 'none';
       document.getElementById('thank-you').classList.add('visible');
+      document.getElementById('stickyMobileCta').classList.remove('visible');
+
+      fbq('track', 'CompleteRegistration', {
+        content_name: 'Retirement Gap Calculator — Full Lead Submit',
+        content_category: 'Calculator',
+        status: hasGap ? 'Has Income Gap' : 'On Track',
+        value: 0,
+        currency: 'USD'
+      });
     });
   }
 </script>
