@@ -1073,6 +1073,121 @@
     .footer { text-align: center; padding: 40px 20px; font-size: 12px; color: rgba(255,255,255,0.2); line-height: 1.7; background: var(--footer-bg); }
     .footer strong { color: rgba(255,255,255,0.4); }
 
+    /* ── LEAD GATE SCREEN ── */
+    #leadGate { display: none; margin-top: 40px; }
+    #leadGate.visible { display: block; animation: fadeUp 0.5s ease; }
+
+    .gate-card {
+      background: var(--bg-alt);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 48px 36px;
+      text-align: center;
+      max-width: 520px;
+      margin: 0 auto;
+    }
+    @media (max-width: 600px) { .gate-card { padding: 32px 18px; } }
+
+    .gate-icon {
+      font-size: 48px;
+      margin-bottom: 16px;
+    }
+    .gate-card h2 {
+      font-size: clamp(22px, 4vw, 30px);
+      font-weight: 700;
+      font-family: var(--serif);
+      color: var(--dark);
+      margin-bottom: 10px;
+      line-height: 1.2;
+    }
+    .gate-card h2 span { color: var(--gold); }
+    .gate-card .gate-sub {
+      font-size: 15px;
+      color: var(--body);
+      margin-bottom: 28px;
+      line-height: 1.6;
+      max-width: 420px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .gate-fields {
+      max-width: 400px;
+      margin: 0 auto 20px;
+    }
+    .gate-fields input {
+      width: 100%;
+      background: #FFFFFF;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      color: var(--dark);
+      font-family: var(--sans);
+      font-size: 16px;
+      padding: 14px 18px;
+      outline: none;
+      transition: border-color 0.2s, box-shadow 0.2s;
+      margin-bottom: 6px;
+    }
+    .gate-fields input::placeholder { color: var(--muted); }
+    .gate-fields input:focus { border-color: var(--gold); box-shadow: 0 0 0 3px rgba(184,134,11,0.08); }
+    .gate-fields input.input-error { border-color: var(--red) !important; }
+    .gate-fields .inline-error {
+      color: var(--red);
+      font-size: 13px;
+      font-weight: 500;
+      text-align: left;
+      min-height: 18px;
+      margin-bottom: 6px;
+      transition: opacity 0.2s;
+    }
+
+    .gate-submit-btn {
+      width: 100%;
+      max-width: 400px;
+      background: var(--gold);
+      color: #fff;
+      border: none;
+      border-radius: 6px;
+      font-family: var(--sans);
+      font-size: 17px;
+      font-weight: 600;
+      padding: 18px 28px;
+      cursor: pointer;
+      letter-spacing: 0.3px;
+      transition: background 0.2s, box-shadow 0.2s;
+      display: block;
+      margin: 8px auto 0;
+    }
+    .gate-submit-btn:hover { background: var(--gold-light); box-shadow: 0 8px 24px rgba(184,134,11,0.2); }
+    .gate-submit-btn:disabled { opacity: 0.6; cursor: not-allowed; }
+
+    .gate-privacy {
+      font-size: 11px;
+      color: var(--muted);
+      margin-top: 14px;
+    }
+    .gate-trust {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 20px;
+      margin-top: 20px;
+      flex-wrap: wrap;
+    }
+    .gate-trust span {
+      font-size: 12px;
+      color: var(--light);
+    }
+
+    /* Mobile sticky gate submit */
+    @media (max-width: 600px) {
+      .gate-card { border-radius: 10px; }
+      .gate-fields input { font-size: 16px; padding: 16px; border-radius: 10px; }
+      .gate-submit-btn { font-size: 16px; padding: 18px 20px; border-radius: 10px; }
+      .gate-trust { gap: 12px; }
+      .gate-trust span { font-size: 11px; }
+    }
+
     /* recalc button */
     .recalc-btn {
       background: none;
@@ -1515,6 +1630,35 @@
         </div>
       </div>
     </div><!-- /calculator-section input area -->
+
+    <!-- LEAD GATE SCREEN -->
+    <div id="leadGate">
+      <hr class="divider" />
+      <div class="gate-card">
+        <div class="gate-icon">📊</div>
+        <h2>Your Retirement Income Gap<br>Is <span>Ready</span></h2>
+        <p class="gate-sub">Enter your info below to see your personalized results — and get a free breakdown sent to your inbox.</p>
+
+        <div class="gate-fields">
+          <input type="text" id="gateFirstName" placeholder="First Name *" />
+          <div class="inline-error" id="gateFirstNameError"></div>
+          <input type="email" id="gateEmail" placeholder="Email Address *" />
+          <div class="inline-error" id="gateEmailError"></div>
+          <input type="tel" id="gatePhone" placeholder="Phone (optional)" />
+          <div class="inline-error" id="gatePhoneError"></div>
+        </div>
+
+        <button class="gate-submit-btn" id="gateSubmitBtn" onclick="submitGate()">
+          Show My Results →
+        </button>
+        <div class="gate-privacy">Free. No obligation. We respect your privacy.</div>
+        <div class="gate-trust">
+          <span>✓ No spam, ever</span>
+          <span>✓ Your data is secure</span>
+          <span>✓ Unsubscribe anytime</span>
+        </div>
+      </div>
+    </div>
 
     <!-- RESULTS -->
     <div id="results">
@@ -2032,7 +2176,8 @@
     const results = document.getElementById('results');
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
-        if (entry.isIntersecting && results.classList.contains('visible')) {
+        // Only show sticky CTA when results are visible (not during gate screen)
+        if (entry.isIntersecting && results.classList.contains('visible') && !document.getElementById('leadGate').classList.contains('visible')) {
           sticky.classList.add('visible');
         }
       });
@@ -2411,29 +2556,15 @@
       ? 'Get a free, personalized plan showing exactly how to close your gap — in one 15-minute conversation.'
       : 'A quick review can uncover ways to optimize your income, reduce taxes, and protect against market risk.';
 
-    // Show results
-    // Reset fade-in sections
-    document.querySelectorAll('#results .fade-in-section').forEach(el => {
-      el.classList.remove('visible-section');
-    });
+    // ── Show GATE screen (not results) ──
+    // Results are fully rendered in the DOM but hidden; gate screen appears first
+    window._resultsReady = true;
+    window._donutPct = pct;
+    window._donutColor = donutColor;
 
-    document.getElementById('results').classList.add('visible');
-
-    // Animate donut after a brief delay
-    setTimeout(() => animateDonut(pct, donutColor), 300);
-
-    // Setup fade-in observers
-    setTimeout(() => setupFadeInObserver(), 100);
-
-    // Show sticky CTA on mobile
-    if (window.innerWidth <= 600) {
-      setTimeout(() => {
-        document.getElementById('stickyMobileCta').classList.add('visible');
-      }, 800);
-    }
-
+    document.getElementById('leadGate').classList.add('visible');
     setTimeout(() => {
-      document.getElementById('results').scrollIntoView({ behavior: 'smooth', block: 'start' });
+      document.getElementById('leadGate').scrollIntoView({ behavior: 'smooth', block: 'start' });
     }, 100);
 
     // Store computed values for lead form
@@ -2523,7 +2654,12 @@
 
   function recalculate() {
     document.getElementById('results').classList.remove('visible');
+    document.getElementById('leadGate').classList.remove('visible');
     document.getElementById('stickyMobileCta').classList.remove('visible');
+    window._resultsReady = false;
+    // Reset gate button state
+    const gateBtn = document.getElementById('gateSubmitBtn');
+    if (gateBtn) { gateBtn.disabled = false; gateBtn.textContent = 'Show My Results →'; }
     // Reset wizard to step 1
     currentStep = 1;
     document.querySelectorAll('.wizard-step').forEach(el => {
@@ -2541,6 +2677,229 @@
     document.getElementById('thank-you').classList.remove('visible');
   }
 
+
+  // ── Gate form: inline validation on blur ──
+  ['gateFirstName', 'gateEmail', 'gatePhone'].forEach(id => {
+    const el = document.getElementById(id);
+    if (!el) return;
+    el.addEventListener('blur', function() {
+      validateGateField(id);
+    });
+    el.addEventListener('input', function() {
+      // Clear error on typing
+      el.classList.remove('input-error');
+      const errEl = document.getElementById(id + 'Error');
+      if (errEl) errEl.textContent = '';
+    });
+  });
+
+  function validateGateField(id) {
+    const el = document.getElementById(id);
+    const errEl = document.getElementById(id + 'Error');
+    const val = el.value.trim();
+    el.classList.remove('input-error');
+    if (errEl) errEl.textContent = '';
+
+    if (id === 'gateFirstName') {
+      if (!val) {
+        el.classList.add('input-error');
+        errEl.textContent = 'Please enter your first name.';
+        return false;
+      }
+    } else if (id === 'gateEmail') {
+      if (!val || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(val)) {
+        el.classList.add('input-error');
+        errEl.textContent = 'Please enter a valid email address.';
+        return false;
+      }
+    } else if (id === 'gatePhone') {
+      if (val && !/^\(?\d{3}\)?[\s\-.]?\d{3}[\s\-.]?\d{4}$/.test(val.replace(/^\+?1[\s\-.]?/, ''))) {
+        el.classList.add('input-error');
+        errEl.textContent = 'Please enter a valid US phone number.';
+        return false;
+      }
+    }
+    return true;
+  }
+
+  function submitGate() {
+    // Validate all gate fields
+    const nameOk  = validateGateField('gateFirstName');
+    const emailOk = validateGateField('gateEmail');
+    const phoneOk = validateGateField('gatePhone');
+    if (!nameOk || !emailOk || !phoneOk) return;
+
+    const gateName  = document.getElementById('gateFirstName').value.trim();
+    const gateEmail = document.getElementById('gateEmail').value.trim();
+    const gatePhone = document.getElementById('gatePhone').value.trim();
+
+    // Disable button, show loading state
+    const btn = document.getElementById('gateSubmitBtn');
+    btn.disabled = true;
+    btn.textContent = 'Sending…';
+
+    const r = window._calcResults || {};
+
+    // Pre-fill the existing lead form fields so submitLead() can still be used later
+    document.getElementById('firstName').value = gateName;
+    document.getElementById('email').value = gateEmail;
+    if (gatePhone) document.getElementById('phone').value = gatePhone;
+
+    // Store lead data in localStorage as fallback
+    const leadData = {
+      firstName: gateName,
+      email: gateEmail,
+      phone: gatePhone,
+      monthlyGap: r.monthlyGap ? fmt(r.monthlyGap) : document.getElementById('verdictAmount').textContent,
+      probabilityScore: r.probScore || 0,
+      retirementAge: r.retireAge || document.getElementById('retireAge').value,
+      currentAge: r.currentAge || document.getElementById('currentAge').value,
+      totalSavings: r.savings || document.getElementById('savings').value,
+      desiredMonthlyIncome: r.monthlyGoal || document.getElementById('monthly').value,
+      timestamp: new Date().toISOString()
+    };
+    try { localStorage.setItem('cornerstone_lead_data', JSON.stringify(leadData)); } catch(e) {}
+
+    // ── Send to GHL + Webhook + Email (same as existing integration) ──
+    const currentAge   = document.getElementById('currentAge').value;
+    const retireAge    = document.getElementById('retireAge').value;
+    const savings      = document.getElementById('savings').value;
+    const monthly      = document.getElementById('monthly').value;
+    const ssIncomeVal  = document.getElementById('ssIncome').value;
+    const otherIncomeVal = document.getElementById('otherIncome').value;
+    const hasGap       = document.getElementById('verdict').classList.contains('gap');
+    const monthlyGap   = document.getElementById('verdictAmount').textContent;
+    const futureSavings = document.getElementById('statFutureSavings').textContent;
+    const lifetimeGap  = document.getElementById('statLifetimeGap').textContent;
+    const probScoreVal = r.probScore || 0;
+    const runOutAgeVal = r.runOutAge || 95;
+
+    const payload = {
+      firstName: gateName,
+      lastName: '',
+      email: gateEmail,
+      phone: gatePhone,
+      locationId: '4h1PA7Uu73HYw1oGPHkN',
+      source: 'Retirement Gap Calculator — Lead Gate',
+      tags: [hasGap ? 'Has Income Gap' : 'On Track', 'Retirement Lead', 'Calculator Lead', 'Lead Gate'],
+      customFields: [
+        { id: '4CUCbPytQo6dq9O7HnKm', value: currentAge },
+        { id: '2RAOG4o6o1aU8KLhIMMj', value: retireAge },
+        { id: 'rkQLo2TTyKqyYai4lpgn', value: '$' + Number(savings).toLocaleString() },
+        { id: 'fGlFOBE0dbqdoqig60ww', value: '$' + Number(monthly).toLocaleString() + '/mo' },
+        { id: 'lIzJ3Hg1wW5Q9sZ7YgqT', value: monthlyGap + '/mo' },
+        { id: 'jTue9GjERRNDsu9bBRix', value: futureSavings },
+        { id: 'VbfdxqDqVMemQt3ya8Tf', value: lifetimeGap },
+        { id: 'YKigHsu06irQXUbky7sD', value: '/mo guaranteed' },
+        { id: '1sf5nrnrI9TiOMBxEJ4q', value: hasGap ? 'Has Income Gap' : 'On Track' }
+      ]
+    };
+
+    const GHL_KEY = 'pit-4e7bedf7-b9f3-4da3-8e6c-f82b2f77a99e';
+    const GHL_HEADERS = { 'Content-Type': 'application/json', 'Authorization': `Bearer ${GHL_KEY}`, 'Version': '2021-07-28' };
+
+    const ghlContact = fetch('https://services.leadconnectorhq.com/contacts/', {
+      method: 'POST', headers: GHL_HEADERS, body: JSON.stringify(payload)
+    }).then(r => r.json()).then(data => {
+      const contactId = data.contact?.id;
+      if (!contactId) return;
+      return fetch('https://services.leadconnectorhq.com/opportunities/', {
+        method: 'POST', headers: GHL_HEADERS,
+        body: JSON.stringify({
+          locationId: '4h1PA7Uu73HYw1oGPHkN',
+          pipelineId: 'JnzfBlYqPhMXaU8Jmd8e',
+          pipelineStageId: 'b37d5a65-9b80-464a-8afd-1572976554a7',
+          contactId: contactId,
+          name: `${gateName} — Retirement Gap Lead (Gate)`,
+          status: 'open', monetaryValue: 0
+        })
+      });
+    }).catch(() => {});
+
+    const webhookData = {
+      ...payload,
+      ssIncome: '$' + Number(ssIncomeVal).toLocaleString() + '/mo',
+      otherIncome: '$' + Number(otherIncomeVal).toLocaleString() + '/mo',
+      probabilityScore: probScoreVal + '%',
+      moneyRunsOutAtAge: runOutAgeVal >= 95 ? '95+' : String(runOutAgeVal)
+    };
+    const ghlWebhook = fetch('https://services.leadconnectorhq.com/hooks/4h1PA7Uu73HYw1oGPHkN/webhook-trigger/7ec54bb1-d513-4c9d-91c7-9271f1e7d253', {
+      method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(webhookData)
+    }).catch(() => {});
+
+    const emailNotification = fetch('https://formsubmit.co/ajax/julio.cornerstonefp@gmail.com', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+      body: JSON.stringify({
+        _subject: `🔔 New Lead Gate: ${gateName} — ${hasGap ? 'Has Income Gap' : 'On Track'}`,
+        _template: 'table',
+        'Lead Name': gateName,
+        'Email': gateEmail,
+        'Phone': gatePhone || 'Not provided',
+        'Status': hasGap ? '⚠️ Has Income Gap' : '✅ On Track',
+        'Current Age': currentAge,
+        'Retirement Age': retireAge,
+        'Current Savings': '$' + Number(savings).toLocaleString(),
+        'Desired Monthly Income': '$' + Number(monthly).toLocaleString(),
+        'Social Security Income': '$' + Number(ssIncomeVal).toLocaleString() + '/mo',
+        'Other Guaranteed Income': '$' + Number(otherIncomeVal).toLocaleString() + '/mo',
+        'Monthly Gap': monthlyGap,
+        'Projected Savings at Retirement': futureSavings,
+        'Lifetime Shortfall': lifetimeGap,
+        'Probability Score': probScoreVal + '%',
+        'Money Runs Out At Age': runOutAgeVal >= 95 ? '95+' : String(runOutAgeVal),
+        'Source': 'Retirement Gap Calculator — Lead Gate Submit'
+      })
+    }).catch(() => {});
+
+    Promise.allSettled([ghlContact, ghlWebhook, emailNotification]).then(() => {
+      // Fire Meta Pixel custom event
+      if (typeof fbq === 'function') {
+        fbq('trackCustom', 'LeadGateSubmitted');
+      }
+
+      // Mark gate as submitted (prevents direct URL bypass)
+      window._gateSubmitted = true;
+      try { sessionStorage.setItem('cornerstone_gate_submitted', '1'); } catch(e) {}
+
+      // Hide gate, reveal results
+      document.getElementById('leadGate').classList.remove('visible');
+      revealResults();
+    });
+  }
+
+  function revealResults() {
+    // Reset fade-in sections
+    document.querySelectorAll('#results .fade-in-section').forEach(el => {
+      el.classList.remove('visible-section');
+    });
+
+    document.getElementById('results').classList.add('visible');
+
+    // Animate donut after a brief delay
+    setTimeout(() => animateDonut(window._donutPct, window._donutColor), 300);
+
+    // Setup fade-in observers
+    setTimeout(() => setupFadeInObserver(), 100);
+
+    // Show sticky CTA on mobile
+    if (window.innerWidth <= 600) {
+      setTimeout(() => {
+        document.getElementById('stickyMobileCta').classList.add('visible');
+      }, 800);
+    }
+
+    setTimeout(() => {
+      document.getElementById('results').scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }, 100);
+
+    // Personalize the lead form greeting with gate name
+    const gateName = document.getElementById('gateFirstName').value.trim();
+    if (gateName) {
+      const greetEl = document.querySelector('.lead-greeting');
+      if (greetEl) greetEl.textContent = `Hi ${gateName}, here's your next step:`;
+    }
+  }
 
   function submitLead() {
     clearAllErrors();
@@ -2698,6 +3057,54 @@
       });
     });
   }
+
+  // ── Browser back button handling ──
+  // Push history states so back button navigates within the calculator
+  (function() {
+    // When gate screen shows, push a state
+    const origShowResults = window.showResults;
+
+    // Watch for gate becoming visible
+    const gateEl = document.getElementById('leadGate');
+    const observer = new MutationObserver(() => {
+      if (gateEl.classList.contains('visible')) {
+        history.pushState({ screen: 'gate' }, '');
+      }
+    });
+    observer.observe(gateEl, { attributes: true, attributeFilter: ['class'] });
+
+    // Watch for results becoming visible
+    const resultsEl = document.getElementById('results');
+    const resultsObserver = new MutationObserver(() => {
+      if (resultsEl.classList.contains('visible')) {
+        history.pushState({ screen: 'results' }, '');
+      }
+    });
+    resultsObserver.observe(resultsEl, { attributes: true, attributeFilter: ['class'] });
+
+    window.addEventListener('popstate', function(e) {
+      const state = e.state;
+
+      // If on results, go back to gate (but gate was already submitted, so just scroll up)
+      if (document.getElementById('results').classList.contains('visible') && !document.getElementById('leadGate').classList.contains('visible')) {
+        // Don't hide results if gate was submitted — let them stay
+        return;
+      }
+
+      // If on gate screen, go back to last calculator step (step 5)
+      if (document.getElementById('leadGate').classList.contains('visible')) {
+        document.getElementById('leadGate').classList.remove('visible');
+        window._resultsReady = false;
+        // Reset gate button
+        const gateBtn = document.getElementById('gateSubmitBtn');
+        if (gateBtn) { gateBtn.disabled = false; gateBtn.textContent = 'Show My Results →'; }
+        // Go to step 5 (last question)
+        goToStep(5);
+        window.scrollTo({ top: document.querySelector('.card').offsetTop - 20, behavior: 'smooth' });
+        return;
+      }
+    });
+  })();
 </script>
 </body>
 </html>
