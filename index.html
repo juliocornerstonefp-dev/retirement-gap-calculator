@@ -2801,8 +2801,14 @@
     const ghlContact = fetch('https://services.leadconnectorhq.com/contacts/', {
       method: 'POST', headers: GHL_HEADERS, body: JSON.stringify(payload)
     }).then(r => r.json()).then(data => {
-      const contactId = data.contact?.id;
-      if (!contactId) return;
+      console.log('GHL contact response:', JSON.stringify(data));
+      // Handle both new contact and duplicate/upsert responses
+      const contactId = data.contact?.id || data.id || data.contactId;
+      if (!contactId) {
+        console.warn('GHL: No contactId found in response', data);
+        return;
+      }
+      console.log('GHL: Creating opportunity for contact', contactId);
       return fetch('https://services.leadconnectorhq.com/opportunities/', {
         method: 'POST', headers: GHL_HEADERS,
         body: JSON.stringify({
@@ -2813,8 +2819,10 @@
           name: `${gateName} — Retirement Gap Lead (Gate)`,
           status: 'open', monetaryValue: 0
         })
+      }).then(r => r.json()).then(oppData => {
+        console.log('GHL opportunity response:', JSON.stringify(oppData));
       });
-    }).catch(() => {});
+    }).catch(err => { console.error('GHL gate error:', err); });
 
     const webhookData = {
       ...payload,
