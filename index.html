@@ -1188,6 +1188,105 @@
       .gate-trust span { font-size: 11px; }
     }
 
+    /* ── NO-GAP OPTIMIZATION SECTION ── */
+    .no-gap-section {
+      margin-bottom: 30px;
+    }
+    .no-gap-intro {
+      text-align: center;
+      margin-bottom: 24px;
+    }
+    .no-gap-intro h3 {
+      font-size: clamp(20px, 3.5vw, 26px);
+      font-weight: 700;
+      font-family: var(--serif);
+      color: var(--dark);
+      margin-bottom: 10px;
+      line-height: 1.3;
+    }
+    .no-gap-intro h3 span { color: var(--gold); }
+    .no-gap-intro p {
+      font-size: 15px;
+      color: var(--body);
+      line-height: 1.6;
+      max-width: 520px;
+      margin: 0 auto;
+    }
+    .no-gap-cards {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+      margin-bottom: 24px;
+    }
+    @media (max-width: 600px) { .no-gap-cards { grid-template-columns: 1fr; } }
+    .no-gap-card {
+      background: #FFFFFF;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 24px 16px;
+      text-align: center;
+      transition: transform 0.2s, border-color 0.2s, background 0.2s;
+    }
+    .no-gap-card:hover {
+      transform: translateY(-3px);
+      border-color: var(--gold-border);
+      background: var(--gold-subtle);
+    }
+    .no-gap-card-icon { font-size: 36px; margin-bottom: 12px; }
+    .no-gap-card-title {
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--dark);
+      margin-bottom: 8px;
+    }
+    .no-gap-card-desc {
+      font-size: 13px;
+      color: var(--body);
+      line-height: 1.5;
+    }
+    .no-gap-cta-box {
+      background: var(--gold-subtle);
+      border: 1px solid var(--gold-border);
+      border-radius: 12px;
+      padding: 32px 24px;
+      text-align: center;
+    }
+    .no-gap-cta-box h4 {
+      font-size: 18px;
+      font-weight: 700;
+      font-family: var(--serif);
+      color: var(--dark);
+      margin-bottom: 10px;
+    }
+    .no-gap-cta-box p {
+      font-size: 14px;
+      color: var(--body);
+      line-height: 1.6;
+      max-width: 460px;
+      margin: 0 auto 20px;
+    }
+    .no-gap-cta-btn {
+      display: inline-block;
+      background: var(--gold);
+      color: #fff;
+      border: none;
+      border-radius: 6px;
+      font-family: var(--sans);
+      font-size: 16px;
+      font-weight: 600;
+      padding: 16px 32px;
+      cursor: pointer;
+      text-decoration: none;
+      letter-spacing: 0.3px;
+      transition: background 0.2s, box-shadow 0.2s;
+    }
+    .no-gap-cta-btn:hover { background: var(--gold-light); box-shadow: 0 8px 24px rgba(184,134,11,0.2); }
+    .no-gap-cta-micro {
+      font-size: 12px;
+      color: var(--light);
+      margin-top: 12px;
+    }
+
     /* recalc button */
     .recalc-btn {
       background: none;
@@ -1642,6 +1741,8 @@
         <div class="gate-fields">
           <input type="text" id="gateFirstName" placeholder="First Name *" />
           <div class="inline-error" id="gateFirstNameError"></div>
+          <input type="text" id="gateLastName" placeholder="Last Name *" />
+          <div class="inline-error" id="gateLastNameError"></div>
           <input type="email" id="gateEmail" placeholder="Email Address *" />
           <div class="inline-error" id="gateEmailError"></div>
           <input type="tel" id="gatePhone" placeholder="Phone (optional)" />
@@ -1814,6 +1915,40 @@
         <div class="levers-note">Or combine strategies — a financial advisor can help you find the right mix.</div>
       </div>
 
+      <!-- No-Gap Optimization Section (only when NO gap) -->
+      <div class="no-gap-section fade-in-section" data-delay="500" id="noGapSection" style="display:none;">
+        <div class="section-label">What's Next?</div>
+        <div class="no-gap-intro">
+          <h3>You're on track — but are you <span>optimized?</span></h3>
+          <p>Having enough saved is just the start. Most retirees leave money on the table in these three areas:</p>
+        </div>
+        <div class="no-gap-cards">
+          <div class="no-gap-card">
+            <div class="no-gap-card-icon">🏛️</div>
+            <div class="no-gap-card-title">Tax Optimization</div>
+            <div class="no-gap-card-desc">Are you withdrawing from the right accounts in the right order? A smart tax strategy could save you tens of thousands over retirement.</div>
+          </div>
+          <div class="no-gap-card">
+            <div class="no-gap-card-icon">🛡️</div>
+            <div class="no-gap-card-title">Risk Protection</div>
+            <div class="no-gap-card-desc">A single bad market year early in retirement can derail even the best plan. Sequence-of-returns risk is real — and avoidable.</div>
+          </div>
+          <div class="no-gap-card">
+            <div class="no-gap-card-icon">📋</div>
+            <div class="no-gap-card-title">Income Planning</div>
+            <div class="no-gap-card-desc">Social Security timing, Roth conversions, Medicare coordination — small decisions now can mean big differences later.</div>
+          </div>
+        </div>
+        <div class="no-gap-cta-box">
+          <h4>Let's make sure your plan is bulletproof</h4>
+          <p>In a free 15-minute call, I'll review your numbers and show you where you might be leaving money on the table — no obligation, no sales pitch.</p>
+          <a href="https://calendar.app.google/aFhisFRPopm52FQRA" target="_blank" rel="noopener" class="no-gap-cta-btn" onclick="if(typeof fbq==='function')fbq('track','Schedule',{content_name:'Discovery Call — No Gap',content_category:'Calculator'});">
+            Book My Free Strategy Call →
+          </a>
+          <div class="no-gap-cta-micro">Free. No obligation. 15-minute call with a licensed fiduciary.</div>
+        </div>
+      </div>
+
       <!-- Trust Signals Banner -->
       <div class="trust-banner fade-in-section" data-delay="550">
         <div class="trust-item">
@@ -1849,7 +1984,7 @@
           </div>
           <div id="emailError" class="inline-error"></div>
           <div class="form-row">
-            <input type="tel" id="phone" placeholder="Phone Number *" />
+            <input type="tel" id="phone" placeholder="Phone Number (optional)" />
           </div>
           <div id="phoneError" class="inline-error"></div>
           <div class="form-row">
@@ -2499,10 +2634,12 @@
       ctaEl.classList.add('on-track');
     }
 
-    // Close the Gap section
+    // Close the Gap section / No-Gap Optimization section
     const closeGapEl = document.getElementById('closeGapSection');
+    const noGapEl = document.getElementById('noGapSection');
     if (hasGap) {
       closeGapEl.style.display = 'block';
+      noGapEl.style.display = 'none';
 
       // Save More: PMT = FV * r / ((1+r)^n - 1)
       // Additional savings needed in future dollars to cover gap
@@ -2549,6 +2686,7 @@
       document.getElementById('leverSpendLess').textContent = fmt(Math.max(0, sustainableIncome)) + '/month';
     } else {
       closeGapEl.style.display = 'none';
+      noGapEl.style.display = 'block';
     }
 
     // Lead CTA text
@@ -2679,7 +2817,7 @@
 
 
   // ── Gate form: inline validation on blur ──
-  ['gateFirstName', 'gateEmail', 'gatePhone'].forEach(id => {
+  ['gateFirstName', 'gateLastName', 'gateEmail', 'gatePhone'].forEach(id => {
     const el = document.getElementById(id);
     if (!el) return;
     el.addEventListener('blur', function() {
@@ -2706,6 +2844,12 @@
         errEl.textContent = 'Please enter your first name.';
         return false;
       }
+    } else if (id === 'gateLastName') {
+      if (!val) {
+        el.classList.add('input-error');
+        errEl.textContent = 'Please enter your last name.';
+        return false;
+      }
     } else if (id === 'gateEmail') {
       if (!val || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(val)) {
         el.classList.add('input-error');
@@ -2724,14 +2868,16 @@
 
   function submitGate() {
     // Validate all gate fields
-    const nameOk  = validateGateField('gateFirstName');
-    const emailOk = validateGateField('gateEmail');
-    const phoneOk = validateGateField('gatePhone');
-    if (!nameOk || !emailOk || !phoneOk) return;
+    const nameOk     = validateGateField('gateFirstName');
+    const lastNameOk = validateGateField('gateLastName');
+    const emailOk    = validateGateField('gateEmail');
+    const phoneOk    = validateGateField('gatePhone');
+    if (!nameOk || !lastNameOk || !emailOk || !phoneOk) return;
 
-    const gateName  = document.getElementById('gateFirstName').value.trim();
-    const gateEmail = document.getElementById('gateEmail').value.trim();
-    const gatePhone = document.getElementById('gatePhone').value.trim();
+    const gateName     = document.getElementById('gateFirstName').value.trim();
+    const gateLastName = document.getElementById('gateLastName').value.trim();
+    const gateEmail    = document.getElementById('gateEmail').value.trim();
+    const gatePhone    = document.getElementById('gatePhone').value.trim();
 
     // Disable button, show loading state
     const btn = document.getElementById('gateSubmitBtn');
@@ -2742,12 +2888,14 @@
 
     // Pre-fill the existing lead form fields so submitLead() can still be used later
     document.getElementById('firstName').value = gateName;
+    document.getElementById('lastName').value = gateLastName;
     document.getElementById('email').value = gateEmail;
     if (gatePhone) document.getElementById('phone').value = gatePhone;
 
     // Store lead data in localStorage as fallback
     const leadData = {
       firstName: gateName,
+      lastName: gateLastName,
       email: gateEmail,
       phone: gatePhone,
       monthlyGap: r.monthlyGap ? fmt(r.monthlyGap) : document.getElementById('verdictAmount').textContent,
@@ -2776,12 +2924,12 @@
 
     const payload = {
       firstName: gateName,
-      lastName: '',
+      lastName: gateLastName,
       email: gateEmail,
       phone: gatePhone,
       locationId: '4h1PA7Uu73HYw1oGPHkN',
       source: 'Retirement Gap Calculator — Lead Gate',
-      tags: [hasGap ? 'Has Income Gap' : 'On Track', 'Retirement Lead', 'Calculator Lead', 'Lead Gate'],
+      tags: [hasGap ? 'Has Income Gap' : 'On Track', 'Retirement Lead', 'Calculator Lead', 'Lead Gate', 'Send Results Email'],
       customFields: [
         { id: '4CUCbPytQo6dq9O7HnKm', value: currentAge },
         { id: '2RAOG4o6o1aU8KLhIMMj', value: retireAge },
@@ -2816,7 +2964,7 @@
           pipelineId: 'JnzfBlYqPhMXaU8Jmd8e',
           pipelineStageId: 'b37d5a65-9b80-464a-8afd-1572976554a7',
           contactId: contactId,
-          name: `${gateName} — Retirement Gap Lead (Gate)`,
+          name: `${gateName} ${gateLastName} — Retirement Gap Lead (Gate)`,
           status: 'open', monetaryValue: 0
         })
       }).then(r => r.json()).then(oppData => {
@@ -2839,9 +2987,9 @@
       method: 'POST',
       headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
       body: JSON.stringify({
-        _subject: `🔔 New Lead Gate: ${gateName} — ${hasGap ? 'Has Income Gap' : 'On Track'}`,
+        _subject: `🔔 New Lead Gate: ${gateName} ${gateLastName} — ${hasGap ? 'Has Income Gap' : 'On Track'}`,
         _template: 'table',
-        'Lead Name': gateName,
+        'Lead Name': `${gateName} ${gateLastName}`,
         'Email': gateEmail,
         'Phone': gatePhone || 'Not provided',
         'Status': hasGap ? '⚠️ Has Income Gap' : '✅ On Track',
@@ -2860,7 +3008,37 @@
       })
     }).catch(() => {});
 
-    Promise.allSettled([ghlContact, ghlWebhook, emailNotification]).then(() => {
+    // Send results email to the user via formsubmit.co (CC to user)
+    const statusEmoji = hasGap ? '⚠️' : '✅';
+    const statusText = hasGap ? 'Income Gap Detected' : 'On Track';
+    const userEmailBody = {
+      _subject: `Your Retirement Income Gap Results — Cornerstone Financial Partners`,
+      _template: 'table',
+      _cc: gateEmail,
+      _replyto: 'julio.cornerstonefp@gmail.com',
+      'Hi': `${gateName}, here are your personalized retirement results:`,
+      'Status': `${statusEmoji} ${statusText}`,
+      'Monthly Gap/Surplus': monthlyGap,
+      'Current Age': currentAge,
+      'Planned Retirement Age': retireAge,
+      'Current Savings': '$' + Number(savings).toLocaleString(),
+      'Desired Monthly Income': '$' + Number(monthly).toLocaleString() + '/mo',
+      'Social Security Income': '$' + Number(ssIncomeVal).toLocaleString() + '/mo',
+      'Other Guaranteed Income': '$' + Number(otherIncomeVal).toLocaleString() + '/mo',
+      'Projected Savings at Retirement': futureSavings,
+      'Lifetime Shortfall': lifetimeGap,
+      'Probability of Success': probScoreVal + '%',
+      'Money Runs Out At Age': runOutAgeVal >= 95 ? '95+' : String(runOutAgeVal),
+      'Next Step': 'Book a free 15-minute call: https://calendar.app.google/aFhisFRPopm52FQRA',
+      'Source': 'Cornerstone Financial Partners — Retirement Income Gap Calculator'
+    };
+    const userResultsEmail = fetch('https://formsubmit.co/ajax/julio.cornerstonefp@gmail.com', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+      body: JSON.stringify(userEmailBody)
+    }).catch(() => {});
+
+    Promise.allSettled([ghlContact, ghlWebhook, emailNotification, userResultsEmail]).then(() => {
       // Fire Meta Pixel custom event
       if (typeof fbq === 'function') {
         fbq('trackCustom', 'LeadGateSubmitted');
@@ -2902,10 +3080,10 @@
     }, 100);
 
     // Personalize the lead form greeting with gate name
-    const gateName = document.getElementById('gateFirstName').value.trim();
-    if (gateName) {
+    const gateNameForGreeting = document.getElementById('gateFirstName').value.trim();
+    if (gateNameForGreeting) {
       const greetEl = document.querySelector('.lead-greeting');
-      if (greetEl) greetEl.textContent = `Hi ${gateName}, here's your next step:`;
+      if (greetEl) greetEl.textContent = `Hi ${gateNameForGreeting}, here's your next step:`;
     }
   }
 
@@ -2935,7 +3113,7 @@
       document.getElementById('emailError').textContent = 'Please enter a valid email address.';
       hasError = true;
     }
-    if (!phone || phone.replace(/\D/g,'').length < 7) {
+    if (phone && phone.replace(/\D/g,'').length < 7) {
       document.getElementById('phone').classList.add('input-error');
       document.getElementById('phoneError').textContent = 'Please enter a valid phone number.';
       hasError = true;
@@ -2969,7 +3147,7 @@
       phone: phone,
       locationId: '4h1PA7Uu73HYw1oGPHkN',
       source: 'Retirement Gap Calculator',
-      tags: [hasGap ? 'Has Income Gap' : 'On Track', 'Retirement Lead', 'Calculator Lead', 'Has Phone'],
+      tags: [hasGap ? 'Has Income Gap' : 'On Track', 'Retirement Lead', 'Calculator Lead', ...(phone ? ['Has Phone'] : [])],
       customFields: [
         { id: '4CUCbPytQo6dq9O7HnKm', value: currentAge },
         { id: '2RAOG4o6o1aU8KLhIMMj', value: retireAge },
