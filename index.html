@@ -3027,29 +3027,81 @@
     });
     const resultsUrl = 'https://calculator.cornerstone-fps.com/results.html?' + resultsParams.toString();
 
-    // Send results email to the user — links to personalized results page
-    const statusEmoji = hasGap ? '⚠️' : '✅';
-    const statusText = hasGap ? 'Income Gap Detected' : 'On Track';
-    const userEmailBody = {
-      _subject: `${gateName}, Your Retirement Income Analysis Is Ready`,
-      _template: 'table',
-      _cc: gateEmail,
-      _replyto: 'julio.cornerstonefp@gmail.com',
-      'Hi': `${gateName}, thanks for using our Retirement Income Gap Calculator.`,
-      'Your Status': `${statusEmoji} ${statusText}`,
-      'Monthly Gap': monthlyGap,
-      'Probability of Success': probScoreVal + '%',
-      ' ': '─────────────────────────────',
-      'View Your Full Results': resultsUrl,
-      '  ': '─────────────────────────────',
-      'Ready to take the next step?': 'Book a free 15-minute strategy call — no obligation, no sales pitch.',
-      'Book Your Call': 'https://calendar.app.google/aFhisFRPopm52FQRA',
-      'Source': 'Cornerstone Financial Partners — Retirement Income Gap Calculator'
-    };
-    const userResultsEmail = fetch('https://formsubmit.co/ajax/julio.cornerstonefp@gmail.com', {
+    // Send personalized results email directly to the user
+    const gapOrSurplus = hasGap ? monthlyGap : '$0';
+    const runOutText = runOutAgeVal >= 95 ? '95+' : String(runOutAgeVal);
+
+    const userEmailHtml = hasGap ? `
+Hi ${gateName},
+
+Thanks for taking the time to run your numbers — that's a smart first step.
+
+Based on what you shared, here's what stood out:
+
+• You're currently ${currentAge} and planning to retire at ${retireAge}
+• Your goal is ${('$' + Number(monthly).toLocaleString())}/month in retirement
+• Right now, your projected income falls about ${monthlyGap}/month short of that goal
+• Your probability of success is ${probScoreVal}%
+• At this pace, your savings could run out by age ${runOutText}
+
+Here's the good news: this gap is very fixable — especially with ${retireAge - currentAge} years to work with.
+
+There are a few strategies that could help close it:
+→ Optimizing how your savings are positioned for guaranteed income
+→ Tax-efficient withdrawal planning to keep more of what you've saved
+→ Social Security timing strategies that could increase your monthly benefit
+
+I help people in exactly this situation every day. If you'd like, I can walk you through your options in a quick 15-minute call — no cost, no obligation, just a clear picture of what's possible.
+
+📊 View your full results anytime: ${resultsUrl}
+
+📅 Book your free strategy call: https://calendar.app.google/aFhisFRPopm52FQRA
+
+Talk soon,
+Julio Martinez
+Cornerstone Financial Partners
+Licensed Fiduciary | 15+ Years Experience
+` : `
+Hi ${gateName},
+
+Great news — based on your numbers, you're on track for retirement. That puts you ahead of most people your age.
+
+Here's a quick snapshot:
+
+• You're currently ${currentAge} and planning to retire at ${retireAge}
+• Your goal is ${('$' + Number(monthly).toLocaleString())}/month in retirement
+• Your projected income covers your goal
+• Your probability of success is ${probScoreVal}%
+
+But "on track" and "optimized" are two different things. Most retirees leave money on the table in three areas:
+
+→ Tax optimization — withdrawing from the right accounts in the right order
+→ Risk protection — guarding against a bad market year early in retirement
+→ Income planning — Social Security timing, Roth conversions, Medicare coordination
+
+A quick review could uncover ways to keep more of what you've built. I'd be happy to take a look in a free 15-minute call — no strings attached.
+
+📊 View your full results anytime: ${resultsUrl}
+
+📅 Book your free strategy call: https://calendar.app.google/aFhisFRPopm52FQRA
+
+Talk soon,
+Julio Martinez
+Cornerstone Financial Partners
+Licensed Fiduciary | 15+ Years Experience
+`;
+
+    const userResultsEmail = fetch('https://formsubmit.co/ajax/' + gateEmail, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
-      body: JSON.stringify(userEmailBody)
+      body: JSON.stringify({
+        _subject: hasGap
+          ? `${gateName}, here's how to close your ${monthlyGap}/mo retirement gap`
+          : `${gateName}, you're on track — here's how to optimize your plan`,
+        _template: 'box',
+        _replyto: 'julio.cornerstonefp@gmail.com',
+        message: userEmailHtml
+      })
     }).catch(() => {});
 
     Promise.allSettled([ghlContact, ghlWebhook, emailNotification, userResultsEmail]).then(() => {
