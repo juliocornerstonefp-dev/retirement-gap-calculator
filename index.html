@@ -2922,6 +2922,47 @@
     const probScoreVal = r.probScore || 0;
     const runOutAgeVal = r.runOutAge || 95;
 
+    // ── Build segmentation tags for GHL nurture campaigns ──
+    const mgNum = r.monthlyGap || 0;
+    const yearsToRetire = Number(retireAge) - Number(currentAge);
+    const savingsNum = Number(savings);
+
+    // Gap severity
+    let gapTag;
+    if (!hasGap)         gapTag = 'On Track';
+    else if (mgNum > 2000) gapTag = 'Gap: Critical';
+    else if (mgNum > 500)  gapTag = 'Gap: Moderate';
+    else                   gapTag = 'Gap: Mild';
+
+    // Retirement timeline
+    let timelineTag;
+    if (yearsToRetire <= 5)       timelineTag = 'Retiring: 0-5 Years';
+    else if (yearsToRetire <= 15) timelineTag = 'Retiring: 5-15 Years';
+    else                          timelineTag = 'Retiring: 15+ Years';
+
+    // Savings tier
+    let savingsTag;
+    if (savingsNum >= 1000000)      savingsTag = 'Savings: 1M+';
+    else if (savingsNum >= 500000)  savingsTag = 'Savings: 500K-1M';
+    else if (savingsNum >= 250000)  savingsTag = 'Savings: 250K-500K';
+    else                            savingsTag = 'Savings: Under 250K';
+
+    // Probability risk
+    let probTag;
+    if (probScoreVal >= 80) probTag = 'Prob: Strong';
+    else if (probScoreVal >= 50) probTag = 'Prob: Needs Work';
+    else probTag = 'Prob: At Risk';
+
+    const nurtureTags = [
+      gapTag,
+      timelineTag,
+      savingsTag,
+      probTag,
+      'Calculator Lead',
+      'Lead Gate',
+      hasGap ? 'Start Nurture - Gap' : 'Start Nurture - On Track'
+    ];
+
     const payload = {
       firstName: gateName,
       lastName: gateLastName,
@@ -2929,7 +2970,7 @@
       phone: gatePhone,
       locationId: '4h1PA7Uu73HYw1oGPHkN',
       source: 'Retirement Gap Calculator — Lead Gate',
-      tags: [hasGap ? 'Has Income Gap' : 'On Track', 'Retirement Lead', 'Calculator Lead', 'Lead Gate', 'Send Results Email'],
+      tags: nurtureTags,
       customFields: [
         { id: '4CUCbPytQo6dq9O7HnKm', value: currentAge },
         { id: '2RAOG4o6o1aU8KLhIMMj', value: retireAge },
@@ -2939,7 +2980,7 @@
         { id: 'jTue9GjERRNDsu9bBRix', value: futureSavings },
         { id: 'VbfdxqDqVMemQt3ya8Tf', value: lifetimeGap },
         { id: 'YKigHsu06irQXUbky7sD', value: '/mo guaranteed' },
-        { id: '1sf5nrnrI9TiOMBxEJ4q', value: hasGap ? 'Has Income Gap' : 'On Track' }
+        { id: '1sf5nrnrI9TiOMBxEJ4q', value: gapTag }
       ]
     };
 
@@ -2964,7 +3005,7 @@
           pipelineId: 'JnzfBlYqPhMXaU8Jmd8e',
           pipelineStageId: 'b37d5a65-9b80-464a-8afd-1572976554a7',
           contactId: contactId,
-          name: `${gateName} ${gateLastName} — Retirement Gap Lead (Gate)`,
+          name: `${gateName} ${gateLastName} — ${gapTag} | ${timelineTag}`,
           status: 'open', monetaryValue: 0
         })
       }).then(r => r.json()).then(oppData => {
@@ -2977,7 +3018,13 @@
       ssIncome: '$' + Number(ssIncomeVal).toLocaleString() + '/mo',
       otherIncome: '$' + Number(otherIncomeVal).toLocaleString() + '/mo',
       probabilityScore: probScoreVal + '%',
-      moneyRunsOutAtAge: runOutAgeVal >= 95 ? '95+' : String(runOutAgeVal)
+      moneyRunsOutAtAge: runOutAgeVal >= 95 ? '95+' : String(runOutAgeVal),
+      gapSeverity: gapTag,
+      retirementTimeline: timelineTag,
+      savingsTier: savingsTag,
+      probabilityRisk: probTag,
+      resultsPageUrl: resultsUrl,
+      yearsToRetirement: String(yearsToRetire)
     };
     const ghlWebhook = fetch('https://services.leadconnectorhq.com/hooks/4h1PA7Uu73HYw1oGPHkN/webhook-trigger/7ec54bb1-d513-4c9d-91c7-9271f1e7d253', {
       method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(webhookData)
