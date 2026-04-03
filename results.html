@@ -1,0 +1,743 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Your Retirement Results | Cornerstone Financial Partners</title>
+  <meta name="robots" content="noindex, nofollow" />
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="My Retirement Income Gap Results" />
+  <meta property="og:description" content="See your personalized retirement income gap analysis from Cornerstone Financial Partners." />
+  <meta property="og:image" content="https://calculator.cornerstone-fps.com/og-image.png" />
+
+  <!-- Microsoft Clarity -->
+  <script type="text/javascript">
+    (function(c,l,a,r,i,t,y){
+        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+    })(window, document, "clarity", "script", "vwdzwmahjw");
+  </script>
+
+  <!-- Meta Pixel -->
+  <script>
+    !function(f,b,e,v,n,t,s)
+    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+    n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];
+    s.parentNode.insertBefore(t,s)}(window, document,'script',
+    'https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init', '1246799334264348');
+    fbq('track', 'PageView');
+    fbq('trackCustom', 'ViewResults');
+  </script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --gold: #B8860B;
+      --gold-light: #D4A843;
+      --gold-subtle: #F8F3E8;
+      --gold-border: #E8D5A8;
+      --dark: #1A1A1A;
+      --body: #4A4A4A;
+      --light: #7A7A7A;
+      --muted: #A0A0A0;
+      --bg: #FFFFFF;
+      --bg-alt: #FAFAF8;
+      --bg-warm: #F5F3EE;
+      --border: #EDEBE6;
+      --footer-bg: #2C2416;
+      --red: #C0392B;
+      --red-light: #E74C3C;
+      --green: #27AE60;
+      --green-light: #2ECC71;
+      --serif: 'Playfair Display', Georgia, serif;
+      --sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    }
+
+    html { scroll-behavior: smooth; }
+    body { font-family: var(--sans); background: #FFFFFF; color: var(--body); min-height: 100vh; }
+
+    /* ── TOPBAR ── */
+    .topbar {
+      background: #FFFFFF;
+      padding: 16px 40px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid var(--border);
+    }
+    .topbar img { height: 54px; width: auto; display: block; }
+    .topbar-cta {
+      display: inline-block;
+      background: var(--gold);
+      color: #fff;
+      font-family: var(--sans);
+      font-size: 14px;
+      font-weight: 600;
+      padding: 10px 20px;
+      border-radius: 6px;
+      text-decoration: none;
+      transition: background 0.2s, box-shadow 0.2s;
+    }
+    .topbar-cta:hover { background: var(--gold-light); box-shadow: 0 8px 24px rgba(184,134,11,0.2); }
+    @media (max-width: 480px) { .topbar img { height: 40px; } .topbar { padding: 12px 16px; } .topbar-cta { font-size: 12px; padding: 8px 14px; } }
+
+    /* ── CONTAINER ── */
+    .container { max-width: 720px; margin: 0 auto; padding: 40px 20px 80px; }
+
+    /* ── GREETING ── */
+    .greeting {
+      text-align: center;
+      margin-bottom: 40px;
+    }
+    .greeting .badge {
+      display: inline-block;
+      background: var(--gold-subtle);
+      border: 1px solid var(--gold-border);
+      color: var(--gold);
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      padding: 6px 16px;
+      border-radius: 100px;
+      margin-bottom: 16px;
+    }
+    .greeting h1 {
+      font-family: var(--serif);
+      font-size: clamp(24px, 4vw, 40px);
+      font-weight: 500;
+      color: var(--dark);
+      line-height: 1.2;
+      margin-bottom: 8px;
+    }
+    .greeting h1 span { color: var(--gold); }
+    .greeting p {
+      font-size: 16px;
+      color: var(--light);
+      line-height: 1.6;
+    }
+
+    /* ── VERDICT CARD ── */
+    .verdict-card {
+      border-radius: 12px;
+      padding: 32px;
+      text-align: center;
+      margin-bottom: 32px;
+      border: 1px solid var(--border);
+      box-shadow: 0 4px 20px rgba(0,0,0,0.04);
+    }
+    .verdict-card.gap { background: linear-gradient(135deg, #FFF5F5, #FFFFFF); border-color: #f5c6cb; }
+    .verdict-card.on-track { background: linear-gradient(135deg, #F0FFF4, #FFFFFF); border-color: #c3e6cb; }
+    .verdict-icon { font-size: 48px; margin-bottom: 12px; }
+    .verdict-label {
+      font-size: 14px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      margin-bottom: 8px;
+    }
+    .verdict-card.gap .verdict-label { color: var(--red); }
+    .verdict-card.on-track .verdict-label { color: var(--green); }
+    .verdict-amount {
+      font-family: var(--serif);
+      font-size: clamp(36px, 6vw, 56px);
+      font-weight: 700;
+      margin-bottom: 4px;
+    }
+    .verdict-card.gap .verdict-amount { color: var(--red); }
+    .verdict-card.on-track .verdict-amount { color: var(--green); }
+    .verdict-sub {
+      font-size: 14px;
+      color: var(--light);
+    }
+
+    /* ── PROBABILITY BAR ── */
+    .prob-section {
+      background: var(--bg-alt);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 24px 28px;
+      margin-bottom: 32px;
+    }
+    .prob-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      margin-bottom: 12px;
+    }
+    .prob-title { font-size: 14px; font-weight: 600; color: var(--dark); }
+    .prob-value { font-size: 28px; font-weight: 700; }
+    .prob-track {
+      height: 12px;
+      background: var(--border);
+      border-radius: 6px;
+      overflow: hidden;
+      position: relative;
+    }
+    .prob-fill {
+      height: 100%;
+      border-radius: 6px;
+      transition: width 1.2s ease-out;
+      width: 0%;
+    }
+    .prob-markers {
+      display: flex;
+      justify-content: space-between;
+      font-size: 11px;
+      color: var(--muted);
+      margin-top: 6px;
+    }
+
+    /* ── STATS GRID ── */
+    .stats-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin-bottom: 32px;
+    }
+    .stat-card {
+      background: var(--bg-alt);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 20px;
+      text-align: center;
+    }
+    .stat-value {
+      font-family: var(--serif);
+      font-size: 24px;
+      font-weight: 700;
+      color: var(--dark);
+      margin-bottom: 4px;
+    }
+    .stat-label {
+      font-size: 12px;
+      color: var(--light);
+      line-height: 1.4;
+    }
+
+    /* ── INCOME BREAKDOWN ── */
+    .breakdown-section {
+      margin-bottom: 32px;
+    }
+    .section-title {
+      font-size: 13px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      color: var(--gold);
+      margin-bottom: 16px;
+    }
+    .breakdown-bar {
+      height: 28px;
+      border-radius: 14px;
+      overflow: hidden;
+      display: flex;
+      margin-bottom: 12px;
+    }
+    .seg-ss { background: #3498db; }
+    .seg-other { background: #9b59b6; }
+    .seg-portfolio { background: var(--green); }
+    .seg-gap { background: var(--red-light); }
+    .legend {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      font-size: 13px;
+      color: var(--body);
+    }
+    .legend-item { display: flex; align-items: center; gap: 6px; }
+    .legend-dot { width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; }
+
+    /* ── WHAT THIS MEANS ── */
+    .insight-box {
+      background: var(--gold-subtle);
+      border: 1px solid var(--gold-border);
+      border-radius: 12px;
+      padding: 24px 28px;
+      margin-bottom: 32px;
+    }
+    .insight-box h3 {
+      font-family: var(--serif);
+      font-size: 20px;
+      color: var(--dark);
+      margin-bottom: 12px;
+    }
+    .insight-box p {
+      font-size: 15px;
+      color: var(--body);
+      line-height: 1.7;
+    }
+    .insight-box ul {
+      margin-top: 12px;
+      padding-left: 20px;
+    }
+    .insight-box li {
+      font-size: 15px;
+      color: var(--body);
+      line-height: 1.7;
+      margin-bottom: 6px;
+    }
+
+    /* ── CTA CARD ── */
+    .cta-card {
+      background: linear-gradient(135deg, #2C2416, #3D321F);
+      border-radius: 16px;
+      padding: 40px 32px;
+      text-align: center;
+      margin-bottom: 32px;
+    }
+    .cta-card h2 {
+      font-family: var(--serif);
+      font-size: clamp(22px, 4vw, 32px);
+      font-weight: 500;
+      color: #FFFFFF;
+      margin-bottom: 12px;
+      line-height: 1.2;
+    }
+    .cta-card h2 span { color: var(--gold-light); }
+    .cta-card p {
+      font-size: 15px;
+      color: #CCBFA0;
+      line-height: 1.6;
+      max-width: 480px;
+      margin: 0 auto 24px;
+    }
+    .cta-btn {
+      display: inline-block;
+      background: var(--gold);
+      color: #FFFFFF;
+      font-family: var(--sans);
+      font-size: 17px;
+      font-weight: 600;
+      text-decoration: none;
+      padding: 18px 40px;
+      border-radius: 8px;
+      transition: background 0.2s, box-shadow 0.2s, transform 0.2s;
+      box-shadow: 0 4px 16px rgba(184,134,11,0.3);
+    }
+    .cta-btn:hover {
+      background: var(--gold-light);
+      box-shadow: 0 8px 32px rgba(184,134,11,0.4);
+      transform: translateY(-1px);
+    }
+    .cta-micro {
+      margin-top: 16px;
+      font-size: 13px;
+      color: #A09070;
+    }
+    .cta-trust {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      margin-top: 20px;
+      font-size: 12px;
+      color: #CCBFA0;
+    }
+
+    /* ── TRUST BANNER ── */
+    .trust-banner {
+      display: flex;
+      justify-content: center;
+      gap: 40px;
+      padding: 24px;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      margin-bottom: 32px;
+    }
+    .trust-item { text-align: center; }
+    .trust-value { font-family: var(--serif); font-size: 22px; font-weight: 700; color: var(--dark); }
+    .trust-desc { font-size: 12px; color: var(--light); margin-top: 2px; }
+
+    /* ── SECOND CTA (STICKY) ── */
+    .sticky-cta {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: #FFFFFF;
+      border-top: 1px solid var(--border);
+      padding: 12px 20px;
+      text-align: center;
+      z-index: 100;
+      box-shadow: 0 -4px 20px rgba(0,0,0,0.08);
+      display: none;
+    }
+    .sticky-cta a {
+      display: inline-block;
+      background: var(--gold);
+      color: #FFFFFF;
+      font-family: var(--sans);
+      font-size: 15px;
+      font-weight: 600;
+      text-decoration: none;
+      padding: 14px 32px;
+      border-radius: 8px;
+      width: 100%;
+      max-width: 400px;
+    }
+    .sticky-cta a:hover { background: var(--gold-light); }
+
+    /* ── FOOTER ── */
+    .footer {
+      background: var(--footer-bg);
+      color: #A09070;
+      text-align: center;
+      padding: 32px 20px;
+      font-size: 12px;
+      line-height: 1.6;
+    }
+
+    /* ── ANIMATIONS ── */
+    .fade-in {
+      opacity: 0;
+      transform: translateY(16px);
+      transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+    }
+    .fade-in.visible { opacity: 1; transform: translateY(0); }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 600px) {
+      .container { padding: 24px 16px 120px; }
+      .verdict-card { padding: 24px 16px; }
+      .stats-grid { grid-template-columns: 1fr 1fr; gap: 10px; }
+      .stat-card { padding: 14px; }
+      .stat-value { font-size: 20px; }
+      .trust-banner { gap: 20px; flex-wrap: wrap; }
+      .cta-card { padding: 32px 20px; }
+      .cta-btn { padding: 16px 28px; font-size: 16px; width: 100%; }
+      .sticky-cta { display: block; }
+      .prob-section { padding: 20px; }
+      .insight-box { padding: 20px; }
+    }
+
+    /* ── EMPTY STATE ── */
+    .empty-state {
+      text-align: center;
+      padding: 80px 20px;
+    }
+    .empty-state h2 {
+      font-family: var(--serif);
+      font-size: 28px;
+      color: var(--dark);
+      margin-bottom: 12px;
+    }
+    .empty-state p {
+      font-size: 16px;
+      color: var(--light);
+      margin-bottom: 24px;
+    }
+    .empty-state a {
+      display: inline-block;
+      background: var(--gold);
+      color: #FFFFFF;
+      font-family: var(--sans);
+      font-size: 16px;
+      font-weight: 600;
+      text-decoration: none;
+      padding: 14px 32px;
+      border-radius: 8px;
+    }
+  </style>
+</head>
+<body>
+
+<!-- TOPBAR -->
+<div class="topbar">
+  <a href="https://www.cornerstone-fps.com"><img src="logo-color.png" alt="Cornerstone Financial Partners" /></a>
+  <a href="https://calendar.app.google/aFhisFRPopm52FQRA" target="_blank" rel="noopener" class="topbar-cta" id="topCta"
+     onclick="if(typeof fbq==='function')fbq('track','Schedule',{content_name:'Discovery Call — Results Page Top',content_category:'Calculator'});">
+    Book Free Call
+  </a>
+</div>
+
+<!-- MAIN CONTENT -->
+<div class="container" id="mainContent" style="display:none;">
+
+  <!-- GREETING -->
+  <div class="greeting fade-in">
+    <div class="badge">Your Personalized Results</div>
+    <h1><span id="greetName">Your</span> Retirement<br>Income Analysis</h1>
+    <p>Here's what your numbers tell us about your retirement readiness.</p>
+  </div>
+
+  <!-- VERDICT -->
+  <div class="verdict-card fade-in" id="verdictCard">
+    <div class="verdict-icon" id="verdictIcon"></div>
+    <div class="verdict-label" id="verdictLabel"></div>
+    <div class="verdict-amount" id="verdictAmount"></div>
+    <div class="verdict-sub" id="verdictSub"></div>
+  </div>
+
+  <!-- PROBABILITY -->
+  <div class="prob-section fade-in">
+    <div class="prob-header">
+      <div class="prob-title">Probability of Success</div>
+      <div class="prob-value" id="probValue">0%</div>
+    </div>
+    <div class="prob-track">
+      <div class="prob-fill" id="probFill"></div>
+    </div>
+    <div class="prob-markers"><span>0%</span><span>Target: 80%</span><span>100%</span></div>
+  </div>
+
+  <!-- STATS -->
+  <div class="stats-grid fade-in">
+    <div class="stat-card">
+      <div class="stat-value" id="statSavings">—</div>
+      <div class="stat-label">Projected savings at retirement</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-value" id="statMonthly">—</div>
+      <div class="stat-label">Monthly income your savings generate</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-value" id="statLifetime">—</div>
+      <div class="stat-label">Estimated lifetime income shortfall</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-value" id="statRunOut">—</div>
+      <div class="stat-label">Money runs out at age</div>
+    </div>
+  </div>
+
+  <!-- INCOME BREAKDOWN -->
+  <div class="breakdown-section fade-in">
+    <div class="section-title">Income Breakdown</div>
+    <div class="breakdown-bar" id="breakdownBar"></div>
+    <div class="legend" id="legendArea"></div>
+  </div>
+
+  <!-- INSIGHT BOX -->
+  <div class="insight-box fade-in" id="insightBox">
+    <!-- filled by JS -->
+  </div>
+
+  <!-- PRIMARY CTA -->
+  <div class="cta-card fade-in">
+    <h2>Let's build a plan to <span id="ctaAction">fix this</span></h2>
+    <p id="ctaDesc">In a free 15-minute call, I'll review your numbers and show you exactly what it takes to close your gap — no obligation, no sales pitch.</p>
+    <a href="https://calendar.app.google/aFhisFRPopm52FQRA" target="_blank" rel="noopener" class="cta-btn" id="ctaBtn"
+       onclick="if(typeof fbq==='function')fbq('track','Schedule',{content_name:'Discovery Call — Results Page',content_category:'Calculator'});">
+      Book My Free Strategy Call
+    </a>
+    <div class="cta-micro">Free. No obligation. 15-minute call with a licensed fiduciary.</div>
+    <div class="cta-trust">
+      <span>&#10003; No spam, ever</span>
+      <span>&#10003; 200+ families helped</span>
+      <span>&#10003; Licensed fiduciary</span>
+    </div>
+  </div>
+
+  <!-- TRUST -->
+  <div class="trust-banner fade-in">
+    <div class="trust-item">
+      <div class="trust-value">$2.4M+</div>
+      <div class="trust-desc">Retirement income secured</div>
+    </div>
+    <div class="trust-item">
+      <div class="trust-value">150+</div>
+      <div class="trust-desc">Families helped</div>
+    </div>
+    <div class="trust-item">
+      <div class="trust-value">15+</div>
+      <div class="trust-desc">Years experience</div>
+    </div>
+  </div>
+
+  <!-- RECALCULATE -->
+  <div style="text-align:center; margin-bottom: 20px;">
+    <a href="https://calculator.cornerstone-fps.com" style="font-size:14px; color:var(--gold); text-decoration:none; font-weight:500;">&larr; Recalculate My Numbers</a>
+  </div>
+</div>
+
+<!-- EMPTY STATE (no data) -->
+<div class="container" id="emptyState" style="display:none;">
+  <div class="empty-state">
+    <h2>No Results Found</h2>
+    <p>It looks like you haven't run the calculator yet. Answer 6 quick questions to see your personalized retirement analysis.</p>
+    <a href="https://calculator.cornerstone-fps.com">Take the Calculator &rarr;</a>
+  </div>
+</div>
+
+<!-- STICKY MOBILE CTA -->
+<div class="sticky-cta" id="stickyCta">
+  <a href="https://calendar.app.google/aFhisFRPopm52FQRA" target="_blank" rel="noopener"
+     onclick="if(typeof fbq==='function')fbq('track','Schedule',{content_name:'Discovery Call — Results Sticky',content_category:'Calculator'});">
+    Book My Free Strategy Call &rarr;
+  </a>
+</div>
+
+<!-- FOOTER -->
+<div class="footer">
+  <strong>Cornerstone Financial Partners</strong><br>
+  This calculator provides general educational estimates only and does not constitute financial, tax, or investment advice.<br>
+  Projections use age-adjusted growth rates, 4% withdrawal rule, 3% inflation, 22% tax rate, and plan through age 95. Actual results will vary.
+</div>
+
+<script>
+  // ── Read URL params ──
+  const params = new URLSearchParams(window.location.search);
+
+  function p(key) { return params.get(key) || ''; }
+  function pNum(key) { return parseFloat(params.get(key)) || 0; }
+
+  const firstName      = p('fn');
+  const hasGap         = p('gap') === '1';
+  const monthlyGap     = pNum('mg');
+  const probScore      = pNum('ps');
+  const futureSavings  = pNum('fs');
+  const monthlyGen     = pNum('mi');
+  const lifetimeGap    = pNum('lg');
+  const runOutAge      = pNum('ra');
+  const monthlyGoal    = pNum('goal');
+  const ssIncome       = pNum('ss');
+  const otherIncome    = pNum('oi');
+  const currentAge     = pNum('ca');
+  const retireAge      = pNum('ret');
+  const currentSavings = pNum('sav');
+
+  // ── Validate required data ──
+  if (!firstName || (!monthlyGap && !monthlyGen && !probScore)) {
+    document.getElementById('emptyState').style.display = 'block';
+  } else {
+    document.getElementById('mainContent').style.display = 'block';
+    renderResults();
+  }
+
+  function fmt(n) {
+    if (Math.abs(n) >= 1000000) return '$' + (n / 1000000).toFixed(1) + 'M';
+    if (Math.abs(n) >= 1000) return '$' + Math.round(n).toLocaleString();
+    return '$' + Math.round(n).toLocaleString();
+  }
+
+  function renderResults() {
+    // Greeting
+    document.getElementById('greetName').textContent = firstName + "'s";
+    document.title = firstName + "'s Retirement Results | Cornerstone Financial Partners";
+
+    // Verdict
+    const card = document.getElementById('verdictCard');
+    if (hasGap) {
+      card.classList.add('gap');
+      document.getElementById('verdictIcon').textContent = '\u26A0\uFE0F';
+      document.getElementById('verdictLabel').textContent = 'Monthly Income Gap Detected';
+      document.getElementById('verdictAmount').textContent = fmt(monthlyGap);
+      document.getElementById('verdictSub').textContent = 'per month short of your retirement goal (in today\'s dollars)';
+    } else {
+      card.classList.add('on-track');
+      document.getElementById('verdictIcon').textContent = '\u2705';
+      document.getElementById('verdictLabel').textContent = 'You\'re On Track';
+      document.getElementById('verdictAmount').textContent = monthlyGap > 0 ? '+' + fmt(monthlyGap) : fmt(0);
+      document.getElementById('verdictSub').textContent = 'monthly surplus — your income covers your retirement goal';
+    }
+
+    // Probability
+    const probEl = document.getElementById('probValue');
+    const fillEl = document.getElementById('probFill');
+    let barColor;
+    if (probScore < 50) barColor = '#e63946';
+    else if (probScore <= 70) barColor = '#e8a020';
+    else barColor = '#2a9d4f';
+    probEl.style.color = barColor;
+    fillEl.style.background = `linear-gradient(90deg, ${barColor}, ${barColor}dd)`;
+    setTimeout(() => { fillEl.style.width = probScore + '%'; }, 300);
+    animateCount(probEl, probScore, '%');
+
+    // Stats
+    document.getElementById('statSavings').textContent = fmt(futureSavings);
+    document.getElementById('statMonthly').textContent = fmt(monthlyGen) + '/mo';
+    document.getElementById('statLifetime').textContent = lifetimeGap > 0 ? fmt(lifetimeGap) : '$0';
+    document.getElementById('statRunOut').textContent = runOutAge >= 95 ? '95+' : String(Math.round(runOutAge));
+
+    // Income breakdown
+    const total = monthlyGoal || 1;
+    const ssPct = Math.round((ssIncome / total) * 100);
+    const oiPct = Math.round((otherIncome / total) * 100);
+    const portPct = Math.round((monthlyGen / total) * 100);
+    const gapPct = hasGap ? Math.max(0, 100 - ssPct - oiPct - portPct) : 0;
+
+    const bar = document.getElementById('breakdownBar');
+    if (ssPct > 0) bar.innerHTML += `<div class="seg-ss" style="width:${ssPct}%"></div>`;
+    if (oiPct > 0) bar.innerHTML += `<div class="seg-other" style="width:${oiPct}%"></div>`;
+    if (portPct > 0) bar.innerHTML += `<div class="seg-portfolio" style="width:${Math.min(portPct, 100 - ssPct - oiPct - gapPct)}%"></div>`;
+    if (gapPct > 0) bar.innerHTML += `<div class="seg-gap" style="width:${gapPct}%"></div>`;
+
+    const legend = document.getElementById('legendArea');
+    legend.innerHTML = `
+      <div class="legend-item"><div class="legend-dot" style="background:#3498db"></div>Social Security: ${fmt(ssIncome)}/mo</div>
+      ${otherIncome > 0 ? `<div class="legend-item"><div class="legend-dot" style="background:#9b59b6"></div>Other Income: ${fmt(otherIncome)}/mo</div>` : ''}
+      <div class="legend-item"><div class="legend-dot" style="background:var(--green)"></div>Portfolio: ${fmt(monthlyGen)}/mo</div>
+      ${hasGap ? `<div class="legend-item"><div class="legend-dot" style="background:var(--red-light)"></div>Gap: ${fmt(monthlyGap)}/mo</div>` : ''}
+    `;
+
+    // Insight box
+    const insight = document.getElementById('insightBox');
+    if (hasGap) {
+      const yearsToRetire = retireAge - currentAge;
+      insight.innerHTML = `
+        <h3>What This Means for You</h3>
+        <p>${firstName}, based on your current savings of ${fmt(currentSavings)} and planned retirement at age ${Math.round(retireAge)}, you're projected to fall <strong>${fmt(monthlyGap)}/month short</strong> of your ${fmt(monthlyGoal)}/month goal.</p>
+        <ul>
+          <li>Your savings could generate <strong>${fmt(monthlyGen)}/mo</strong> in retirement income</li>
+          <li>Combined with Social Security (${fmt(ssIncome)}/mo), you'd still have a <strong>${fmt(monthlyGap)} monthly gap</strong></li>
+          ${runOutAge < 95 ? `<li>At this rate, your money could run out by <strong>age ${Math.round(runOutAge)}</strong></li>` : ''}
+          <li>The good news: with ${yearsToRetire} years to retirement, <strong>this is very fixable</strong></li>
+        </ul>
+      `;
+      document.getElementById('ctaAction').textContent = 'close your gap';
+      document.getElementById('ctaDesc').textContent = `In a free 15-minute call, I'll review your numbers and show you exactly what it takes to close your ${fmt(monthlyGap)}/mo gap — no obligation, no sales pitch.`;
+    } else {
+      insight.innerHTML = `
+        <h3>You're in Great Shape, ${firstName}</h3>
+        <p>Your current savings trajectory puts you on track for retirement. But "on track" and "optimized" are two different things.</p>
+        <ul>
+          <li><strong>Tax optimization</strong> — Are you withdrawing from the right accounts in the right order?</li>
+          <li><strong>Risk protection</strong> — A single bad market year early in retirement can change everything</li>
+          <li><strong>Income planning</strong> — Social Security timing and Roth conversions could save you thousands</li>
+        </ul>
+      `;
+      document.getElementById('ctaAction').textContent = 'optimize your plan';
+      document.getElementById('ctaDesc').textContent = "In a free 15-minute call, I'll review your numbers and show you where you might be leaving money on the table — no obligation, no sales pitch.";
+    }
+
+    // Animate fade-ins
+    const sections = document.querySelectorAll('.fade-in');
+    sections.forEach((el, i) => {
+      setTimeout(() => el.classList.add('visible'), 150 * i);
+    });
+
+    // Show sticky CTA after scroll
+    setTimeout(() => {
+      window.addEventListener('scroll', function onScroll() {
+        if (window.scrollY > 400) {
+          document.getElementById('stickyCta').style.display = 'block';
+          window.removeEventListener('scroll', onScroll);
+        }
+      });
+    }, 1000);
+  }
+
+  function animateCount(el, target, suffix) {
+    const duration = 1200;
+    const start = performance.now();
+    function update(now) {
+      const progress = Math.min((now - start) / duration, 1);
+      const eased = 1 - Math.pow(1 - progress, 3);
+      el.textContent = Math.round(target * eased) + (suffix || '');
+      if (progress < 1) requestAnimationFrame(update);
+    }
+    requestAnimationFrame(update);
+  }
+</script>
+</body>
+</html>

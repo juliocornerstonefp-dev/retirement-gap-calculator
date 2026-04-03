@@ -3008,28 +3008,42 @@
       })
     }).catch(() => {});
 
-    // Send results email to the user via formsubmit.co (CC to user)
+    // Build personalized results page URL
+    const resultsParams = new URLSearchParams({
+      fn: gateName,
+      gap: hasGap ? '1' : '0',
+      mg: Math.round(r.monthlyGap || 0),
+      ps: Math.round(probScoreVal),
+      fs: Math.round(r.futureSavings || 0),
+      mi: Math.round(r.monthlyFromSavings || 0),
+      lg: Math.round(r.lifetimeGap || 0),
+      ra: Math.round(runOutAgeVal),
+      goal: Math.round(r.monthlyGoal || Number(monthly)),
+      ss: Math.round(r.ssIncome || Number(ssIncomeVal)),
+      oi: Math.round(r.otherIncome || Number(otherIncomeVal)),
+      ca: currentAge,
+      ret: retireAge,
+      sav: savings
+    });
+    const resultsUrl = 'https://calculator.cornerstone-fps.com/results.html?' + resultsParams.toString();
+
+    // Send results email to the user — links to personalized results page
     const statusEmoji = hasGap ? '⚠️' : '✅';
     const statusText = hasGap ? 'Income Gap Detected' : 'On Track';
     const userEmailBody = {
-      _subject: `Your Retirement Income Gap Results — Cornerstone Financial Partners`,
+      _subject: `${gateName}, Your Retirement Income Analysis Is Ready`,
       _template: 'table',
       _cc: gateEmail,
       _replyto: 'julio.cornerstonefp@gmail.com',
-      'Hi': `${gateName}, here are your personalized retirement results:`,
-      'Status': `${statusEmoji} ${statusText}`,
-      'Monthly Gap/Surplus': monthlyGap,
-      'Current Age': currentAge,
-      'Planned Retirement Age': retireAge,
-      'Current Savings': '$' + Number(savings).toLocaleString(),
-      'Desired Monthly Income': '$' + Number(monthly).toLocaleString() + '/mo',
-      'Social Security Income': '$' + Number(ssIncomeVal).toLocaleString() + '/mo',
-      'Other Guaranteed Income': '$' + Number(otherIncomeVal).toLocaleString() + '/mo',
-      'Projected Savings at Retirement': futureSavings,
-      'Lifetime Shortfall': lifetimeGap,
+      'Hi': `${gateName}, thanks for using our Retirement Income Gap Calculator.`,
+      'Your Status': `${statusEmoji} ${statusText}`,
+      'Monthly Gap': monthlyGap,
       'Probability of Success': probScoreVal + '%',
-      'Money Runs Out At Age': runOutAgeVal >= 95 ? '95+' : String(runOutAgeVal),
-      'Next Step': 'Book a free 15-minute call: https://calendar.app.google/aFhisFRPopm52FQRA',
+      ' ': '─────────────────────────────',
+      'View Your Full Results': resultsUrl,
+      '  ': '─────────────────────────────',
+      'Ready to take the next step?': 'Book a free 15-minute strategy call — no obligation, no sales pitch.',
+      'Book Your Call': 'https://calendar.app.google/aFhisFRPopm52FQRA',
       'Source': 'Cornerstone Financial Partners — Retirement Income Gap Calculator'
     };
     const userResultsEmail = fetch('https://formsubmit.co/ajax/julio.cornerstonefp@gmail.com', {
@@ -3044,13 +3058,8 @@
         fbq('trackCustom', 'LeadGateSubmitted');
       }
 
-      // Mark gate as submitted (prevents direct URL bypass)
-      window._gateSubmitted = true;
-      try { sessionStorage.setItem('cornerstone_gate_submitted', '1'); } catch(e) {}
-
-      // Hide gate, reveal results
-      document.getElementById('leadGate').classList.remove('visible');
-      revealResults();
+      // Redirect to personalized results page
+      window.location.href = resultsUrl;
     });
   }
 
