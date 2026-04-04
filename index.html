@@ -3326,49 +3326,7 @@
       });
     }).catch(err => { console.error('GHL gate error:', err); });
 
-    const webhookData = {
-      ...payload,
-      ssIncome: '$' + Number(ssIncomeVal).toLocaleString() + '/mo',
-      otherIncome: '$' + Number(otherIncomeVal).toLocaleString() + '/mo',
-      probabilityScore: probScoreVal + '%',
-      moneyRunsOutAtAge: runOutAgeVal >= 95 ? '95+' : String(runOutAgeVal),
-      gapSeverity: gapTag,
-      retirementTimeline: timelineTag,
-      savingsTier: savingsTag,
-      probabilityRisk: probTag,
-      resultsPageUrl: resultsUrl,
-      yearsToRetirement: String(yearsToRetire)
-    };
-    const ghlWebhook = fetch('https://services.leadconnectorhq.com/hooks/4h1PA7Uu73HYw1oGPHkN/webhook-trigger/7ec54bb1-d513-4c9d-91c7-9271f1e7d253', {
-      method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(webhookData)
-    }).catch(() => {});
-
-    const emailNotification = fetch('https://formsubmit.co/ajax/julio.cornerstonefp@gmail.com', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
-      body: JSON.stringify({
-        _subject: `🔔 New Lead Gate: ${gateName} ${gateLastName} — ${hasGap ? 'Has Income Gap' : 'On Track'}`,
-        _template: 'table',
-        'Lead Name': `${gateName} ${gateLastName}`,
-        'Email': gateEmail,
-        'Phone': gatePhone || 'Not provided',
-        'Status': hasGap ? '⚠️ Has Income Gap' : '✅ On Track',
-        'Current Age': currentAge,
-        'Retirement Age': retireAge,
-        'Current Savings': '$' + Number(savings).toLocaleString(),
-        'Desired Monthly Income': '$' + Number(monthly).toLocaleString(),
-        'Social Security Income': '$' + Number(ssIncomeVal).toLocaleString() + '/mo',
-        'Other Guaranteed Income': '$' + Number(otherIncomeVal).toLocaleString() + '/mo',
-        'Monthly Gap': monthlyGap,
-        'Projected Savings at Retirement': futureSavings,
-        'Lifetime Shortfall': lifetimeGap,
-        'Probability Score': probScoreVal + '%',
-        'Money Runs Out At Age': runOutAgeVal >= 95 ? '95+' : String(runOutAgeVal),
-        'Source': 'Retirement Gap Calculator — Lead Gate Submit'
-      })
-    }).catch(() => {});
-
-    // Build personalized results page URL
+    // Build personalized results page URL (must be before webhook/email so it's available)
     const resultsParams = new URLSearchParams({
       fn: gateName,
       gap: hasGap ? '1' : '0',
@@ -3451,7 +3409,49 @@ Cornerstone Financial Partners
 Licensed Fiduciary | 15+ Years Experience
 `;
 
-    const userResultsEmail = fetch('https://formsubmit.co/ajax/' + gateEmail, {
+    const webhookData = {
+      ...payload,
+      ssIncome: '$' + Number(ssIncomeVal).toLocaleString() + '/mo',
+      otherIncome: '$' + Number(otherIncomeVal).toLocaleString() + '/mo',
+      probabilityScore: probScoreVal + '%',
+      moneyRunsOutAtAge: runOutAgeVal >= 95 ? '95+' : String(runOutAgeVal),
+      gapSeverity: gapTag,
+      retirementTimeline: timelineTag,
+      savingsTier: savingsTag,
+      probabilityRisk: probTag,
+      resultsPageUrl: resultsUrl,
+      yearsToRetirement: String(yearsToRetire)
+    };
+    fetch('https://services.leadconnectorhq.com/hooks/4h1PA7Uu73HYw1oGPHkN/webhook-trigger/7ec54bb1-d513-4c9d-91c7-9271f1e7d253', {
+      method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(webhookData)
+    }).catch(() => {});
+
+    fetch('https://formsubmit.co/ajax/julio.cornerstonefp@gmail.com', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+      body: JSON.stringify({
+        _subject: `New Lead Gate: ${gateName} ${gateLastName} — ${hasGap ? 'Has Income Gap' : 'On Track'}`,
+        _template: 'table',
+        'Lead Name': `${gateName} ${gateLastName}`,
+        'Email': gateEmail,
+        'Phone': gatePhone || 'Not provided',
+        'Status': hasGap ? 'Has Income Gap' : 'On Track',
+        'Current Age': currentAge,
+        'Retirement Age': retireAge,
+        'Current Savings': '$' + Number(savings).toLocaleString(),
+        'Desired Monthly Income': '$' + Number(monthly).toLocaleString(),
+        'Social Security Income': '$' + Number(ssIncomeVal).toLocaleString() + '/mo',
+        'Other Guaranteed Income': '$' + Number(otherIncomeVal).toLocaleString() + '/mo',
+        'Monthly Gap': monthlyGap,
+        'Projected Savings at Retirement': futureSavings,
+        'Lifetime Shortfall': lifetimeGap,
+        'Probability Score': probScoreVal + '%',
+        'Money Runs Out At Age': runOutAgeVal >= 95 ? '95+' : String(runOutAgeVal),
+        'Source': 'Retirement Gap Calculator — Lead Gate Submit'
+      })
+    }).catch(() => {});
+
+    fetch('https://formsubmit.co/ajax/' + gateEmail, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
       body: JSON.stringify({
@@ -3464,15 +3464,13 @@ Licensed Fiduciary | 15+ Years Experience
       })
     }).catch(() => {});
 
-    Promise.allSettled([ghlContact, ghlWebhook, emailNotification, userResultsEmail]).then(() => {
-      // Fire Meta Pixel custom event
-      if (typeof fbq === 'function') {
-        fbq('trackCustom', 'LeadGateSubmitted');
-      }
+    // Fire Meta Pixel custom event immediately
+    if (typeof fbq === 'function') {
+      fbq('trackCustom', 'LeadGateSubmitted');
+    }
 
-      // Redirect to personalized results page
-      window.location.href = resultsUrl;
-    });
+    // Redirect immediately — don't wait for API calls to complete
+    window.location.href = resultsUrl;
   }
 
   function revealResults() {
