@@ -285,7 +285,7 @@
       letter-spacing: 2px;
       text-transform: uppercase;
       padding: 6px 16px;
-      border-radius: 100px;
+      border-radius: var(--radius);
       margin-bottom: 24px;
     }
     .hero h1 {
@@ -326,7 +326,7 @@
     .card {
       background: #FFFFFF;
       border: 1px solid var(--border);
-      border-radius: 12px;
+      border-radius: var(--radius);
       padding: 40px;
       margin-top: -10px;
       position: relative;
@@ -452,7 +452,7 @@
       width: 100%;
       background: #FFFFFF;
       border: 1px solid var(--border);
-      border-radius: 6px;
+      border-radius: var(--radius);
       color: var(--dark);
       font-family: var(--sans);
       font-size: 28px;
@@ -468,7 +468,7 @@
     .field input[type="number"]::-webkit-outer-spin-button { -webkit-appearance: none; }
     .field input[type="number"]:focus {
       border-color: var(--gold);
-      box-shadow: 0 0 0 3px rgba(184,134,11,0.08);
+      box-shadow: 0 0 0 3px rgba(207,172,104,0.08);
     }
     .field input[type="number"].input-error {
       border-color: var(--red) !important;
@@ -525,32 +525,35 @@
     .wizard-back-btn {
       flex: 0 0 auto;
       background: none;
-      border: 1px solid var(--border);
+      border: 2px solid var(--border);
       color: var(--body);
-      border-radius: 6px;
-      font-family: var(--sans);
-      font-size: 15px;
-      font-weight: 600;
+      border-radius: var(--radius);
+      font-family: var(--body-font);
+      font-size: 14px;
+      font-weight: 700;
       padding: 16px 24px;
       cursor: pointer;
-      transition: all 0.2s;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      transition: all var(--transition);
     }
     .wizard-back-btn:hover { border-color: var(--gold); color: var(--gold); }
     .wizard-next-btn {
       flex: 1;
       background: var(--gold);
-      color: #fff;
-      border: none;
-      border-radius: 6px;
-      font-family: var(--sans);
-      font-size: 16px;
-      font-weight: 600;
+      color: var(--primary);
+      border: 2px solid var(--gold);
+      border-radius: var(--radius);
+      font-family: var(--body-font);
+      font-size: 14px;
+      font-weight: 700;
       padding: 16px 24px;
       cursor: pointer;
-      letter-spacing: 0.3px;
-      transition: background 0.2s, box-shadow 0.2s;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      transition: all var(--transition);
     }
-    .wizard-next-btn:hover { background: var(--gold-light); box-shadow: 0 8px 24px rgba(184,134,11,0.2); }
+    .wizard-next-btn:hover { background: var(--gold-light); border-color: var(--gold-light); color: #fff; }
     .wizard-next-btn:active { transform: translateY(0); }
 
     /* ── CTA BUTTON ── */
@@ -560,18 +563,19 @@
       display: block;
       margin: 28px auto 0;
       background: var(--gold);
-      color: #fff;
-      border: none;
-      border-radius: 6px;
-      font-family: var(--sans);
-      font-size: 18px;
-      font-weight: 600;
+      color: var(--primary);
+      border: 2px solid var(--gold);
+      border-radius: var(--radius);
+      font-family: var(--body-font);
+      font-size: 14px;
+      font-weight: 700;
       padding: 20px;
       cursor: pointer;
-      letter-spacing: 0.3px;
-      transition: background 0.2s, box-shadow 0.2s;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      transition: all var(--transition);
     }
-    .calc-btn:hover { background: var(--gold-light); box-shadow: 0 8px 24px rgba(184,134,11,0.2); }
+    .calc-btn:hover { background: var(--gold-light); border-color: var(--gold-light); color: #fff; }
     .calc-btn:active { transform: translateY(0); }
     .calc-btn.analyzing {
       animation: pulse-btn 1s ease-in-out infinite;
@@ -594,7 +598,7 @@
     .ss-card {
       background: #FFFFFF;
       border: 1px solid var(--border);
-      border-radius: 12px;
+      border-radius: var(--radius);
       padding: 18px 12px;
       text-align: center;
       cursor: pointer;
@@ -608,7 +612,7 @@
     .ss-card.selected {
       border-color: var(--gold);
       background: var(--gold-subtle);
-      box-shadow: 0 4px 12px rgba(184,134,11,0.1);
+      box-shadow: 0 4px 12px rgba(207,172,104,0.1);
     }
     .ss-card-amount {
       font-size: 22px;
@@ -659,7 +663,7 @@
     .verdict {
       text-align: center;
       padding: 36px 24px;
-      border-radius: 16px;
+      border-radius: var(--radius);
       margin-bottom: 30px;
       position: relative;
       overflow: hidden;
@@ -708,7 +712,7 @@
       padding: 28px 20px;
       background: #FFFFFF;
       border: 1px solid var(--border);
-      border-radius: 12px;
+      border-radius: var(--radius);
     }
     .prob-bar-wrap {
       max-width: 320px;
@@ -826,7 +830,7 @@
     .breakdown-bar {
       display: flex;
       height: 32px;
-      border-radius: 10px;
+      border-radius: var(--radius);
       overflow: hidden;
       margin-bottom: 14px;
       background: var(--border);
@@ -877,14 +881,14 @@
     .bar-track {
       height: 28px;
       background: #FDECEA;
-      border-radius: 8px;
+      border-radius: var(--radius);
       overflow: hidden;
       position: relative;
     }
     .bar-fill {
       height: 100%;
       background: linear-gradient(90deg, var(--green) 0%, var(--green-light) 100%);
-      border-radius: 8px;
+      border-radius: var(--radius);
       transition: width 1s cubic-bezier(0.4, 0, 0.2, 1);
       position: relative;
       min-width: 4px;
@@ -918,7 +922,7 @@
     .stat {
       background: #FFFFFF;
       border: 1px solid var(--border);
-      border-radius: 12px;
+      border-radius: var(--radius);
       padding: 20px 16px;
       text-align: center;
       transition: transform 0.2s, border-color 0.2s, background 0.2s;
@@ -977,7 +981,7 @@
       align-items: flex-start;
       background: #FDF2F2;
       border: 1px solid rgba(192,57,43,0.2);
-      border-radius: 12px;
+      border-radius: var(--radius);
       padding: 20px;
     }
     .stress-callout-icon {
@@ -1012,7 +1016,7 @@
     .lever-card {
       background: #FFFFFF;
       border: 1px solid var(--border);
-      border-radius: 12px;
+      border-radius: var(--radius);
       padding: 22px 16px;
       text-align: center;
       transition: transform 0.2s, border-color 0.2s;
@@ -1054,7 +1058,7 @@
     .urgency {
       background: #FDF8F0;
       border: 1px solid var(--gold-border);
-      border-radius: 12px;
+      border-radius: var(--radius);
       padding: 22px 24px;
       margin-bottom: 16px;
       display: flex;
@@ -1096,7 +1100,7 @@
       padding: 24px;
       background: #FFFFFF;
       border: 1px solid var(--border);
-      border-radius: 12px;
+      border-radius: var(--radius);
     }
     @media (max-width: 480px) { .trust-banner { grid-template-columns: 1fr; gap: 12px; } }
     .trust-item {
@@ -1118,7 +1122,7 @@
     .lead-box {
       background: var(--bg-alt);
       border: 1px solid var(--border);
-      border-radius: 12px;
+      border-radius: var(--radius);
       padding: 36px;
       text-align: center;
     }
@@ -1135,7 +1139,7 @@
       min-width: 180px;
       background: #FFFFFF;
       border: 1px solid var(--border);
-      border-radius: 6px;
+      border-radius: var(--radius);
       color: var(--dark);
       font-family: var(--sans);
       font-size: 16px;
@@ -1144,11 +1148,11 @@
       transition: border-color 0.2s, box-shadow 0.2s;
     }
     .form-row input::placeholder, .form-row select { color: var(--muted); }
-    .form-row input:focus, .form-row select:focus { border-color: var(--gold); box-shadow: 0 0 0 3px rgba(184,134,11,0.08); }
+    .form-row input:focus, .form-row select:focus { border-color: var(--gold); box-shadow: 0 0 0 3px rgba(207,172,104,0.08); }
     .form-row input.input-error { border-color: var(--red) !important; }
     .form-row select {
       flex: 1; min-width: 180px; background: #FFFFFF; color: var(--dark);
-      border: 1px solid var(--border); border-radius: 6px; padding: 14px 16px;
+      border: 1px solid var(--border); border-radius: var(--radius); padding: 14px 16px;
       font-size: 16px; font-family: var(--sans); outline: none;
       transition: border-color 0.2s; appearance: none; cursor: pointer;
       background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%237A7A7A' stroke-width='1.5' fill='none'/%3E%3C/svg%3E");
@@ -1162,20 +1166,21 @@
       width: 100%;
       max-width: 520px;
       background: var(--gold);
-      color: #fff;
-      border: none;
-      border-radius: 6px;
-      font-family: var(--sans);
-      font-size: 17px;
-      font-weight: 600;
+      color: var(--primary);
+      border: 2px solid var(--gold);
+      border-radius: var(--radius);
+      font-family: var(--body-font);
+      font-size: 14px;
+      font-weight: 700;
       padding: 18px 28px;
       cursor: pointer;
-      letter-spacing: 0.3px;
-      transition: background 0.2s, box-shadow 0.2s;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      transition: all var(--transition);
       display: block;
       margin: 0 auto;
     }
-    .cta-btn:hover { background: var(--gold-light); box-shadow: 0 8px 24px rgba(184,134,11,0.2); }
+    .cta-btn:hover { background: var(--gold-light); border-color: var(--gold-light); color: #fff; }
     .privacy { font-size: 11px; color: var(--muted); margin-top: 14px; }
     .privacy a { color: var(--light); }
 
@@ -1324,7 +1329,7 @@
     .gate-card {
       background: var(--bg-alt);
       border: 1px solid var(--border);
-      border-radius: 12px;
+      border-radius: var(--radius);
       padding: 48px 36px;
       text-align: center;
       max-width: 520px;
@@ -1363,7 +1368,7 @@
       width: 100%;
       background: #FFFFFF;
       border: 1px solid var(--border);
-      border-radius: 6px;
+      border-radius: var(--radius);
       color: var(--dark);
       font-family: var(--sans);
       font-size: 16px;
@@ -1373,7 +1378,7 @@
       margin-bottom: 6px;
     }
     .gate-fields input::placeholder { color: var(--muted); }
-    .gate-fields input:focus { border-color: var(--gold); box-shadow: 0 0 0 3px rgba(184,134,11,0.08); }
+    .gate-fields input:focus { border-color: var(--gold); box-shadow: 0 0 0 3px rgba(207,172,104,0.08); }
     .gate-fields input.input-error { border-color: var(--red) !important; }
     .gate-fields .inline-error {
       color: var(--red);
@@ -1389,20 +1394,21 @@
       width: 100%;
       max-width: 400px;
       background: var(--gold);
-      color: #fff;
-      border: none;
-      border-radius: 6px;
-      font-family: var(--sans);
-      font-size: 17px;
-      font-weight: 600;
+      color: var(--primary);
+      border: 2px solid var(--gold);
+      border-radius: var(--radius);
+      font-family: var(--body-font);
+      font-size: 14px;
+      font-weight: 700;
       padding: 18px 28px;
       cursor: pointer;
-      letter-spacing: 0.3px;
-      transition: background 0.2s, box-shadow 0.2s;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      transition: all var(--transition);
       display: block;
       margin: 8px auto 0;
     }
-    .gate-submit-btn:hover { background: var(--gold-light); box-shadow: 0 8px 24px rgba(184,134,11,0.2); }
+    .gate-submit-btn:hover { background: var(--gold-light); border-color: var(--gold-light); color: #fff; }
     .gate-submit-btn:disabled { opacity: 0.6; cursor: not-allowed; }
 
     .gate-privacy {
@@ -1425,9 +1431,9 @@
 
     /* Mobile sticky gate submit */
     @media (max-width: 600px) {
-      .gate-card { border-radius: 10px; }
-      .gate-fields input { font-size: 16px; padding: 16px; border-radius: 10px; }
-      .gate-submit-btn { font-size: 16px; padding: 18px 20px; border-radius: 10px; }
+      .gate-card { border-radius: var(--radius); }
+      .gate-fields input { font-size: 16px; padding: 16px; border-radius: var(--radius); }
+      .gate-submit-btn { font-size: 16px; padding: 18px 20px; border-radius: var(--radius); }
       .gate-trust { gap: 12px; }
       .gate-trust span { font-size: 11px; }
     }
@@ -1466,7 +1472,7 @@
     .no-gap-card {
       background: #FFFFFF;
       border: 1px solid var(--border);
-      border-radius: 12px;
+      border-radius: var(--radius);
       padding: 24px 16px;
       text-align: center;
       transition: transform 0.2s, border-color 0.2s, background 0.2s;
@@ -1491,7 +1497,7 @@
     .no-gap-cta-box {
       background: var(--gold-subtle);
       border: 1px solid var(--gold-border);
-      border-radius: 12px;
+      border-radius: var(--radius);
       padding: 32px 24px;
       text-align: center;
     }
@@ -1512,19 +1518,20 @@
     .no-gap-cta-btn {
       display: inline-block;
       background: var(--gold);
-      color: #fff;
-      border: none;
-      border-radius: 6px;
-      font-family: var(--sans);
-      font-size: 16px;
-      font-weight: 600;
+      color: var(--primary);
+      border: 2px solid var(--gold);
+      border-radius: var(--radius);
+      font-family: var(--body-font);
+      font-size: 14px;
+      font-weight: 700;
       padding: 16px 32px;
       cursor: pointer;
       text-decoration: none;
-      letter-spacing: 0.3px;
-      transition: background 0.2s, box-shadow 0.2s;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      transition: all var(--transition);
     }
-    .no-gap-cta-btn:hover { background: var(--gold-light); box-shadow: 0 8px 24px rgba(184,134,11,0.2); }
+    .no-gap-cta-btn:hover { background: var(--gold-light); border-color: var(--gold-light); color: #fff; }
     .no-gap-cta-micro {
       font-size: 12px;
       color: var(--light);
@@ -1534,15 +1541,18 @@
     /* recalc button */
     .recalc-btn {
       background: none;
-      border: 1px solid var(--border);
+      border: 2px solid var(--border);
       color: var(--body);
-      border-radius: 6px;
-      font-family: var(--sans);
+      border-radius: var(--radius);
+      font-family: var(--body-font);
       font-size: 13px;
+      font-weight: 700;
       padding: 10px 20px;
       cursor: pointer;
       margin-top: 20px;
-      transition: all 0.2s;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      transition: all var(--transition);
     }
     .recalc-btn:hover { border-color: var(--gold); color: var(--gold); }
 
@@ -1554,7 +1564,7 @@
       margin-bottom: 20px;
       padding: 8px 16px;
       background: var(--gold-subtle);
-      border-radius: 8px;
+      border-radius: var(--radius);
       border: 1px solid var(--gold-border);
     }
 
@@ -1580,14 +1590,16 @@
       width: 100%;
       max-width: 400px;
       background: var(--gold);
-      color: #fff;
-      border: none;
-      border-radius: 6px;
-      font-family: var(--sans);
-      font-size: 15px;
-      font-weight: 600;
+      color: var(--primary);
+      border: 2px solid var(--gold);
+      border-radius: var(--radius);
+      font-family: var(--body-font);
+      font-size: 14px;
+      font-weight: 700;
       padding: 14px 24px;
       cursor: pointer;
+      letter-spacing: 2px;
+      text-transform: uppercase;
     }
 
     /* ── MOBILE OPTIMIZATIONS ── */
@@ -1597,7 +1609,7 @@
       .hero { padding: 48px 16px 40px; }
       .hero h1 { font-size: 28px; }
       .hero p { font-size: 15px; margin-bottom: 24px; }
-      .card { padding: 28px 16px; border-radius: 10px; }
+      .card { padding: 28px 16px; border-radius: var(--radius); }
       .container { padding: 0 12px 80px; }
       .stats-row { grid-template-columns: 1fr 1fr; }
       .income-compare { grid-template-columns: 1fr; gap: 12px; }
@@ -1633,7 +1645,7 @@
       .field input[type="number"] {
         font-size: 28px;
         padding: 18px 16px;
-        border-radius: 10px;
+        border-radius: var(--radius);
       }
       .has-prefix input { padding-left: 32px; }
       .prefix { font-size: 18px; left: 12px; }
@@ -1652,7 +1664,7 @@
       .ss-options { grid-template-columns: 1fr 1fr; gap: 8px; }
       .ss-card {
         padding: 16px 10px;
-        border-radius: 10px;
+        border-radius: var(--radius);
       }
       .ss-card-amount { font-size: 20px; }
       .ss-card-label { font-size: 11px; }
@@ -1660,13 +1672,13 @@
       /* Wizard nav buttons */
       .wizard-nav { max-width: 100%; margin-top: 24px; }
       .wizard-back-btn { padding: 16px 20px; font-size: 14px; }
-      .wizard-next-btn { padding: 18px 20px; font-size: 16px; border-radius: 10px; }
+      .wizard-next-btn { padding: 18px 20px; font-size: 16px; border-radius: var(--radius); }
 
       /* Calculate button */
-      .calc-btn { padding: 20px; font-size: 17px; border-radius: 10px; }
+      .calc-btn { padding: 20px; font-size: 17px; border-radius: var(--radius); }
 
       /* Results */
-      .verdict { padding: 28px 16px; border-radius: 10px; }
+      .verdict { padding: 28px 16px; border-radius: var(--radius); }
       .verdict-icon { font-size: 40px; margin-bottom: 8px; }
       .verdict-label { font-size: 11px; letter-spacing: 1.5px; }
       .verdict-amount { font-size: 36px; }
@@ -1675,7 +1687,7 @@
       /* Progress bar */
       .bar-section { margin-bottom: 24px; }
       .bar-labels { font-size: 12px; flex-direction: column; gap: 4px; }
-      .bar-track { height: 24px; border-radius: 6px; }
+      .bar-track { height: 24px; border-radius: var(--radius); }
       .bar-fill::after { font-size: 11px; right: 6px; }
       .bar-note { font-size: 11px; }
 
@@ -1684,13 +1696,13 @@
       .prob-bar { height: 10px; border-radius: 5px; }
 
       /* Income breakdown */
-      .breakdown-bar { height: 32px; border-radius: 6px; }
+      .breakdown-bar { height: 32px; border-radius: var(--radius); }
       .breakdown-legend { grid-template-columns: 1fr 1fr; gap: 8px; }
       .legend-item { font-size: 12px; }
 
       /* Stats */
       .stats-row { grid-template-columns: 1fr; gap: 10px; }
-      .stat { padding: 16px 14px; border-radius: 10px; }
+      .stat { padding: 16px 14px; border-radius: var(--radius); }
       .stat-value { font-size: 22px; }
       .stat-label { font-size: 11px; }
 
@@ -1701,13 +1713,13 @@
       .donut-label { font-size: 9px; }
 
       /* Stress test */
-      .stress-callout { padding: 16px; border-radius: 10px; flex-direction: column; gap: 10px; }
+      .stress-callout { padding: 16px; border-radius: var(--radius); flex-direction: column; gap: 10px; }
       .stress-callout-icon { font-size: 24px; }
       .stress-callout-text { font-size: 13px; }
 
       /* Levers */
       .levers-grid { grid-template-columns: 1fr; gap: 10px; }
-      .lever-card { padding: 20px 16px; border-radius: 10px; }
+      .lever-card { padding: 20px 16px; border-radius: var(--radius); }
       .lever-icon { font-size: 28px; }
       .lever-value { font-size: 24px; }
       .lever-label { font-size: 12px; }
@@ -1717,7 +1729,7 @@
       .trust-item { padding: 14px; }
 
       /* Lead capture */
-      .lead-box { padding: 24px 16px; border-radius: 10px; }
+      .lead-box { padding: 24px 16px; border-radius: var(--radius); }
       .lead-box h2 { font-size: 20px; }
       .lead-box p { font-size: 13px; }
       .form-row { flex-direction: column; gap: 10px; }
@@ -1727,33 +1739,33 @@
         font-size: 16px;
         padding: 16px;
         min-width: auto;
-        border-radius: 10px;
+        border-radius: var(--radius);
       }
-      .form-row select { font-size: 16px; padding: 16px; border-radius: 10px; }
-      .cta-btn { padding: 18px 20px; font-size: 16px; border-radius: 10px; }
+      .form-row select { font-size: 16px; padding: 16px; border-radius: var(--radius); }
+      .cta-btn { padding: 18px 20px; font-size: 16px; border-radius: var(--radius); }
       .concern-grid { grid-template-columns: 1fr; gap: 6px; }
-      .concern-option { padding: 12px 14px; font-size: 13px; border-radius: 8px; }
+      .concern-option { padding: 12px 14px; font-size: 13px; border-radius: var(--radius); }
 
       /* Income panel */
-      .income-panel { padding: 20px 16px; border-radius: 10px; }
+      .income-panel { padding: 20px 16px; border-radius: var(--radius); }
       .income-compare { grid-template-columns: 1fr; gap: 10px; }
-      .income-option { padding: 16px; border-radius: 10px; }
+      .income-option { padding: 16px; border-radius: var(--radius); }
       .option-amount { font-size: 28px; }
       .option-period { font-size: 12px; }
       .income-note { font-size: 11px; }
 
       /* Urgency */
-      .urgency { padding: 16px; border-radius: 10px; flex-direction: column; }
+      .urgency { padding: 16px; border-radius: var(--radius); flex-direction: column; }
       .urgency-icon { font-size: 24px; }
       .urgency-text h4 { font-size: 14px; }
       .urgency-text p { font-size: 12px; }
 
       /* Recalc button */
-      .recalc-btn { padding: 14px 24px; font-size: 14px; border-radius: 10px; width: 100%; }
+      .recalc-btn { padding: 14px 24px; font-size: 14px; border-radius: var(--radius); width: 100%; }
 
       /* Sticky CTA */
       .sticky-mobile-cta { padding: 12px 16px; }
-      .sticky-mobile-cta button { padding: 16px; font-size: 15px; border-radius: 10px; }
+      .sticky-mobile-cta button { padding: 16px; font-size: 15px; border-radius: var(--radius); }
 
       /* Divider */
       .divider { margin: 24px 0; }
