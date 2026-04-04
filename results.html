@@ -36,7 +36,7 @@
   </script>
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Playfair+Display:wght@400;500;600;700;900&display=swap" rel="stylesheet" />
 
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -198,6 +198,57 @@
       margin-top: 6px;
     }
 
+    /* ── DONUT CHART ── */
+    .donut-section {
+      text-align: center;
+      margin-bottom: 32px;
+    }
+    .donut-wrap {
+      width: 180px;
+      height: 180px;
+      border-radius: 50%;
+      position: relative;
+      margin: 0 auto 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .donut-wrap .donut-bg {
+      position: absolute;
+      inset: 0;
+      border-radius: 50%;
+      background: var(--border);
+      transition: background 1.2s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+    .donut-center {
+      width: 120px;
+      height: 120px;
+      background: #FFFFFF;
+      border-radius: 50%;
+      position: relative;
+      z-index: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+    .donut-pct {
+      font-size: 36px;
+      font-weight: 900;
+      font-family: var(--serif);
+      line-height: 1;
+      color: var(--dark);
+    }
+    .donut-pct-label {
+      font-size: 11px;
+      color: var(--light);
+      margin-top: 2px;
+    }
+    .donut-label {
+      font-size: 14px;
+      color: var(--body);
+    }
+
     /* ── STATS GRID ── */
     .stats-grid {
       display: grid;
@@ -258,6 +309,103 @@
     .legend-item { display: flex; align-items: center; gap: 6px; }
     .legend-dot { width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; }
 
+    /* ── COVERAGE BAR ── */
+    .coverage-section {
+      margin-bottom: 32px;
+    }
+    .coverage-labels {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      margin-bottom: 8px;
+      font-size: 14px;
+    }
+    .coverage-labels strong { color: var(--dark); }
+    .coverage-track {
+      height: 14px;
+      background: var(--border);
+      border-radius: 7px;
+      overflow: hidden;
+      position: relative;
+    }
+    .coverage-fill {
+      height: 100%;
+      border-radius: 7px;
+      transition: width 1.2s ease-out;
+      width: 0%;
+    }
+    .coverage-note {
+      font-size: 12px;
+      color: var(--muted);
+      margin-top: 6px;
+    }
+
+    /* ── STRESS TEST ── */
+    .stress-section {
+      margin-bottom: 32px;
+    }
+    .stress-title {
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--dark);
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    .stress-chart {
+      margin: 0 auto 16px;
+      max-width: 100%;
+    }
+    .stress-chart svg {
+      width: 100%;
+      height: auto;
+    }
+    .stress-legend {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      flex-wrap: wrap;
+      margin-bottom: 20px;
+      font-size: 12px;
+      color: var(--light);
+    }
+    .stress-legend .legend-item {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .stress-legend .legend-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      display: inline-block;
+    }
+    .stress-callout {
+      display: flex;
+      gap: 14px;
+      align-items: flex-start;
+      background: #FDF2F2;
+      border: 1px solid rgba(192,57,43,0.2);
+      border-radius: 12px;
+      padding: 20px;
+    }
+    .stress-callout-icon {
+      font-size: 24px;
+      flex-shrink: 0;
+    }
+    .stress-callout-text {
+      font-size: 13px;
+      color: var(--body);
+      line-height: 1.6;
+    }
+    .stress-callout-text strong {
+      color: var(--red);
+    }
+    .stress-callout-text em {
+      color: var(--gold);
+      font-style: normal;
+      font-weight: 600;
+    }
+
     /* ── WHAT THIS MEANS ── */
     .insight-box {
       background: var(--gold-subtle);
@@ -286,6 +434,87 @@
       color: var(--body);
       line-height: 1.7;
       margin-bottom: 6px;
+    }
+
+    /* ── URGENCY / COST OF WAITING ── */
+    .urgency-box {
+      background: #FDF8F0;
+      border: 1px solid var(--gold-border);
+      border-radius: 12px;
+      padding: 22px 24px;
+      margin-bottom: 32px;
+      display: flex;
+      gap: 16px;
+      align-items: flex-start;
+    }
+    .urgency-icon { font-size: 28px; flex-shrink: 0; margin-top: 2px; }
+    .urgency-content h4 {
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--gold);
+      margin-bottom: 6px;
+    }
+    .urgency-content p {
+      font-size: 13px;
+      color: var(--body);
+      line-height: 1.6;
+    }
+    .cost-of-waiting {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--red);
+      margin-top: 8px;
+    }
+
+    /* ── THREE WAYS TO CLOSE GAP ── */
+    .close-gap-section {
+      margin-bottom: 32px;
+    }
+    .levers-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+      margin-bottom: 12px;
+    }
+    .lever-card {
+      background: #FFFFFF;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 22px 16px;
+      text-align: center;
+      transition: transform 0.2s, border-color 0.2s;
+    }
+    .lever-card:hover {
+      transform: translateY(-3px);
+      border-color: var(--gold-border);
+    }
+    .lever-icon {
+      font-size: 32px;
+      margin-bottom: 10px;
+    }
+    .lever-title {
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--dark);
+      margin-bottom: 8px;
+    }
+    .lever-value {
+      font-size: 22px;
+      font-weight: 800;
+      color: var(--gold);
+      margin-bottom: 8px;
+      font-family: var(--serif);
+    }
+    .lever-desc {
+      font-size: 12px;
+      color: var(--light);
+      line-height: 1.4;
+    }
+    .levers-note {
+      font-size: 13px;
+      color: var(--body);
+      text-align: center;
+      line-height: 1.5;
     }
 
     /* ── CTA CARD ── */
@@ -358,7 +587,7 @@
     .trust-value { font-family: var(--serif); font-size: 22px; font-weight: 700; color: var(--dark); }
     .trust-desc { font-size: 12px; color: var(--light); margin-top: 2px; }
 
-    /* ── SECOND CTA (STICKY) ── */
+    /* ── STICKY CTA ── */
     .sticky-cta {
       position: fixed;
       bottom: 0;
@@ -418,6 +647,18 @@
       .sticky-cta { display: block; }
       .prob-section { padding: 20px; }
       .insight-box { padding: 20px; }
+      .donut-wrap { width: 140px; height: 140px; }
+      .donut-center { width: 96px; height: 96px; }
+      .donut-pct { font-size: 26px; }
+      .donut-label { font-size: 12px; }
+      .stress-callout { padding: 16px; border-radius: 10px; flex-direction: column; gap: 10px; }
+      .stress-callout-icon { font-size: 24px; }
+      .stress-callout-text { font-size: 13px; }
+      .levers-grid { grid-template-columns: 1fr; gap: 10px; }
+      .urgency-box { padding: 16px; flex-direction: column; }
+      .urgency-icon { font-size: 24px; }
+      .urgency-content h4 { font-size: 14px; }
+      .urgency-content p { font-size: 12px; }
     }
 
     /* ── EMPTY STATE ── */
@@ -463,14 +704,14 @@
 <!-- MAIN CONTENT -->
 <div class="container" id="mainContent" style="display:none;">
 
-  <!-- GREETING -->
+  <!-- 1. GREETING -->
   <div class="greeting fade-in">
     <div class="badge">Your Personalized Results</div>
     <h1><span id="greetName">Your</span> Retirement<br>Income Analysis</h1>
     <p>Here's what your numbers tell us about your retirement readiness.</p>
   </div>
 
-  <!-- VERDICT -->
+  <!-- 2. VERDICT -->
   <div class="verdict-card fade-in" id="verdictCard">
     <div class="verdict-icon" id="verdictIcon"></div>
     <div class="verdict-label" id="verdictLabel"></div>
@@ -478,7 +719,7 @@
     <div class="verdict-sub" id="verdictSub"></div>
   </div>
 
-  <!-- PROBABILITY -->
+  <!-- 3. PROBABILITY -->
   <div class="prob-section fade-in">
     <div class="prob-header">
       <div class="prob-title">Probability of Success</div>
@@ -490,39 +731,116 @@
     <div class="prob-markers"><span>0%</span><span>Target: 80%</span><span>100%</span></div>
   </div>
 
-  <!-- STATS -->
+  <!-- 4. DONUT CHART -->
+  <div class="donut-section fade-in">
+    <div class="donut-wrap">
+      <div class="donut-bg" id="donutBg"></div>
+      <div class="donut-center">
+        <div class="donut-pct" id="donutPct">0%</div>
+        <div class="donut-pct-label">covered</div>
+      </div>
+    </div>
+    <div class="donut-label" id="donutLabel">Income coverage ratio</div>
+  </div>
+
+  <!-- 5. STATS -->
   <div class="stats-grid fade-in">
     <div class="stat-card">
-      <div class="stat-value" id="statSavings">—</div>
+      <div class="stat-value" id="statSavings">--</div>
       <div class="stat-label">Projected savings at retirement</div>
     </div>
     <div class="stat-card">
-      <div class="stat-value" id="statMonthly">—</div>
+      <div class="stat-value" id="statMonthly">--</div>
       <div class="stat-label">Monthly income your savings generate</div>
     </div>
     <div class="stat-card">
-      <div class="stat-value" id="statLifetime">—</div>
+      <div class="stat-value" id="statLifetime">--</div>
       <div class="stat-label">Estimated lifetime income shortfall</div>
     </div>
     <div class="stat-card">
-      <div class="stat-value" id="statRunOut">—</div>
+      <div class="stat-value" id="statRunOut">--</div>
       <div class="stat-label">Money runs out at age</div>
     </div>
   </div>
 
-  <!-- INCOME BREAKDOWN -->
+  <!-- 6. INCOME BREAKDOWN + COVERAGE BAR -->
   <div class="breakdown-section fade-in">
     <div class="section-title">Income Breakdown</div>
     <div class="breakdown-bar" id="breakdownBar"></div>
     <div class="legend" id="legendArea"></div>
   </div>
 
-  <!-- INSIGHT BOX -->
+  <div class="coverage-section fade-in">
+    <div class="coverage-labels">
+      <div><strong id="coveragePct">0%</strong> of your monthly income covered</div>
+      <div id="coverageShortLabel" style="color: var(--red-light)">Gap: <strong id="coverageShortAmt">$0</strong>/mo</div>
+    </div>
+    <div class="coverage-track">
+      <div class="coverage-fill" id="coverageFill"></div>
+    </div>
+    <div class="coverage-note">Based on age-adjusted growth rates, 4% withdrawal rule, 3% inflation, and 22% tax rate. Planning through age 95.</div>
+  </div>
+
+  <!-- 7. MARKET STRESS TEST -->
+  <div class="stress-section fade-in">
+    <div class="section-title">Market Stress Test</div>
+    <div class="stress-title">What happens if markets crash early in your retirement?</div>
+    <div class="stress-chart" id="stressChart"></div>
+    <div class="stress-legend">
+      <span class="legend-item"><span class="legend-dot" style="background:#2a9d4f"></span> Expected (6%/yr)</span>
+      <span class="legend-item"><span class="legend-dot" style="background:#e63946"></span> Early crash scenario</span>
+      <span class="legend-item"><span class="legend-dot" style="background:rgba(201,168,76,0.3)"></span> Likely range</span>
+    </div>
+    <div class="stress-callout">
+      <div class="stress-callout-icon">&#9888;&#65039;</div>
+      <div class="stress-callout-text">
+        <strong>If a 30% crash hits in year one:</strong> Your <span id="stressPortfolio">$0</span> portfolio drops to <span id="stressAfterCrash">$0</span> — and with withdrawals, you'd need a <span id="stressRecovery">0%</span> gain just to recover. This is called <em>sequence-of-returns risk</em>, and it's why timing matters more than average returns.
+      </div>
+    </div>
+  </div>
+
+  <!-- 8. INSIGHT BOX -->
   <div class="insight-box fade-in" id="insightBox">
     <!-- filled by JS -->
   </div>
 
-  <!-- PRIMARY CTA -->
+  <!-- 9. URGENCY / COST OF WAITING -->
+  <div class="urgency-box fade-in" id="urgencyBox">
+    <div class="urgency-icon">&#9200;</div>
+    <div class="urgency-content">
+      <h4 id="urgencyTitle">Every Year You Wait Costs You</h4>
+      <p id="urgencyText"></p>
+      <div class="cost-of-waiting" id="costOfWaiting"></div>
+    </div>
+  </div>
+
+  <!-- 10. THREE WAYS TO CLOSE YOUR GAP (only when hasGap) -->
+  <div class="close-gap-section fade-in" id="closeGapSection" style="display:none;">
+    <div class="section-title">Three Ways to Close Your Gap</div>
+    <div class="levers-grid">
+      <div class="lever-card">
+        <div class="lever-icon">&#128176;</div>
+        <div class="lever-title">Save More</div>
+        <div class="lever-value" id="leverSaveMore">$0/month</div>
+        <div class="lever-desc">Additional monthly savings needed to close the gap by retirement</div>
+      </div>
+      <div class="lever-card">
+        <div class="lever-icon">&#128197;</div>
+        <div class="lever-title">Work Longer</div>
+        <div class="lever-value" id="leverWorkLonger">0 more years</div>
+        <div class="lever-desc" id="leverWorkLongerDesc">Delay retirement to close the gap</div>
+      </div>
+      <div class="lever-card">
+        <div class="lever-icon">&#128201;</div>
+        <div class="lever-title">Spend Less</div>
+        <div class="lever-value" id="leverSpendLess">$0/month</div>
+        <div class="lever-desc">Reduce your monthly retirement goal to match your projected income</div>
+      </div>
+    </div>
+    <div class="levers-note">Or combine strategies — a financial advisor can help you find the right mix.</div>
+  </div>
+
+  <!-- 11. CTA CARD -->
   <div class="cta-card fade-in">
     <h2>Let's build a plan to <span id="ctaAction">fix this</span></h2>
     <p id="ctaDesc">In a free 15-minute call, I'll review your numbers and show you exactly what it takes to close your gap — no obligation, no sales pitch.</p>
@@ -538,7 +856,7 @@
     </div>
   </div>
 
-  <!-- TRUST -->
+  <!-- 12. TRUST -->
   <div class="trust-banner fade-in">
     <div class="trust-item">
       <div class="trust-value">$2.4M+</div>
@@ -554,7 +872,7 @@
     </div>
   </div>
 
-  <!-- RECALCULATE -->
+  <!-- 13. RECALCULATE -->
   <div style="text-align:center; margin-bottom: 20px;">
     <a href="https://calculator.cornerstone-fps.com" style="font-size:14px; color:var(--gold); text-decoration:none; font-weight:500;">&larr; Recalculate My Numbers</a>
   </div>
@@ -606,6 +924,11 @@
   const retireAge      = pNum('ret');
   const currentSavings = pNum('sav');
 
+  // ── Constants ──
+  const inflationRate = 0.03;
+  const taxRate = 0.22;
+  const planToAge = 95;
+
   // ── Validate required data ──
   if (!firstName || (!monthlyGap && !monthlyGen && !probScore)) {
     document.getElementById('emptyState').style.display = 'block';
@@ -614,19 +937,49 @@
     renderResults();
   }
 
+  // ── Formatting helpers ──
   function fmt(n) {
     if (Math.abs(n) >= 1000000) return '$' + (n / 1000000).toFixed(1) + 'M';
     if (Math.abs(n) >= 1000) return '$' + Math.round(n).toLocaleString();
     return '$' + Math.round(n).toLocaleString();
   }
 
+  function fmtK(n) {
+    if (n >= 1000000) return '$' + (n / 1000000).toFixed(1) + 'M';
+    if (n >= 1000) return '$' + Math.round(n / 1000) + 'K';
+    return '$' + Math.round(n);
+  }
+
+  function growthRate(yearsToRetire) {
+    if (yearsToRetire >= 20) return 0.075;
+    if (yearsToRetire >= 10) return 0.065;
+    if (yearsToRetire >= 5)  return 0.055;
+    return 0.045;
+  }
+
+  function projectPortfolio(balance, annualWithdrawal, annualReturns, inflRate, years) {
+    var results = [balance];
+    var withdrawal = annualWithdrawal;
+    for (var y = 1; y <= years; y++) {
+      var r = Array.isArray(annualReturns) ? (annualReturns[y-1] !== undefined ? annualReturns[y-1] : annualReturns[annualReturns.length-1]) : annualReturns;
+      balance = balance * (1 + r) - withdrawal;
+      withdrawal *= (1 + inflRate);
+      if (balance < 0) balance = 0;
+      results.push(Math.round(balance));
+    }
+    return results;
+  }
+
+  // ── Main render ──
   function renderResults() {
+    var yearsToRetire = retireAge - currentAge;
+
     // Greeting
     document.getElementById('greetName').textContent = firstName + "'s";
     document.title = firstName + "'s Retirement Results | Cornerstone Financial Partners";
 
-    // Verdict
-    const card = document.getElementById('verdictCard');
+    // ── 2. Verdict ──
+    var card = document.getElementById('verdictCard');
     if (hasGap) {
       card.classList.add('gap');
       document.getElementById('verdictIcon').textContent = '\u26A0\uFE0F';
@@ -641,83 +994,185 @@
       document.getElementById('verdictSub').textContent = 'monthly surplus — your income covers your retirement goal';
     }
 
-    // Probability
-    const probEl = document.getElementById('probValue');
-    const fillEl = document.getElementById('probFill');
-    let barColor;
+    // ── 3. Probability ──
+    var probEl = document.getElementById('probValue');
+    var fillEl = document.getElementById('probFill');
+    var barColor;
     if (probScore < 50) barColor = '#e63946';
     else if (probScore <= 70) barColor = '#e8a020';
     else barColor = '#2a9d4f';
     probEl.style.color = barColor;
-    fillEl.style.background = `linear-gradient(90deg, ${barColor}, ${barColor}dd)`;
-    setTimeout(() => { fillEl.style.width = probScore + '%'; }, 300);
+    fillEl.style.background = 'linear-gradient(90deg, ' + barColor + ', ' + barColor + 'dd)';
+    setTimeout(function() { fillEl.style.width = probScore + '%'; }, 300);
     animateCount(probEl, probScore, '%');
 
-    // Stats
+    // ── 4. Donut Chart ──
+    var total = monthlyGoal || 1;
+    var coverageRatio = Math.round(((ssIncome + otherIncome + monthlyGen) / total) * 100);
+    coverageRatio = Math.min(coverageRatio, 100);
+    var donutColor;
+    if (coverageRatio >= 80) donutColor = 'var(--green)';
+    else if (coverageRatio >= 50) donutColor = '#e8a020';
+    else donutColor = 'var(--red)';
+    document.getElementById('donutPct').style.color = donutColor;
+    setTimeout(function() { animateDonut(coverageRatio, donutColor); }, 400);
+
+    // ── 5. Stats ──
     document.getElementById('statSavings').textContent = fmt(futureSavings);
     document.getElementById('statMonthly').textContent = fmt(monthlyGen) + '/mo';
     document.getElementById('statLifetime').textContent = lifetimeGap > 0 ? fmt(lifetimeGap) : '$0';
     document.getElementById('statRunOut').textContent = runOutAge >= 95 ? '95+' : String(Math.round(runOutAge));
 
-    // Income breakdown
-    const total = monthlyGoal || 1;
-    const ssPct = Math.round((ssIncome / total) * 100);
-    const oiPct = Math.round((otherIncome / total) * 100);
-    const portPct = Math.round((monthlyGen / total) * 100);
-    const gapPct = hasGap ? Math.max(0, 100 - ssPct - oiPct - portPct) : 0;
+    // ── 6. Income Breakdown ──
+    var ssPct = Math.round((ssIncome / total) * 100);
+    var oiPct = Math.round((otherIncome / total) * 100);
+    var portPct = Math.round((monthlyGen / total) * 100);
+    var gapPct = hasGap ? Math.max(0, 100 - ssPct - oiPct - portPct) : 0;
 
-    const bar = document.getElementById('breakdownBar');
-    if (ssPct > 0) bar.innerHTML += `<div class="seg-ss" style="width:${ssPct}%"></div>`;
-    if (oiPct > 0) bar.innerHTML += `<div class="seg-other" style="width:${oiPct}%"></div>`;
-    if (portPct > 0) bar.innerHTML += `<div class="seg-portfolio" style="width:${Math.min(portPct, 100 - ssPct - oiPct - gapPct)}%"></div>`;
-    if (gapPct > 0) bar.innerHTML += `<div class="seg-gap" style="width:${gapPct}%"></div>`;
+    var bar = document.getElementById('breakdownBar');
+    if (ssPct > 0) bar.innerHTML += '<div class="seg-ss" style="width:' + ssPct + '%"></div>';
+    if (oiPct > 0) bar.innerHTML += '<div class="seg-other" style="width:' + oiPct + '%"></div>';
+    if (portPct > 0) bar.innerHTML += '<div class="seg-portfolio" style="width:' + Math.min(portPct, 100 - ssPct - oiPct - gapPct) + '%"></div>';
+    if (gapPct > 0) bar.innerHTML += '<div class="seg-gap" style="width:' + gapPct + '%"></div>';
 
-    const legend = document.getElementById('legendArea');
-    legend.innerHTML = `
-      <div class="legend-item"><div class="legend-dot" style="background:#3498db"></div>Social Security: ${fmt(ssIncome)}/mo</div>
-      ${otherIncome > 0 ? `<div class="legend-item"><div class="legend-dot" style="background:#9b59b6"></div>Other Income: ${fmt(otherIncome)}/mo</div>` : ''}
-      <div class="legend-item"><div class="legend-dot" style="background:var(--green)"></div>Portfolio: ${fmt(monthlyGen)}/mo</div>
-      ${hasGap ? `<div class="legend-item"><div class="legend-dot" style="background:var(--red-light)"></div>Gap: ${fmt(monthlyGap)}/mo</div>` : ''}
-    `;
+    var legend = document.getElementById('legendArea');
+    legend.innerHTML =
+      '<div class="legend-item"><div class="legend-dot" style="background:#3498db"></div>Social Security: ' + fmt(ssIncome) + '/mo</div>' +
+      (otherIncome > 0 ? '<div class="legend-item"><div class="legend-dot" style="background:#9b59b6"></div>Other Income: ' + fmt(otherIncome) + '/mo</div>' : '') +
+      '<div class="legend-item"><div class="legend-dot" style="background:var(--green)"></div>Portfolio: ' + fmt(monthlyGen) + '/mo</div>' +
+      (hasGap ? '<div class="legend-item"><div class="legend-dot" style="background:var(--red-light)"></div>Gap: ' + fmt(monthlyGap) + '/mo</div>' : '');
 
-    // Insight box
-    const insight = document.getElementById('insightBox');
-    if (hasGap) {
-      const yearsToRetire = retireAge - currentAge;
-      insight.innerHTML = `
-        <h3>What This Means for You</h3>
-        <p>${firstName}, based on your current savings of ${fmt(currentSavings)} and planned retirement at age ${Math.round(retireAge)}, you're projected to fall <strong>${fmt(monthlyGap)}/month short</strong> of your ${fmt(monthlyGoal)}/month goal.</p>
-        <ul>
-          <li>Your savings could generate <strong>${fmt(monthlyGen)}/mo</strong> in retirement income</li>
-          <li>Combined with Social Security (${fmt(ssIncome)}/mo), you'd still have a <strong>${fmt(monthlyGap)} monthly gap</strong></li>
-          ${runOutAge < 95 ? `<li>At this rate, your money could run out by <strong>age ${Math.round(runOutAge)}</strong></li>` : ''}
-          <li>The good news: with ${yearsToRetire} years to retirement, <strong>this is very fixable</strong></li>
-        </ul>
-      `;
-      document.getElementById('ctaAction').textContent = 'close your gap';
-      document.getElementById('ctaDesc').textContent = `In a free 15-minute call, I'll review your numbers and show you exactly what it takes to close your ${fmt(monthlyGap)}/mo gap — no obligation, no sales pitch.`;
+    // ── 6b. Coverage Bar ──
+    var covPct = coverageRatio;
+    document.getElementById('coveragePct').textContent = covPct + '%';
+    var covFill = document.getElementById('coverageFill');
+    if (covPct < 50) {
+      covFill.style.background = 'linear-gradient(90deg, var(--red) 0%, var(--red-light) 100%)';
+    } else if (covPct < 80) {
+      covFill.style.background = 'linear-gradient(90deg, #e8a020 0%, #f0c040 100%)';
     } else {
-      insight.innerHTML = `
-        <h3>You're in Great Shape, ${firstName}</h3>
-        <p>Your current savings trajectory puts you on track for retirement. But "on track" and "optimized" are two different things.</p>
-        <ul>
-          <li><strong>Tax optimization</strong> — Are you withdrawing from the right accounts in the right order?</li>
-          <li><strong>Risk protection</strong> — A single bad market year early in retirement can change everything</li>
-          <li><strong>Income planning</strong> — Social Security timing and Roth conversions could save you thousands</li>
-        </ul>
-      `;
-      document.getElementById('ctaAction').textContent = 'optimize your plan';
-      document.getElementById('ctaDesc').textContent = "In a free 15-minute call, I'll review your numbers and show you where you might be leaving money on the table — no obligation, no sales pitch.";
+      covFill.style.background = 'linear-gradient(90deg, var(--green) 0%, var(--green-light) 100%)';
+    }
+    setTimeout(function() { covFill.style.width = covPct + '%'; }, 400);
+
+    var covShortLabel = document.getElementById('coverageShortLabel');
+    if (hasGap) {
+      covShortLabel.style.color = 'var(--red-light)';
+      covShortLabel.innerHTML = 'Gap: <strong>' + fmt(monthlyGap) + '</strong>/mo';
+    } else {
+      covShortLabel.style.color = 'var(--green-light)';
+      covShortLabel.innerHTML = '<strong>Fully Covered</strong>';
     }
 
-    // Animate fade-ins
-    const sections = document.querySelectorAll('.fade-in');
-    sections.forEach((el, i) => {
-      setTimeout(() => el.classList.add('visible'), 150 * i);
+    // ── 7. Market Stress Test ──
+    renderStressTest();
+
+    // ── 8. Insight Box ──
+    var insight = document.getElementById('insightBox');
+    if (hasGap) {
+      insight.innerHTML =
+        '<h3>What This Means for You</h3>' +
+        '<p>' + firstName + ', based on your current savings of ' + fmt(currentSavings) + ' and planned retirement at age ' + Math.round(retireAge) + ', you\'re projected to fall <strong>' + fmt(monthlyGap) + '/month short</strong> of your ' + fmt(monthlyGoal) + '/month goal.</p>' +
+        '<ul>' +
+          '<li>Your savings could generate <strong>' + fmt(monthlyGen) + '/mo</strong> in retirement income</li>' +
+          '<li>Combined with Social Security (' + fmt(ssIncome) + '/mo), you\'d still have a <strong>' + fmt(monthlyGap) + ' monthly gap</strong></li>' +
+          (runOutAge < 95 ? '<li>At this rate, your money could run out by <strong>age ' + Math.round(runOutAge) + '</strong></li>' : '') +
+          '<li>The good news: with ' + yearsToRetire + ' years to retirement, <strong>this is very fixable</strong></li>' +
+        '</ul>';
+      document.getElementById('ctaAction').textContent = 'close your gap';
+      document.getElementById('ctaDesc').textContent = 'In a free 15-minute call, I\'ll review your numbers and show you exactly what it takes to close your ' + fmt(monthlyGap) + '/mo gap \u2014 no obligation, no sales pitch.';
+    } else {
+      insight.innerHTML =
+        '<h3>You\'re in Great Shape, ' + firstName + '</h3>' +
+        '<p>Your current savings trajectory puts you on track for retirement. But "on track" and "optimized" are two different things.</p>' +
+        '<ul>' +
+          '<li><strong>Tax optimization</strong> \u2014 Are you withdrawing from the right accounts in the right order?</li>' +
+          '<li><strong>Risk protection</strong> \u2014 A single bad market year early in retirement can change everything</li>' +
+          '<li><strong>Income planning</strong> \u2014 Social Security timing and Roth conversions could save you thousands</li>' +
+        '</ul>';
+      document.getElementById('ctaAction').textContent = 'optimize your plan';
+      document.getElementById('ctaDesc').textContent = "In a free 15-minute call, I'll review your numbers and show you where you might be leaving money on the table \u2014 no obligation, no sales pitch.";
+    }
+
+    // ── 9. Urgency / Cost of Waiting ──
+    var urgencyTitle = document.getElementById('urgencyTitle');
+    var urgencyText = document.getElementById('urgencyText');
+    if (hasGap) {
+      urgencyTitle.textContent = 'Market Risk Could Double Your Shortfall';
+      urgencyText.textContent = 'A single bad market year in early retirement could double your shortfall. The earlier you build a plan, the more options you have.';
+    } else {
+      urgencyTitle.textContent = "You're Ahead \u2014 But Not Bulletproof";
+      urgencyText.textContent = 'Even well-funded retirements face sequence-of-returns risk. A professional stress test can reveal vulnerabilities your numbers alone can\'t show.';
+    }
+
+    // Cost of waiting calculation
+    var costPerMonth = hasGap && yearsToRetire > 0 ? Math.round(lifetimeGap / (yearsToRetire * 12)) : 0;
+    document.getElementById('costOfWaiting').textContent = hasGap
+      ? 'Every month you wait costs approximately ' + fmt(costPerMonth) + ' in lifetime income.'
+      : '';
+
+    // ── 10. Three Ways to Close Gap ──
+    var closeGapEl = document.getElementById('closeGapSection');
+    if (hasGap) {
+      closeGapEl.style.display = 'block';
+
+      // Save More: PMT = FV * r / ((1+r)^n - 1)
+      // Capital needed at 4% rule to produce the monthly gap
+      var inflationFactor = Math.pow(1 + inflationRate, yearsToRetire);
+      var monthlyGapFuture = monthlyGap * inflationFactor;
+      var additionalNeeded = monthlyGapFuture * 12 / 0.04;
+      var avgRate = growthRate(yearsToRetire);
+      var monthlyRate = avgRate / 12;
+      var nMonths = yearsToRetire * 12;
+      var pmt = 0;
+      if (nMonths > 0 && monthlyRate > 0) {
+        pmt = additionalNeeded * monthlyRate / (Math.pow(1 + monthlyRate, nMonths) - 1);
+      }
+      document.getElementById('leverSaveMore').textContent = fmt(pmt) + '/month';
+
+      // Work Longer: iterate to find when portfolio covers the need
+      var extraYears = 0;
+      for (var testAge = retireAge + 1; testAge <= 80; testAge++) {
+        var testYears = testAge - currentAge;
+        var testProjected = currentSavings;
+        for (var y = 0; y < testYears; y++) {
+          testProjected *= (1 + growthRate(testYears - y));
+        }
+        var testInflation = Math.pow(1 + inflationRate, testYears);
+        var testMonthlyGoalInfl = monthlyGoal * testInflation;
+        var testSS = ssIncome * testInflation;
+        var testOther = otherIncome * testInflation;
+        var testGuaranteed = testSS + testOther;
+        var testNetNeeded = testMonthlyGoalInfl - testGuaranteed;
+        var testGrossNeeded = Math.max(0, testNetNeeded / (1 - taxRate));
+        var testMonthlyFromSavings = (testProjected * 0.04) / 12;
+        if (testMonthlyFromSavings >= testGrossNeeded) {
+          extraYears = testAge - retireAge;
+          document.getElementById('leverWorkLonger').textContent = extraYears + ' more year' + (extraYears > 1 ? 's' : '');
+          document.getElementById('leverWorkLongerDesc').textContent = 'Delay retirement to age ' + testAge + ' to close the gap';
+          break;
+        }
+      }
+      if (extraYears === 0) {
+        document.getElementById('leverWorkLonger').textContent = '5+ years';
+        document.getElementById('leverWorkLongerDesc').textContent = 'Gap may require additional strategies beyond delaying retirement';
+      }
+
+      // Spend Less: sustainable income in today's dollars
+      var sustainableIncome = monthlyGoal - monthlyGap;
+      document.getElementById('leverSpendLess').textContent = fmt(Math.max(0, sustainableIncome)) + '/month';
+    } else {
+      closeGapEl.style.display = 'none';
+    }
+
+    // ── Animate fade-ins ──
+    var sections = document.querySelectorAll('.fade-in');
+    sections.forEach(function(el, i) {
+      setTimeout(function() { el.classList.add('visible'); }, 150 * i);
     });
 
-    // Show sticky CTA after scroll
-    setTimeout(() => {
+    // ── Show sticky CTA after scroll ──
+    setTimeout(function() {
       window.addEventListener('scroll', function onScroll() {
         if (window.scrollY > 400) {
           document.getElementById('stickyCta').style.display = 'block';
@@ -727,12 +1182,108 @@
     }, 1000);
   }
 
-  function animateCount(el, target, suffix) {
-    const duration = 1200;
-    const start = performance.now();
+  // ── Stress Test Chart ──
+  function renderStressTest() {
+    var stressYears = planToAge - retireAge;
+    if (stressYears <= 0) stressYears = 30;
+
+    // Compute annual withdrawal from portfolio (gross needed from portfolio * 12)
+    var totalIncome = ssIncome + otherIncome + monthlyGen;
+    var grossNeededFromPortfolio = monthlyGen; // monthly income from savings
+    // If using future savings, approximate the annual withdrawal
+    var annualWithdrawal = futureSavings * 0.04; // 4% rule annual withdrawal
+
+    var bestCase = projectPortfolio(futureSavings, annualWithdrawal, 0.09, inflationRate, stressYears);
+    var expectedCase = projectPortfolio(futureSavings, annualWithdrawal, 0.06, inflationRate, stressYears);
+
+    // Worst case: crash years then normal
+    var worstReturns = [-0.25, -0.10, 0.05];
+    for (var i = 3; i < stressYears; i++) worstReturns.push(0.06);
+    var worstCase = projectPortfolio(futureSavings, annualWithdrawal, worstReturns, inflationRate, stressYears);
+
+    // Build SVG
+    var svgW = 500, svgH = 220, padL = 10, padR = 10, padT = 20, padB = 30;
+    var chartW = svgW - padL - padR;
+    var chartH = svgH - padT - padB;
+    var allVals = bestCase.concat(expectedCase).concat(worstCase);
+    var maxVal = Math.max.apply(null, allVals.concat([1]));
+    var n = stressYears;
+
+    function xPos(i) { return padL + (i / n) * chartW; }
+    function yPos(v) { return padT + chartH - (Math.max(v, 0) / maxVal) * chartH; }
+    function polyPoints(arr) { return arr.map(function(v, i) { return xPos(i) + ',' + yPos(v); }).join(' '); }
+
+    // Band between worst and best
+    var bandPoints = '';
+    for (var i = 0; i <= n; i++) bandPoints += xPos(i) + ',' + yPos(bestCase[i]) + ' ';
+    for (var i = n; i >= 0; i--) bandPoints += xPos(i) + ',' + yPos(worstCase[i]) + ' ';
+
+    // Likely range band
+    var likelyPoints = '';
+    for (var i = 0; i <= n; i++) {
+      var lo = worstCase[i] + (bestCase[i] - worstCase[i]) * 0.25;
+      likelyPoints += xPos(i) + ',' + yPos(lo) + ' ';
+    }
+    for (var i = n; i >= 0; i--) {
+      var hi = worstCase[i] + (bestCase[i] - worstCase[i]) * 0.75;
+      likelyPoints += xPos(i) + ',' + yPos(hi) + ' ';
+    }
+
+    var midAge = retireAge + Math.round(stressYears / 2);
+    var worstHitsZero = worstCase.some(function(v) { return v <= 0; });
+    var zeroLine = worstHitsZero ? '<line x1="' + padL + '" y1="' + yPos(0) + '" x2="' + (padL + chartW) + '" y2="' + yPos(0) + '" stroke="#e63946" stroke-width="1" stroke-dasharray="4,4" opacity="0.5"/>' : '';
+
+    var svg = '<svg viewBox="0 0 ' + svgW + ' ' + svgH + '" xmlns="http://www.w3.org/2000/svg">' +
+      '<polygon points="' + bandPoints + '" fill="rgba(230,57,70,0.12)"/>' +
+      '<polygon points="' + likelyPoints + '" fill="rgba(201,168,76,0.18)"/>' +
+      '<polyline points="' + polyPoints(expectedCase) + '" fill="none" stroke="#2a9d4f" stroke-width="2.5"/>' +
+      '<polyline points="' + polyPoints(worstCase) + '" fill="none" stroke="#e63946" stroke-width="1.5" stroke-dasharray="6,3"/>' +
+      zeroLine +
+      '<text x="' + padL + '" y="' + (svgH - 6) + '" fill="#8899aa" font-size="11" font-family="Inter,sans-serif">Age ' + Math.round(retireAge) + '</text>' +
+      '<text x="' + (svgW / 2) + '" y="' + (svgH - 6) + '" fill="#8899aa" font-size="11" font-family="Inter,sans-serif" text-anchor="middle">Age ' + midAge + '</text>' +
+      '<text x="' + (svgW - padR) + '" y="' + (svgH - 6) + '" fill="#8899aa" font-size="11" font-family="Inter,sans-serif" text-anchor="end">Age 95</text>' +
+      '<text x="' + (padL + 2) + '" y="' + (padT - 4) + '" fill="#8899aa" font-size="10" font-family="Inter,sans-serif">' + fmtK(maxVal) + '</text>' +
+      '<text x="' + (padL + 2) + '" y="' + (yPos(0) - 4) + '" fill="#8899aa" font-size="10" font-family="Inter,sans-serif">$0</text>' +
+      '</svg>';
+    document.getElementById('stressChart').innerHTML = svg;
+
+    // Stress callout values
+    var crashDrop = futureSavings * 0.30;
+    var afterCrash = futureSavings - crashDrop;
+    var afterCrashAndWithdrawal = afterCrash - annualWithdrawal;
+    var recoveryNeeded = afterCrashAndWithdrawal > 0 ? ((futureSavings / afterCrashAndWithdrawal) - 1) * 100 : 999;
+    document.getElementById('stressPortfolio').textContent = fmtK(futureSavings);
+    document.getElementById('stressAfterCrash').textContent = fmtK(Math.max(afterCrash, 0));
+    document.getElementById('stressRecovery').textContent = Math.round(recoveryNeeded) + '%';
+  }
+
+  // ── Donut Animation ──
+  function animateDonut(pct, color) {
+    var bg = document.getElementById('donutBg');
+    var pctEl = document.getElementById('donutPct');
+    var duration = 1200;
+    var startTime = performance.now();
+
     function update(now) {
-      const progress = Math.min((now - start) / duration, 1);
-      const eased = 1 - Math.pow(1 - progress, 3);
+      var elapsed = now - startTime;
+      var progress = Math.min(elapsed / duration, 1);
+      var eased = 1 - Math.pow(1 - progress, 3);
+      var currentPct = Math.round(pct * eased);
+      var deg = (currentPct / 100) * 360;
+      bg.style.background = 'conic-gradient(' + color + ' 0deg, ' + color + ' ' + deg + 'deg, #EDEBE6 ' + deg + 'deg, #EDEBE6 360deg)';
+      pctEl.textContent = currentPct + '%';
+      if (progress < 1) requestAnimationFrame(update);
+    }
+    requestAnimationFrame(update);
+  }
+
+  // ── Count Animation ──
+  function animateCount(el, target, suffix) {
+    var duration = 1200;
+    var start = performance.now();
+    function update(now) {
+      var progress = Math.min((now - start) / duration, 1);
+      var eased = 1 - Math.pow(1 - progress, 3);
       el.textContent = Math.round(target * eased) + (suffix || '');
       if (progress < 1) requestAnimationFrame(update);
     }
