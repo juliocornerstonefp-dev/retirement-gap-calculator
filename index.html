@@ -42,6 +42,11 @@
     'https://connect.facebook.net/en_US/fbevents.js');
     fbq('init', '1246799634264348');
     fbq('track', 'PageView');
+    fbq('track', 'ViewContent', {
+      content_name: 'Retirement Gap Calculator',
+      content_category: 'Calculator',
+      content_type: 'product'
+    });
     fbq('trackCustom', 'ViewContent_Calculator');
   </script>
   <noscript><img height="1" width="1" style="display:none"
