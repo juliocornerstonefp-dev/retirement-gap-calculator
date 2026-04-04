@@ -2214,7 +2214,7 @@
           <a href="https://calendar.app.google/aFhisFRPopm52FQRA" target="_blank" rel="noopener" class="no-gap-cta-btn" onclick="if(typeof fbq==='function')fbq('track','Schedule',{content_name:'Discovery Call — No Gap',content_category:'Calculator'});">
             Book My Free Strategy Call →
           </a>
-          <div class="no-gap-cta-micro">Free. No obligation. 15-minute call with a licensed fiduciary.</div>
+          <div class="no-gap-cta-micro">Free. No obligation. 15-minute call with a retirement income specialist.</div>
         </div>
       </div>
 
@@ -2276,7 +2276,7 @@
           <div class="social-proof" style="margin-top:20px;">
             <div class="proof-item">✓ 200+ Families Helped</div>
             <div class="proof-dot"></div>
-            <div class="proof-item">✓ Licensed Fiduciary</div>
+            <div class="proof-item">✓ Retirement Income Specialist</div>
             <div class="proof-dot"></div>
             <div class="proof-item">✓ No Sales Pitch</div>
           </div>
@@ -3392,8 +3392,12 @@
       })
     }).catch(() => {});
 
-    // Fire Meta Pixel custom event immediately
+    // Fire Meta Pixel events immediately
     if (typeof fbq === 'function') {
+      fbq('track', 'Lead', {
+        content_name: 'Retirement Gap Calculator',
+        content_category: 'Lead Gate'
+      });
       fbq('trackCustom', 'LeadGateSubmitted');
     }
 
